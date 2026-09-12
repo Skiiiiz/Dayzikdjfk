@@ -10,7 +10,7 @@ PanelWidgetClass ClanMarkerRoot {
  {
   TextWidgetClass MarkerNameText {
    ignorepointer 1
-   color 0.83 1 0.78 1
+   color 1 1 0.95 1
    position 0 0
    size 240 18
    hexactpos 1
@@ -25,7 +25,7 @@ PanelWidgetClass ClanMarkerRoot {
   }
   TextWidgetClass MarkerDistText {
    ignorepointer 1
-   color 0.83 1 0.78 1
+   color 1 1 0.95 1
    position 0 18
    size 240 16
    hexactpos 1

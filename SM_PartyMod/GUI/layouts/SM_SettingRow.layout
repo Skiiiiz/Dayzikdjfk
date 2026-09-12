@@ -9,7 +9,7 @@ PanelWidgetClass SMSettingRow {
  {
   PanelWidgetClass SettingRowBg {
    ignorepointer 1
-   color 0.093 0.129 0.06 0.85
+   color 0.1755 0.15 0.1245 0.85
    position 0 0
    size 1.0 30
    hexactpos 0
@@ -20,7 +20,7 @@ PanelWidgetClass SMSettingRow {
   }
   PanelWidgetClass SettingRowAccent {
    ignorepointer 1
-   color 0.1761 0.8511 0.1291 0.55
+   color 0.7214 0.4508 0.2002 0.55
    position 0 0
    size 0.0067 30
    hexactpos 0
@@ -31,7 +31,7 @@ PanelWidgetClass SMSettingRow {
   }
   TextWidgetClass SettingRowLabel {
    ignorepointer 1
-   color 0.747 0.9 0.702 1
+   color 0.936 0.9 0.855 1
    position 0.03125 0
    size 0.50446 30
    hexactpos 0
@@ -47,7 +47,7 @@ PanelWidgetClass SMSettingRow {
   }
   TextWidgetClass SettingRowValue {
    ignorepointer 1
-   color 0.216 1 0.1584 1
+   color 0.8849 0.553 0.2455 1
    position 0.54018 0
    size 0.19196 30
    hexactpos 0
@@ -63,7 +63,7 @@ PanelWidgetClass SMSettingRow {
   }
   PanelWidgetClass SettingRowDecBg {
    ignorepointer 1
-   color 0.1571 0.2179 0.1013 1
+   color 0.2964 0.2533 0.2103 1
    position 0.74554 3
    size 0.08929 24
    hexactpos 0
@@ -74,7 +74,7 @@ PanelWidgetClass SMSettingRow {
   }
   ButtonWidgetClass SettingRowDec {
    visible 1
-   color 0.83 1 0.78 1
+   color 1 1 0.95 1
    position 0.74554 3
    size 0.08929 24
    hexactpos 0
@@ -88,7 +88,7 @@ PanelWidgetClass SMSettingRow {
   }
   PanelWidgetClass SettingRowIncBg {
    ignorepointer 1
-   color 0.1571 0.2179 0.1013 1
+   color 0.2964 0.2533 0.2103 1
    position 0.84375 3
    size 0.08929 24
    hexactpos 0
@@ -99,7 +99,7 @@ PanelWidgetClass SMSettingRow {
   }
   ButtonWidgetClass SettingRowInc {
    visible 1
-   color 0.83 1 0.78 1
+   color 1 1 0.95 1
    position 0.84375 3
    size 0.08929 24
    hexactpos 0
@@ -113,7 +113,7 @@ PanelWidgetClass SMSettingRow {
   }
   ButtonWidgetClass SettingRowToggle {
    visible 0
-   color 0.83 1 0.78 0
+   color 1 1 0.95 0
    position 0.80357 3
    size 0.12946 24
    hexactpos 0
@@ -126,7 +126,7 @@ PanelWidgetClass SMSettingRow {
   ImageWidgetClass SettingRowToggleIcon {
    visible 0
    ignorepointer 1
-   color 0.83 1 0.78 1
+   color 1 1 0.95 1
    position 0.81696 4
    size 0.10268 22
    hexactpos 0

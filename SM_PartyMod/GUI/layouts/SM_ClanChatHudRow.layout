@@ -1,6 +1,6 @@
 RichTextWidgetClass ClanChatRowText {
  ignorepointer 1
- color 0.83 1 0.78 1
+ color 1 1 0.95 1
  position 0 0
  size 532 20
  hexactpos 1

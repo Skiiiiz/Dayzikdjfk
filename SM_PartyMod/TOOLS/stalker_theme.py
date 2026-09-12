@@ -14,51 +14,56 @@ def transform_rgb(r, g, b):
     if r == mx and (r - max(g, b)) > 0.30 and abs(g - b) < 0.12:
         return (r, g, b)
 
-    def olive(L):
-        return (L * 0.62, min(1.0, L * 0.86), L * 0.40)
+    def warm_dark(L):
+        return (L * 1.17, L * 1.00, L * 0.83)
 
-    def vivid_green(L):
-        return (L * 0.30, min(1.0, L * 1.45), L * 0.22)
+    def warm_mid(L):
+        return (L * 1.10, L * 1.01, L * 0.88)
+
+    def warm_pale(L):
+        return (L * 1.04, L * 1.00, L * 0.95)
+
+    def vivid_copper(L):
+        # calibrated so the mod's original saturated orange accent lands on #b87333
+        return (L * 1.229, L * 0.768, L * 0.341)
 
     def vivid_amber(L):
-        return (min(1.0, L * 1.50), L * 1.05, L * 0.30)
-
-    def vivid_cyan(L):
-        return (L * 0.20, min(1.0, L * 1.25), L * 0.85)
+        # calibrated so the mod's original teal/mint accent lands on #e8b545
+        return (L * 1.376, L * 1.074, L * 0.409)
 
     def blend(a, b_, k):
         return tuple(a[i] * (1 - k) + b_[i] * k for i in range(3))
 
-    # 1b. Already-green (g dominant, b and r both clearly below g) — leave as-is,
-    # it already reads as phosphor green (e.g. success/positive states).
-    if g == mx and (g - b) > 0.28 and (g - r) > 0.28:
-        return (r, g, b)
+    def warm_neutral(L):
+        if L >= 0.80:
+            return warm_pale(L)
+        if L >= 0.35:
+            return warm_mid(L)
+        return warm_dark(L)
 
-    # 2. Mint/teal (g dominant, g>b>r, b close to g i.e. cyan-ish) -> amber accent
-    if g == mx and g > b and g > r and (g - r) > 0.25:
+    # 2. Green family — g is the max channel (mint/cyan AND pristine
+    # saturated greens alike) -> secondary amber accent. No hue is left
+    # green anywhere in the new palette.
+    if g == mx and (g - r) > 0.20:
         k = min(1.0, sat * 1.7)
-        out = blend(olive(V), vivid_amber(V), k)
+        out = blend(warm_neutral(V), vivid_amber(V), k)
         return tuple(clamp(c) for c in out)
 
-    # 3. Warm orange (r dominant, r>g>b) -> primary green accent
+    # 3. Warm orange (r dominant, r>g>b) -> primary copper accent
     if r == mx and r > g and g > b and (g - b) > 0.15:
         k = min(1.0, sat * 1.7)
-        out = blend(olive(V), vivid_green(V), k)
+        out = blend(warm_neutral(V), vivid_copper(V), k)
         return tuple(clamp(c) for c in out)
 
-    # 4. Blue-ish (b dominant, b>g>=r) -> cyan-green accent
-    if b == mx and b > g and g >= r and (b - r) > 0.15:
+    # 4. Blue-ish (b dominant) -> treat as secondary amber accent too,
+    # keeping exactly two accent hues (copper + amber) as in the mockup.
+    if b == mx and (b - r) > 0.15:
         k = min(1.0, sat * 1.7)
-        out = blend(olive(V), vivid_cyan(V), k)
+        out = blend(warm_neutral(V), vivid_amber(V), k)
         return tuple(clamp(c) for c in out)
 
-    # 5. Neutral / gray family (structural chrome) -> olive-black PDA ramp
-    if V >= 0.80:
-        out = (V * 0.83, min(1.0, V * 1.00), V * 0.78)
-    elif V >= 0.55:
-        out = (V * 0.70, min(1.0, V * 0.95), V * 0.58)
-    else:
-        out = olive(V)
+    # 5. Neutral / gray family (structural chrome) -> warm charcoal ramp
+    out = warm_neutral(V)
     return tuple(clamp(c) for c in out)
 
 
@@ -99,9 +104,6 @@ def process_code(text):
 
 if __name__ == '__main__':
     mode, path = sys.argv[1], sys.argv[2]
-    # Read/write raw bytes with manual utf-8 decode so existing line endings
-    # (this project's files mix bare \n and \r\n) are never touched — only
-    # the numeric color tokens inside matched lines are replaced.
     with open(path, 'rb') as f:
         raw = f.read()
     text = raw.decode('utf-8')

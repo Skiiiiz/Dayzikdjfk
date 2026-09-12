@@ -9,7 +9,7 @@ FrameWidgetClass SMClanChatRoot {
  {
   TextWidgetClass ClanChatHintText {
    ignorepointer 1
-   color 0.546 0.741 0.4524 0.88
+   color 0.858 0.7878 0.6864 0.88
    position 36 176
     size 760 18
    valign bottom_ref
@@ -24,7 +24,7 @@ FrameWidgetClass SMClanChatRoot {
    "text valign" center
   }
   PanelWidgetClass ClanChatPanel {
-   color 0.0145 0.0201 0.0093 0.92
+   color 0.0273 0.0233 0.0194 0.92
    position 20 124
    size 760 46
    valign bottom_ref
@@ -36,7 +36,7 @@ FrameWidgetClass SMClanChatRoot {
    {
     PanelWidgetClass ClanChatChannelPill {
       ignorepointer 1
-      color 0.124 0.172 0.08 1
+      color 0.234 0.2 0.166 1
       position 8 8
       size 92 30
       hexactpos 1
@@ -47,7 +47,7 @@ FrameWidgetClass SMClanChatRoot {
       {
        PanelWidgetClass ClanChatChannelFill {
         ignorepointer 1
-        color 0.0657 0.0911 0.0424 1
+        color 0.1239 0.1059 0.0879 1
         position 1 1
         size 90 28
         hexactpos 1
@@ -58,7 +58,7 @@ FrameWidgetClass SMClanChatRoot {
         {
          PanelWidgetClass ClanChatChannelAccent {
           ignorepointer 1
-          color 0.0871 0.5442 0.37 1
+          color 0.599 0.4675 0.1781 1
           position 0 0
           size 4 28
           hexactpos 1
@@ -69,7 +69,7 @@ FrameWidgetClass SMClanChatRoot {
          }
          TextWidgetClass ClanChatChannelText {
           ignorepointer 1
-          color 0.7291 0.8784 0.6852 1
+          color 0.9135 0.8784 0.8345 1
           position 4 0
           size 86 28
           hexactpos 1
@@ -89,7 +89,7 @@ FrameWidgetClass SMClanChatRoot {
      }
     PanelWidgetClass ClanChatInputBg {
      ignorepointer 1
-     color 0.124 0.172 0.08 1
+     color 0.234 0.2 0.166 1
      position 108 8
      size 644 30
      hexactpos 1
@@ -114,7 +114,7 @@ FrameWidgetClass SMClanChatRoot {
       }
       PanelWidgetClass ClanChatInputCover {
        ignorepointer 1
-       color 0.0657 0.0911 0.0424 1
+       color 0.1239 0.1059 0.0879 1
        position 1 1
        size 642 28
        valign center_ref
@@ -127,7 +127,7 @@ FrameWidgetClass SMClanChatRoot {
       }
       TextWidgetClass ClanChatVisibleText {
        ignorepointer 1
-       color 0.7802 0.94 0.7332 1
+       color 0.9776 0.94 0.893 1
        position 12 0
        size 620 30
        valign center_ref
@@ -145,7 +145,7 @@ FrameWidgetClass SMClanChatRoot {
       }
       PanelWidgetClass ClanChatInputUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 0 28
        size 644 2
        hexactpos 1

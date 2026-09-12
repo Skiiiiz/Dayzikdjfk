@@ -292,12 +292,12 @@ class SM_ClanHud
 			{
 				int hpPct = Math.Round(hp * 100);
 				pctText.SetText(SM_PartyLoc.Text(hpPct.ToString() + "%"));
-				pctText.SetColor(AlphaColor(255, ARGB(255, 212, 255, 199), hudAlpha));
+				pctText.SetColor(AlphaColor(255, ARGB(255, 255, 255, 242), hudAlpha));
 			}
 			if (distText)
-				distText.SetColor(AlphaColor(255, ARGB(255, 212, 255, 199), hudAlpha));
+				distText.SetColor(AlphaColor(255, ARGB(255, 255, 255, 242), hudAlpha));
 			if (healthBg)
-				healthBg.SetColor(AlphaColor(220, ARGB(255, 19, 26, 12), hudAlpha));
+				healthBg.SetColor(AlphaColor(220, ARGB(255, 35, 30, 25), hudAlpha));
 
 			if (fill)
 			{
@@ -314,7 +314,7 @@ class SM_ClanHud
 			if (statusText)
 			{
 				string status = "";
-				int statusColor = ARGB(255, 212, 255, 199);
+				int statusColor = ARGB(255, 255, 255, 242);
 				if (member.Status & SM_MemberStatus.UNCONSCIOUS)
 				{
 					status = "#STR_SMP_00276";
@@ -323,7 +323,7 @@ class SM_ClanHud
 				else if (member.Status & SM_MemberStatus.BLEEDING)
 				{
 					status = "#STR_SMP_00589";
-					statusColor = ARGB(255, 235, 150, 40);
+					statusColor = ARGB(255, 232, 181, 69);
 				}
 				else if (member.Status & SM_MemberStatus.IN_VEHICLE)
 				{

@@ -147,8 +147,8 @@ class SM_PartyChatConfig
 	int GetGlobalPlayerColor()
 	{
 		if (!ColorGlobalPlayer)
-			return ARGB(255, 100, 255, 100);
-		return ColorGlobalPlayer.ToARGB(ARGB(255, 100, 255, 100));
+			return ARGB(255, 232, 181, 69);
+		return ColorGlobalPlayer.ToARGB(ARGB(255, 232, 181, 69));
 	}
 
 	int GetServerColor()
@@ -719,7 +719,7 @@ class SM_PartyConfig
 		ChatSystem.ColorDirect.FromHex(legacy.ChatLocalDefaultTextColor, ARGB(255, 255, 255, 255));
 		ChatSystem.ColorDirectPlayer.FromHex(legacy.ChatLocalDefaultNameColor, ARGB(255, 255, 255, 255));
 		ChatSystem.ColorGlobal.FromHex(legacy.ChatGlobalDefaultTextColor, ARGB(255, 255, 255, 255));
-		ChatSystem.ColorGlobalPlayer.FromHex(legacy.ChatGlobalDefaultNameColor, ARGB(255, 100, 255, 100));
+		ChatSystem.ColorGlobalPlayer.FromHex(legacy.ChatGlobalDefaultNameColor, ARGB(255, 232, 181, 69));
 		ChatSystem.ColorServer.SetRGB(255, 50, 50);
 		ChatSystem.ColorAlert.SetRGB(100, 200, 255);
 		if (legacy.ChatClanPlayerStyles)
@@ -1915,7 +1915,7 @@ class SM_PartyConfig
 		if (!ChatSystem.ColorGlobalPlayer)
 			ChatSystem.ColorGlobalPlayer = new SM_RGBColorConfig;
 		if (!ChatSystem.ColorGlobalPlayer.IsConfigured() || IsRgbColor(ChatSystem.ColorGlobalPlayer, 224, 224, 224))
-			ChatSystem.ColorGlobalPlayer.SetRGB(100, 255, 100);
+			ChatSystem.ColorGlobalPlayer.SetRGB(232, 181, 69);
 		ChatSystem.ColorGlobalPlayer.Clamp();
 
 		if (!ChatSystem.ColorServer)

@@ -1,5 +1,5 @@
 ButtonWidgetClass SMItemTile {
- color 0.0136 0.0189 0.0088 0.94
+ color 0.0257 0.022 0.0183 0.94
  position 0 0
  size 588 100
  hexactpos 1
@@ -11,7 +11,7 @@ ButtonWidgetClass SMItemTile {
  {
   PanelWidgetClass TileBorder {
    ignorepointer 1
-   color 0.0831 0.1152 0.0536 0.90
+   color 0.1568 0.134 0.1112 0.90
    position 0.006 6
    size 0.988 86
    hexactpos 0
@@ -22,7 +22,7 @@ ButtonWidgetClass SMItemTile {
   }
   PanelWidgetClass TileSurface {
    ignorepointer 1
-   color 0.0225 0.0312 0.0145 0.94
+   color 0.0425 0.0363 0.0302 0.94
    position 0.012 8
    size 0.976 82
    hexactpos 0
@@ -33,7 +33,7 @@ ButtonWidgetClass SMItemTile {
   }
   PanelWidgetClass TileAccent {
    ignorepointer 1
-   color 0.1761 0.8511 0.1291 0.0
+   color 0.7214 0.4508 0.2002 0.0
    position 0.006 6
    size 4 86
    hexactpos 0
@@ -58,7 +58,7 @@ ButtonWidgetClass SMItemTile {
    visible 0
    clipchildren 1
    ignorepointer 1
-   color 0.7608 0.9167 0.715 1
+   color 0.9533 0.9167 0.8708 1
    position 8 6
    size 72 88
    hexactpos 1
@@ -69,7 +69,7 @@ ButtonWidgetClass SMItemTile {
   }
   TextWidgetClass TileNameText {
    ignorepointer 1
-   color 0.7802 0.94 0.7332 1
+   color 0.9776 0.94 0.893 1
    position 96 6
    size 198 86
    hexactpos 1
@@ -86,7 +86,7 @@ ButtonWidgetClass SMItemTile {
   }
   TextWidgetClass TileMeta1Text {
    ignorepointer 1
-   color 0.7221 0.87 0.6786 1
+   color 0.9048 0.87 0.8265 1
    position 318 6
    size 72 86
    hexactpos 1
@@ -102,7 +102,7 @@ ButtonWidgetClass SMItemTile {
   }
   TextWidgetClass TileMeta2Text {
    ignorepointer 1
-   color 0.176 0.8507 0.1291 1
+   color 0.721 0.4506 0.2001 1
    position 414 6
    size 82 86
    hexactpos 1
@@ -118,7 +118,7 @@ ButtonWidgetClass SMItemTile {
   }
   TextWidgetClass TileMeta3Text {
    ignorepointer 1
-   color 0.7083 0.8533 0.6656 1
+   color 0.8875 0.8533 0.8107 1
    position 512 6
    size 70 86
    hexactpos 1
@@ -134,7 +134,7 @@ ButtonWidgetClass SMItemTile {
   }
   PanelWidgetClass TileProgressTrack {
    ignorepointer 1
-   color 0.0579 0.0803 0.0373 1
+   color 0.1092 0.0933 0.0775 1
    position 0.012 86
    size 0.976 2
    hexactpos 0
@@ -145,7 +145,7 @@ ButtonWidgetClass SMItemTile {
    {
     PanelWidgetClass TileProgressFill {
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 0.95
+     color 0.7214 0.4508 0.2002 0.95
      position 0 0
      size 1 1
      hexactpos 0
@@ -158,7 +158,7 @@ ButtonWidgetClass SMItemTile {
   }
   PanelWidgetClass TileBottomLine {
    ignorepointer 1
-   color 0.0655 0.0909 0.0423 0.95
+   color 0.1236 0.1057 0.0877 0.95
    position 0.012 88
    size 0.976 2
    hexactpos 0
@@ -170,7 +170,7 @@ ButtonWidgetClass SMItemTile {
   PanelWidgetClass TileDisabledShade {
    visible 0
    ignorepointer 1
-   color 0.0079 0.0109 0.0051 0.50
+   color 0.0148 0.0127 0.0105 0.50
    position 0.012 8
    size 0.976 82
    hexactpos 0
@@ -182,7 +182,7 @@ ButtonWidgetClass SMItemTile {
   TextWidgetClass TilePlaceholderText {
    visible 0
    ignorepointer 1
-   color 0.5227 0.7093 0.4331 1
+   color 0.8213 0.7541 0.6571 1
    position 10 41
    size 68 18
    hexactpos 1

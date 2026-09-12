@@ -77,9 +77,9 @@ class SM_ClanChatMenu extends UIScriptedMenu
 		if (m_InputCover)
 			m_InputCover.SetColor(SM_ChatChannelPalette.GetBackgroundColor(SM_ChatChannel.GLOBAL));
 		if (m_InputUnderline)
-			m_InputUnderline.SetColor(ARGB(115, 45, 217, 33));
+			m_InputUnderline.SetColor(ARGB(115, 184, 115, 51));
 		if (m_InputText)
-			m_InputText.SetColor(ARGB(255, 195, 235, 183));
+			m_InputText.SetColor(ARGB(255, 244, 235, 223));
 	}
 
 	protected void ApplyTextReadability()
@@ -223,12 +223,12 @@ class SM_ClanChatMenu extends UIScriptedMenu
 			if (m_ChannelText)
 			{
 				m_ChannelText.SetText(SM_PartyLoc.Text("#STR_SMP_01064"));
-				m_ChannelText.SetColor(ARGB(255, 126, 171, 104));
+				m_ChannelText.SetColor(ARGB(255, 198, 182, 158));
 			}
 			if (m_ChannelPill)
-				m_ChannelPill.SetColor(ARGB(120, 50, 69, 32));
+				m_ChannelPill.SetColor(ARGB(120, 94, 80, 66));
 			if (m_ChannelFill)
-				m_ChannelFill.SetColor(ARGB(90, 12, 17, 8));
+				m_ChannelFill.SetColor(ARGB(90, 23, 20, 17));
 			if (m_ChannelAccent)
 				m_ChannelAccent.SetColor(ARGB(0, 0, 0, 0));
 			RefreshHint("#STR_SMP_01063");
@@ -476,7 +476,7 @@ class SM_ClanChatMenu extends UIScriptedMenu
 			GetGame().GetPlayerName(name);
 			int directColor = SM_ClanClientData.ChatColorDirect;
 			if (directColor == 0)
-				directColor = ARGB(255, 191, 230, 179);
+				directColor = ARGB(255, 239, 230, 218);
 			SM_ClanClientData.AddSystemChat(SM_ChatChannel.SERVER, "#STR_SMP_00877", name, sendText, directColor, directColor);
 		}
 	}

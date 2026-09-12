@@ -12,7 +12,7 @@ PanelWidgetClass SMMapMarkerWidgetRoot {
  {
   PanelWidgetClass MapMarkerWidgetGlow {
    ignorepointer 1
-   color 0.03 0.0416 0.0193 0.72
+   color 0.0566 0.0484 0.0401 0.72
    position 4 4
    size 26 26
    hexactpos 1
@@ -24,7 +24,7 @@ PanelWidgetClass SMMapMarkerWidgetRoot {
   }
   ImageWidgetClass MapMarkerWidgetIcon {
    ignorepointer 1
-   color 0.83 1 0.78 1
+   color 1 1 0.95 1
    position 7 5
    size 20 20
    hexactpos 1
@@ -35,7 +35,7 @@ PanelWidgetClass SMMapMarkerWidgetRoot {
   }
   PanelWidgetClass MapMarkerWidgetAccent {
    ignorepointer 1
-   color 0.1761 0.8511 0.1291 1
+   color 0.7214 0.4508 0.2002 1
    position 15 27
    size 4 4
    hexactpos 1
@@ -47,7 +47,7 @@ PanelWidgetClass SMMapMarkerWidgetRoot {
   }
   ButtonWidgetClass MapMarkerWidgetButton {
    visible 1
-   color 0.83 1 0.78 0
+   color 1 1 0.95 0
    position 0 0
    size 34 34
    hexactpos 1

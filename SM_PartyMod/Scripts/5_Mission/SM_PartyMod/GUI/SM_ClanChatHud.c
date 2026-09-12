@@ -101,7 +101,7 @@ class SM_ClanChatHud
 			RichTextWidget rt = RichTextWidget.Cast(m_Rows[i]);
 			if (rt)
 			{
-				rt.SetColor(ARGB(255, 212, 255, 199));
+				rt.SetColor(ARGB(255, 255, 255, 242));
 				rt.SetOutline(2, ARGB(alphaByte, 0, 0, 0));
 				rt.SetShadow(3, ARGB(alphaByte, 0, 0, 0), 1.0, 1, 1);
 			}
@@ -222,15 +222,15 @@ class SM_ClanChatHud
 		if (channelColor == 0)
 			channelColor = entry.Color;
 		if (channelColor == 0)
-			channelColor = ARGB(255, 195, 235, 183);
+			channelColor = ARGB(255, 244, 235, 223);
 
 		int nameColor = entry.NameColor;
 		if (nameColor == 0)
-			nameColor = ARGB(255, 195, 235, 183);
+			nameColor = ARGB(255, 244, 235, 223);
 
 		int textColor = entry.TextColor;
 		if (textColor == 0)
-			textColor = ARGB(255, 195, 235, 183);
+			textColor = ARGB(255, 244, 235, 223);
 
 		int prefixColor = entry.PrefixColor;
 		if (prefixColor == 0)

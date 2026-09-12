@@ -60,7 +60,7 @@ class SM_ClanClientData
 	static int ChatColorDirect = ARGB(255, 255, 255, 255);
 	static int ChatColorDirectPlayer = ARGB(255, 255, 255, 255);
 	static int ChatColorGlobal = ARGB(255, 255, 255, 255);
-	static int ChatColorGlobalPlayer = ARGB(255, 100, 255, 100);
+	static int ChatColorGlobalPlayer = ARGB(255, 232, 181, 69);
 	static int ChatColorServer = ARGB(255, 255, 50, 50);
 	static int ChatColorAlert = ARGB(255, 100, 200, 255);
 	static bool LocalChatEnabled = true;

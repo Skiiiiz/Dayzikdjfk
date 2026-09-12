@@ -1,7 +1,7 @@
 PanelWidgetClass SMMapCircleSegment {
  visible 1
  ignorepointer 1
- color 0.1761 0.8511 0.1291 0.82
+ color 0.7214 0.4508 0.2002 0.82
  position 0 0
  size 24 2
  hexactpos 1

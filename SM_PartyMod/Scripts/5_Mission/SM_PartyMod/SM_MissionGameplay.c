@@ -410,7 +410,7 @@ modded class MissionGameplay
 
 		if (!DayZPhysics.RaycastRV(rayStart, rayEnd, hitPos, hitNormal, hitComponent, hitObjects, NULL, player, true))
 		{
-			SM_ClanClientData.AddSystemChat(SM_ChatChannel.SERVER, "#STR_SMP_00639", "", "#STR_SMP_01057", ARGB(255, 71, 214, 132), ARGB(255, 191, 230, 179));
+			SM_ClanClientData.AddSystemChat(SM_ChatChannel.SERVER, "#STR_SMP_00639", "", "#STR_SMP_01057", ARGB(255, 248, 205, 115), ARGB(255, 239, 230, 218));
 			return;
 		}
 

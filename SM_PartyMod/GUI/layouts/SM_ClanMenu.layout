@@ -9,7 +9,7 @@ FrameWidgetClass SMClanMenuRoot {
  {
   PanelWidgetClass MenuWindow {
    visible 1
-   color 0.03 0.0416 0.0193 0.9608
+   color 0.0566 0.0484 0.0401 0.9608
    position 0 0
    size 1180 680
    halign center_ref
@@ -22,7 +22,7 @@ FrameWidgetClass SMClanMenuRoot {
    {
     ImageWidgetClass MenuBgImage {
      ignorepointer 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 0 0
      size 1180 680
      hexactpos 1
@@ -37,7 +37,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass LeftAccentBar {
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 0 0
      size 4 680
      hexactpos 1
@@ -48,7 +48,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass SidebarBg {
      ignorepointer 1
-     color 0.0227 0.0315 0.0146 0.9608
+     color 0.0428 0.0366 0.0304 0.9608
      position 4 0
      size 188 680
      hexactpos 1
@@ -59,7 +59,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ImageWidgetClass TitleLogo {
      ignorepointer 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 24 18
      size 34 34
      hexactpos 1
@@ -89,7 +89,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass TitleAccent {
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 24 58
      size 148 2
      hexactpos 1
@@ -100,7 +100,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass CloseBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 14 14
      size 40 40
      halign right_ref
@@ -115,7 +115,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass MoneyText {
      ignorepointer 1
-     color 0.194 0.9377 0.1423 1
+     color 0.7948 0.4966 0.2205 1
      position 146 18
      size 116 30
      halign right_ref
@@ -132,7 +132,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass MoneyValueText {
      ignorepointer 1
-     color 0.9624 0.7433 0.2199 1
+     color 0.9727 0.7666 0.316 1
      position 62 18
      size 78 30
      halign right_ref
@@ -149,7 +149,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass OnlineWidgetBg {
      ignorepointer 1
-     color 0.0651 0.0903 0.042 0.42
+     color 0.1228 0.105 0.0871 0.42
      position 64 50
      size 198 28
      halign right_ref
@@ -161,7 +161,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ImageWidgetClass OnlineIcon {
      ignorepointer 1
-     color 0.4573 0.6207 0.3789 0.92
+     color 0.8098 0.681 0.4194 0.92
      position 236 56
      size 16 16
      halign right_ref
@@ -175,7 +175,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass OnlineText {
      ignorepointer 1
-     color 0.5297 0.7188 0.4389 1
+     color 0.8323 0.7642 0.6659 1
      position 144 49
      size 86 28
      halign right_ref
@@ -192,7 +192,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass OnlineValueText {
      ignorepointer 1
-     color 0.9624 0.7433 0.2199 1
+     color 0.9727 0.7666 0.316 1
      position 86 49
      size 48 28
      halign right_ref
@@ -209,7 +209,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass OnlineBtn {
      visible 1
-     color 0.83 1 0.78 0
+     color 1 1 0.95 0
      position 64 50
      size 198 28
      halign right_ref
@@ -224,7 +224,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass PanelOnline {
      visible 0
-     color 0.0444 0.0616 0.0287 0.94
+     color 0.0838 0.0717 0.0595 0.94
      priority 400
      position 770 84
      size 360 460
@@ -236,7 +236,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       PanelWidgetClass OnlineAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 0
        size 4 460
        hexactpos 1
@@ -261,7 +261,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass OnlineCloseBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 316 10
        size 32 32
        hexactpos 1
@@ -275,7 +275,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass OnlineBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 16 82
        size 328 362
        hexactpos 1
@@ -286,7 +286,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass OnlineHdrName {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 20 52
        size 128 24
        hexactpos 1
@@ -301,7 +301,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass OnlineHdrClan {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 158 52
        size 82 24
        hexactpos 1
@@ -316,7 +316,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass OnlineHdrTitle {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 244 52
        size 92 24
        hexactpos 1
@@ -331,7 +331,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass OnlineHeaderLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 16 78
        size 328 1
        hexactpos 1
@@ -342,7 +342,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass OnlineColSep1 {
        ignorepointer 1
-       color 0.1405 0.1949 0.0907 0.45
+       color 0.2652 0.2267 0.1881 0.45
        position 154 52
        size 1 392
        hexactpos 1
@@ -353,7 +353,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass OnlineColSep2 {
        ignorepointer 1
-       color 0.1405 0.1949 0.0907 0.45
+       color 0.2652 0.2267 0.1881 0.45
        position 238 52
        size 1 392
        hexactpos 1
@@ -380,7 +380,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass NavGroupClan {
      ignorepointer 1
-     color 0.4667 0.6333 0.3867 1
+     color 0.7333 0.6733 0.5867 1
      position 22 72
      size 150 18
      hexactpos 1
@@ -395,7 +395,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass NavGroupEconomy {
      ignorepointer 1
-     color 0.4667 0.6333 0.3867 1
+     color 0.7333 0.6733 0.5867 1
      position 22 214
      size 150 18
      hexactpos 1
@@ -410,7 +410,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass NavGroupProgress {
      ignorepointer 1
-     color 0.4667 0.6333 0.3867 1
+     color 0.7333 0.6733 0.5867 1
      position 22 428
      size 150 18
      hexactpos 1
@@ -425,7 +425,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass NavGroupSystem {
      ignorepointer 1
-     color 0.4667 0.6333 0.3867 1
+     color 0.7333 0.6733 0.5867 1
      position 22 588
      size 150 18
      hexactpos 1
@@ -441,7 +441,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill0 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 94
      size 166 30
      hexactpos 1
@@ -453,7 +453,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill1 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 130
      size 166 30
      hexactpos 1
@@ -465,7 +465,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill2 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 166
      size 166 30
      hexactpos 1
@@ -477,7 +477,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill3 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 450
      size 166 30
      hexactpos 1
@@ -489,7 +489,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill4 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 344
      size 166 30
      hexactpos 1
@@ -501,7 +501,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill5 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 630
      size 166 24
      hexactpos 1
@@ -513,7 +513,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill12 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 654
      size 166 24
      hexactpos 1
@@ -525,7 +525,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill7 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 236
      size 166 30
      hexactpos 1
@@ -537,7 +537,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill8 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 272
      size 166 30
      hexactpos 1
@@ -549,7 +549,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill9 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 380
      size 166 30
      hexactpos 1
@@ -561,7 +561,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill10 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 308
      size 166 30
      hexactpos 1
@@ -573,7 +573,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill11 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 484
      size 166 30
      hexactpos 1
@@ -585,7 +585,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill13 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 518
      size 166 30
      hexactpos 1
@@ -597,7 +597,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill14 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 552
      size 166 30
      hexactpos 1
@@ -609,7 +609,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabPill15 {
      visible 0
      ignorepointer 1
-     color 0.9915 0.6941 0.1983 0.13
+     color 0.9095 0.7099 0.2703 0.13
      position 14 606
      size 166 24
      hexactpos 1
@@ -620,7 +620,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabMyClanBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 94
      size 150 30
      hexactpos 1
@@ -634,7 +634,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon0 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -647,7 +647,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel0 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -664,7 +664,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabClansBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 130
      size 150 30
      hexactpos 1
@@ -678,7 +678,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon1 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -691,7 +691,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel1 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -708,7 +708,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabInvitesBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 166
      size 150 30
      hexactpos 1
@@ -722,7 +722,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon2 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -735,7 +735,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel2 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -752,7 +752,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabTopsBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 450
      size 150 30
      hexactpos 1
@@ -766,7 +766,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon3 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -779,7 +779,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel3 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -796,7 +796,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabTreasuryBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 344
      size 150 30
      hexactpos 1
@@ -810,7 +810,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon4 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -823,7 +823,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel4 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -840,7 +840,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabLogBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 630
      size 150 24
      hexactpos 1
@@ -854,7 +854,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon5 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 4
        size 16 16
        hexactpos 1
@@ -867,7 +867,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel5 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 24
        hexactpos 1
@@ -884,7 +884,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabSettingsBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 654
      size 150 24
      hexactpos 1
@@ -898,7 +898,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon12 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 4
        size 16 16
        hexactpos 1
@@ -911,7 +911,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel12 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 24
        hexactpos 1
@@ -928,7 +928,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabMarketBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 236
      size 150 30
      hexactpos 1
@@ -942,7 +942,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon7 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -955,7 +955,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel7 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -972,7 +972,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabServerMarketBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 272
      size 150 30
      hexactpos 1
@@ -986,7 +986,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon8 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -999,7 +999,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel8 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -1016,7 +1016,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabStorageBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 380
      size 150 30
      hexactpos 1
@@ -1030,7 +1030,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon9 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -1043,7 +1043,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel9 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -1060,7 +1060,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabAuctionBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 308
      size 150 30
      hexactpos 1
@@ -1074,7 +1074,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon10 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -1087,7 +1087,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel10 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -1104,7 +1104,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabAchievementsBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 484
      size 150 30
      hexactpos 1
@@ -1118,7 +1118,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon11 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -1131,7 +1131,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel11 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -1148,7 +1148,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabTitlesBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 518
      size 150 30
      hexactpos 1
@@ -1162,7 +1162,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon13 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -1175,7 +1175,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel13 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -1192,7 +1192,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabContractsBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 552
      size 150 30
      hexactpos 1
@@ -1206,7 +1206,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon14 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 7
        size 16 16
        hexactpos 1
@@ -1219,7 +1219,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel14 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 30
        hexactpos 1
@@ -1236,7 +1236,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass TabAdminChatBtn {
      visible 0
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 22 606
      size 150 24
      hexactpos 1
@@ -1250,7 +1250,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ImageWidgetClass TabIcon15 {
        ignorepointer 1
-       color 0.4573 0.6207 0.3789 0.82
+       color 0.8098 0.681 0.4194 0.82
        position 8 4
        size 16 16
        hexactpos 1
@@ -1263,7 +1263,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TabLabel15 {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 1
+       color 0.8323 0.7642 0.6659 1
        position 32 0
        size 112 24
        hexactpos 1
@@ -1281,7 +1281,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline0 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 100
      size 4 18
      hexactpos 1
@@ -1293,7 +1293,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline1 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 136
      size 4 18
      hexactpos 1
@@ -1305,7 +1305,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline2 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 172
      size 4 18
      hexactpos 1
@@ -1317,7 +1317,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline3 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 456
      size 4 18
      hexactpos 1
@@ -1329,7 +1329,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline4 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 350
      size 4 18
      hexactpos 1
@@ -1341,7 +1341,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline5 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 630
      size 4 14
      hexactpos 1
@@ -1353,7 +1353,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline12 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 656
      size 4 14
      hexactpos 1
@@ -1365,7 +1365,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline7 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 242
      size 4 18
      hexactpos 1
@@ -1377,7 +1377,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline8 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 278
      size 4 18
      hexactpos 1
@@ -1389,7 +1389,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline9 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 386
      size 4 18
      hexactpos 1
@@ -1401,7 +1401,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline10 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 314
      size 4 18
      hexactpos 1
@@ -1413,7 +1413,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline11 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 492
      size 4 18
      hexactpos 1
@@ -1425,7 +1425,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline13 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 528
      size 4 18
      hexactpos 1
@@ -1437,7 +1437,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline14 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 554
      size 4 18
      hexactpos 1
@@ -1449,7 +1449,7 @@ FrameWidgetClass SMClanMenuRoot {
     PanelWidgetClass TabUnderline15 {
      visible 0
      ignorepointer 1
-     color 0.1761 0.8511 0.1291 1
+     color 0.7214 0.4508 0.2002 1
      position 10 606
      size 4 14
      hexactpos 1
@@ -1460,7 +1460,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass HeaderSeparator {
      ignorepointer 1
-     color 0.1519 0.2107 0.098 1
+     color 0.2866 0.245 0.2033 1
      position 196 0
      size 1 680
      hexactpos 1
@@ -1481,7 +1481,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       PanelWidgetClass CreateFormBorder {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.85
+       color 0.2866 0.245 0.2033 0.85
        position 0 16
        size 430 500
        hexactpos 1
@@ -1492,7 +1492,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CreateFormBg {
        ignorepointer 1
-       color 0.044 0.0611 0.0284 0.82
+       color 0.0831 0.071 0.0589 0.82
        position 1 17
        size 428 498
        hexactpos 1
@@ -1503,7 +1503,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CreateFormAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 16
        size 4 500
        hexactpos 1
@@ -1542,7 +1542,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass CreateNameCounterText {
        ignorepointer 1
-       color 0.5017 0.6808 0.4157 1
+       color 0.7883 0.7238 0.6307 1
        position 322 84
        size 84 28
        hexactpos 1
@@ -1558,7 +1558,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass NameEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 24 116
        size 382 38
        hexactpos 1
@@ -1595,7 +1595,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass CreateTagCounterText {
        ignorepointer 1
-       color 0.5017 0.6808 0.4157 1
+       color 0.7883 0.7238 0.6307 1
        position 322 170
        size 84 28
        hexactpos 1
@@ -1611,7 +1611,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClanNameEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 24 152
        size 382 2
        hexactpos 1
@@ -1622,7 +1622,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClanTagEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 24 238
        size 180 2
        hexactpos 1
@@ -1633,7 +1633,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TagEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 24 202
        size 180 38
        hexactpos 1
@@ -1670,7 +1670,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass CreateDescCounterText {
        ignorepointer 1
-       color 0.5017 0.6808 0.4157 1
+       color 0.7883 0.7238 0.6307 1
        position 322 256
        size 84 28
        hexactpos 1
@@ -1686,7 +1686,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DescCreateBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 24 288
        size 382 98
        hexactpos 1
@@ -1697,7 +1697,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClanDescEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 24 384
        size 382 2
        hexactpos 1
@@ -1707,7 +1707,7 @@ FrameWidgetClass SMClanMenuRoot {
        style rover_sim_colorable
       }
       MultilineEditBoxWidgetClass ClanDescEdit {
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 38 300
        size 354 70
        hexactpos 1
@@ -1723,7 +1723,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CreateClanBtnBg {
        ignorepointer 1
-       color 0.1054 0.1462 0.068 0.92
+       color 0.1989 0.17 0.1411 0.92
        position 24 410
        size 382 46
        hexactpos 1
@@ -1734,7 +1734,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass CreateClanBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 24 410
        size 382 46
        hexactpos 1
@@ -1748,7 +1748,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass CreateHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 24 470
        size 382 40
        hexactpos 1
@@ -1764,7 +1764,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass CreateLogoBorder {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.85
+       color 0.2866 0.245 0.2033 0.85
        position 462 16
        size 454 490
        hexactpos 1
@@ -1776,7 +1776,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass CreateLogoBg {
        visible 0
        ignorepointer 1
-       color 0.044 0.0611 0.0284 0.72
+       color 0.0831 0.071 0.0589 0.72
        position 463 17
        size 452 488
        hexactpos 1
@@ -1788,7 +1788,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass CreateLogoImageBg {
        visible 0
        ignorepointer 1
-       color 0.0845 0.1172 0.0545 0.9
+       color 0.1595 0.1363 0.1132 0.9
        position 486 34
        size 64 64
        hexactpos 1
@@ -1799,7 +1799,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ImageWidgetClass CreateClanLogoImage {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 474 46
        size 430 430
        hexactpos 1
@@ -1816,7 +1816,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass CreateLogoTitle {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 574 34
        size 300 28
        hexactpos 1
@@ -1832,7 +1832,7 @@ FrameWidgetClass SMClanMenuRoot {
       MultilineTextWidgetClass CreateLogoHint {
        visible 0
        ignorepointer 1
-       color 0.5157 0.6998 0.4273 1
+       color 0.8103 0.744 0.6483 1
        position 574 64
        size 300 42
        hexactpos 1
@@ -1848,7 +1848,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass CreateBenefitsBorder {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.85
+       color 0.2866 0.245 0.2033 0.85
        position 462 132
        size 454 374
        hexactpos 1
@@ -1860,7 +1860,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass CreateBenefitsBg {
        visible 0
        ignorepointer 1
-       color 0.044 0.0611 0.0284 0.72
+       color 0.0831 0.071 0.0589 0.72
        position 463 133
        size 452 372
        hexactpos 1
@@ -1872,7 +1872,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass CreateBenefitsAccent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 486 154
        size 4 42
        hexactpos 1
@@ -1884,7 +1884,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass CreateBenefitsTitle {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 506 148
        size 360 30
        hexactpos 1
@@ -1900,7 +1900,7 @@ FrameWidgetClass SMClanMenuRoot {
       MultilineTextWidgetClass CreateBenefitsIntro {
        visible 0
        ignorepointer 1
-       color 0.5577 0.7568 0.4621 1
+       color 0.8763 0.8046 0.7011 1
        position 506 180
        size 360 44
        hexactpos 1
@@ -1916,7 +1916,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass BenefitLine1Accent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 506 246
        size 4 38
        hexactpos 1
@@ -1928,7 +1928,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass BenefitLine1Title {
        visible 0
        ignorepointer 1
-       color 0.7747 0.9333 0.728 1
+       color 0.9707 0.9333 0.8867 1
        position 526 236
        size 340 24
        hexactpos 1
@@ -1944,7 +1944,7 @@ FrameWidgetClass SMClanMenuRoot {
       MultilineTextWidgetClass BenefitLine1Text {
        visible 0
        ignorepointer 1
-       color 0.5157 0.6998 0.4273 1
+       color 0.8103 0.744 0.6483 1
        position 526 262
        size 340 34
        hexactpos 1
@@ -1960,7 +1960,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass BenefitSeparator1 {
        visible 0
        ignorepointer 1
-       color 0.1126 0.1562 0.0727 0.9
+       color 0.2125 0.1817 0.1508 0.9
        position 506 304
        size 360 1
        hexactpos 1
@@ -1972,7 +1972,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass BenefitLine2Accent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 506 324
        size 4 38
        hexactpos 1
@@ -1984,7 +1984,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass BenefitLine2Title {
        visible 0
        ignorepointer 1
-       color 0.7747 0.9333 0.728 1
+       color 0.9707 0.9333 0.8867 1
        position 526 314
        size 340 24
        hexactpos 1
@@ -2000,7 +2000,7 @@ FrameWidgetClass SMClanMenuRoot {
       MultilineTextWidgetClass BenefitLine2Text {
        visible 0
        ignorepointer 1
-       color 0.5157 0.6998 0.4273 1
+       color 0.8103 0.744 0.6483 1
        position 526 340
        size 340 34
        hexactpos 1
@@ -2016,7 +2016,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass BenefitSeparator2 {
        visible 0
        ignorepointer 1
-       color 0.1126 0.1562 0.0727 0.9
+       color 0.2125 0.1817 0.1508 0.9
        position 506 382
        size 360 1
        hexactpos 1
@@ -2028,7 +2028,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass BenefitLine3Accent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 506 402
        size 4 38
        hexactpos 1
@@ -2040,7 +2040,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass BenefitLine3Title {
        visible 0
        ignorepointer 1
-       color 0.7747 0.9333 0.728 1
+       color 0.9707 0.9333 0.8867 1
        position 526 392
        size 340 24
        hexactpos 1
@@ -2056,7 +2056,7 @@ FrameWidgetClass SMClanMenuRoot {
       MultilineTextWidgetClass BenefitLine3Text {
        visible 0
        ignorepointer 1
-       color 0.5157 0.6998 0.4273 1
+       color 0.8103 0.744 0.6483 1
        position 526 418
        size 340 50
        hexactpos 1
@@ -2097,7 +2097,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MyRankText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 40
        size 260 18
        hexactpos 1
@@ -2112,7 +2112,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ClanLevelText {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 560 2
        size 384 54
        hexactpos 1
@@ -2129,7 +2129,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClanTitleSeparator {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 0 58
        size 604 1
        hexactpos 1
@@ -2140,7 +2140,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MembersBg {
        ignorepointer 1
-       color 0.0597 0.0828 0.0385 0.80
+       color 0.1127 0.0963 0.08 0.80
        position 0 60
        size 604 382
        hexactpos 1
@@ -2151,7 +2151,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ImageWidgetClass MembersNoiseImage {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 1 61
        size 602 380
        hexactpos 1
@@ -2164,7 +2164,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ImageWidgetClass MembersWatermarkLogo {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 172 142
        size 260 260
        hexactpos 1
@@ -2178,7 +2178,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MembersColSep1 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 206 60
        size 1 382
        hexactpos 1
@@ -2189,7 +2189,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MembersColSep2 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 307 60
        size 1 382
        hexactpos 1
@@ -2200,7 +2200,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MembersColSep3 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 438 60
        size 1 382
        hexactpos 1
@@ -2211,7 +2211,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MembersColSep4 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 541 60
        size 1 382
        hexactpos 1
@@ -2222,7 +2222,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MembersHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 82
        size 604 1
        hexactpos 1
@@ -2233,7 +2233,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrName {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 12 64
        size 180 16
        hexactpos 1
@@ -2247,7 +2247,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrRank {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 214 64
        size 88 16
        hexactpos 1
@@ -2261,7 +2261,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrMemberTitle {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 315 64
        size 118 16
        hexactpos 1
@@ -2275,7 +2275,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrStatus {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 446 64
        size 90 16
        hexactpos 1
@@ -2289,7 +2289,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrHP {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 549 64
        size 70 16
        hexactpos 1
@@ -2317,7 +2317,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ActionsBg {
        ignorepointer 1
-       color 0.0597 0.0828 0.0385 0.82
+       color 0.1127 0.0963 0.08 0.82
        position 620 60
        size 324 446
        hexactpos 1
@@ -2328,7 +2328,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ImageWidgetClass ActionsNoiseImage {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 621 61
        size 322 444
        hexactpos 1
@@ -2341,7 +2341,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass InviteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 74
        size 296 38
        hexactpos 1
@@ -2355,7 +2355,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass InviteBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2366,7 +2366,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass InviteIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2379,7 +2379,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass InviteActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2396,7 +2396,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass KickBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 116
        size 296 38
        hexactpos 1
@@ -2410,7 +2410,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass KickBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2421,7 +2421,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass KickIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2434,7 +2434,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass KickActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2451,7 +2451,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass PromoteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 158
        size 296 38
        hexactpos 1
@@ -2465,7 +2465,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass PromoteBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2476,7 +2476,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass PromoteIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2489,7 +2489,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass PromoteActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2506,7 +2506,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DemoteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 200
        size 296 38
        hexactpos 1
@@ -2520,7 +2520,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass DemoteBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2531,7 +2531,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass DemoteIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2544,7 +2544,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass DemoteActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2561,7 +2561,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass LeaveBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 242
        size 296 38
        hexactpos 1
@@ -2575,7 +2575,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass LeaveBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2586,7 +2586,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass LeaveIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2599,7 +2599,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass LeaveActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2616,7 +2616,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DisbandBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 284
        size 296 38
        hexactpos 1
@@ -2630,7 +2630,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass DisbandBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2641,7 +2641,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass DisbandIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2654,7 +2654,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass DisbandActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2671,7 +2671,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DescBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 326
        size 296 38
        hexactpos 1
@@ -2685,7 +2685,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass DescBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2696,7 +2696,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass DescIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2709,7 +2709,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass DescActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2726,7 +2726,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass PermsBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 368
        size 296 38
        hexactpos 1
@@ -2740,7 +2740,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass PermsBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 38
          hexactpos 1
@@ -2751,7 +2751,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass PermsIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2764,7 +2764,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass PermsActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 38
          hexactpos 1
@@ -2781,7 +2781,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AdminLeaveClanBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 410
        size 296 36
        hexactpos 1
@@ -2795,7 +2795,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass AdminLeaveClanBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 36
          hexactpos 1
@@ -2806,7 +2806,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass AdminLeaveClanIcon {
          ignorepointer 1
-         color 0.6917 0.8333 0.65 1
+         color 0.9805 0.8584 0.6084 1
          position 16 9
          size 20 20
          hexactpos 1
@@ -2819,7 +2819,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass AdminLeaveClanActionText {
          ignorepointer 1
-         color 0.7802 0.94 0.7332 1
+         color 0.9776 0.94 0.893 1
          position 48 0
          size 232 36
          hexactpos 1
@@ -2836,7 +2836,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ColorLabel {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 0 520
        size 604 18
        hexactpos 1
@@ -2852,7 +2852,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn0 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 188 480
        size 36 36
        hexactpos 1
@@ -2864,7 +2864,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected0 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -2877,7 +2877,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch0 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -2892,7 +2892,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn1 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 232 480
        size 36 36
        hexactpos 1
@@ -2904,7 +2904,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected1 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -2917,7 +2917,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch1 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -2932,7 +2932,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn2 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 276 480
        size 36 36
        hexactpos 1
@@ -2944,7 +2944,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected2 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -2957,7 +2957,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch2 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -2972,7 +2972,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn3 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 320 480
        size 36 36
        hexactpos 1
@@ -2984,7 +2984,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected3 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -2997,7 +2997,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch3 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -3012,7 +3012,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn4 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 364 480
        size 36 36
        hexactpos 1
@@ -3024,7 +3024,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected4 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -3037,7 +3037,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch4 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -3052,7 +3052,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn5 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 408 480
        size 36 36
        hexactpos 1
@@ -3064,7 +3064,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected5 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -3077,7 +3077,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch5 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -3092,7 +3092,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn6 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 452 480
        size 36 36
        hexactpos 1
@@ -3104,7 +3104,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected6 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -3117,7 +3117,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch6 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -3132,7 +3132,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ColorBtn7 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 496 480
        size 36 36
        hexactpos 1
@@ -3144,7 +3144,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         ImageWidgetClass ColorSelected7 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 0 0
          size 36 36
          hexactpos 1
@@ -3157,7 +3157,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ImageWidgetClass ColorSwatch7 {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 4 4
          size 28 28
          hexactpos 1
@@ -3198,7 +3198,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayersBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 420
        hexactpos 1
@@ -3223,7 +3223,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass InviteActionsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 620 40
        size 324 200
        hexactpos 1
@@ -3234,7 +3234,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ConfirmInviteBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 56
        size 296 40
        hexactpos 1
@@ -3245,7 +3245,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ConfirmInviteBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 56
        size 3 40
        hexactpos 1
@@ -3256,7 +3256,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ConfirmInviteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 56
        size 296 40
        hexactpos 1
@@ -3270,7 +3270,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass RefreshPlayersBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 104
        size 296 40
        hexactpos 1
@@ -3281,7 +3281,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass RefreshPlayersBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 104
        size 3 40
        hexactpos 1
@@ -3292,7 +3292,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass RefreshPlayersBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 104
        size 296 40
        hexactpos 1
@@ -3306,7 +3306,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CancelInviteBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 152
        size 296 40
        hexactpos 1
@@ -3317,7 +3317,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CancelInviteBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 152
        size 3 40
        hexactpos 1
@@ -3328,7 +3328,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass CancelInviteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 152
        size 296 40
        hexactpos 1
@@ -3368,7 +3368,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClansBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 760 460
        hexactpos 1
@@ -3379,7 +3379,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClansColSep1 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 260 40
        size 1 460
        hexactpos 1
@@ -3390,7 +3390,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClansColSep2 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 350 40
        size 1 460
        hexactpos 1
@@ -3401,7 +3401,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClansColSep3 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 440 40
        size 1 460
        hexactpos 1
@@ -3412,7 +3412,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClansColSep4 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 594 40
        size 1 460
        hexactpos 1
@@ -3423,7 +3423,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClansHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 760 1
        hexactpos 1
@@ -3434,7 +3434,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrClanName {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 238 18
        hexactpos 1
@@ -3448,7 +3448,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrClanTag {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 268 46
        size 72 18
        hexactpos 1
@@ -3462,7 +3462,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrClanCount {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 358 46
        size 72 18
        hexactpos 1
@@ -3476,7 +3476,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrClanLeader {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 448 46
        size 138 18
        hexactpos 1
@@ -3490,7 +3490,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrClanLeaderTitle {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 602 46
        size 144 18
        hexactpos 1
@@ -3518,7 +3518,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass RefreshClansBg {
        ignorepointer 1
-       color 0.0597 0.0828 0.0385 0.92
+       color 0.1127 0.0963 0.08 0.92
        position 776 46
        size 164 40
        hexactpos 1
@@ -3529,7 +3529,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass RefreshClansAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 776 46
        size 3 40
        hexactpos 1
@@ -3540,7 +3540,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass RefreshClansBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 776 46
        size 164 40
        hexactpos 1
@@ -3580,7 +3580,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass InvitesBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 380
        hexactpos 1
@@ -3591,7 +3591,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass InvitesColSep1 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 314 40
        size 1 380
        hexactpos 1
@@ -3602,7 +3602,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass InvitesHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -3613,7 +3613,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrInvClan {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 290 18
        hexactpos 1
@@ -3627,7 +3627,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrInvFrom {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 322 46
        size 260 18
        hexactpos 1
@@ -3655,7 +3655,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass InviteBtnsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 620 40
        size 324 152
        hexactpos 1
@@ -3666,7 +3666,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AcceptInviteBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 56
        size 296 40
        hexactpos 1
@@ -3677,7 +3677,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AcceptInviteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 56
        size 296 40
        hexactpos 1
@@ -3691,7 +3691,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass AcceptInviteAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 40
          hexactpos 1
@@ -3704,7 +3704,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DeclineInviteBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 104
        size 296 40
        hexactpos 1
@@ -3715,7 +3715,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DeclineInviteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 104
        size 296 40
        hexactpos 1
@@ -3729,7 +3729,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass DeclineInviteAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.72
+         color 0.7214 0.4508 0.2002 0.72
          position 0 0
          size 3 40
          hexactpos 1
@@ -3768,7 +3768,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SettingsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 944 460
        hexactpos 1
@@ -3788,7 +3788,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass SettingsHintText {
        ignorepointer 1
-       color 0.5227 0.7093 0.4331 1
+       color 0.8213 0.7541 0.6571 1
        position 20 462
        size 900 34
        hexactpos 1
@@ -3803,7 +3803,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PanelMembers {
        visible 0
-       color 0.0153 0.0212 0.0099 0.85
+       color 0.0289 0.0247 0.0205 0.85
        position 0 0
        size 944 540
        hexactpos 1
@@ -3812,7 +3812,7 @@ FrameWidgetClass SMClanMenuRoot {
        vexactsize 1
        {
         PanelWidgetClass MembersWindowBg {
-         color 0.0727 0.1009 0.0469 0.99
+         color 0.1373 0.1173 0.0974 0.99
          position 18 26
          size 908 488
          hexactpos 1
@@ -3823,7 +3823,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass MembersHeaderText {
          ignorepointer 1
-         color 0.7885 0.95 0.741 1
+         color 0.988 0.95 0.9025 1
          position 40 40
          size 700 28
          hexactpos 1
@@ -3838,7 +3838,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass MembersHdrLine {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 0.6
+         color 0.7214 0.4508 0.2002 0.6
          position 40 74
          size 864 2
          hexactpos 1
@@ -3858,7 +3858,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass MembersCloseBtnBg {
          ignorepointer 1
-         color 0.093 0.129 0.06 0.92
+         color 0.1755 0.15 0.1245 0.92
          position 40 460
          size 864 40
          hexactpos 1
@@ -3869,7 +3869,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ButtonWidgetClass MembersCloseBtn {
          visible 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 40 460
          size 864 40
          hexactpos 1
@@ -3911,7 +3911,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass LogBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 760 460
        hexactpos 1
@@ -3962,7 +3962,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AdminChatHintText {
        ignorepointer 1
-       color 0.5297 0.7188 0.4389 0.9
+       color 0.8323 0.7642 0.6659 0.9
        position 0 30
        size 620 22
        hexactpos 1
@@ -3977,7 +3977,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatRefreshBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.78
+       color 0.1755 0.15 0.1245 0.78
        position 778 0
        size 166 36
        hexactpos 1
@@ -3988,7 +3988,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatRefreshBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 778 0
        size 3 36
        hexactpos 1
@@ -3999,7 +3999,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AdminChatRefreshBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 778 0
        size 166 36
        hexactpos 1
@@ -4013,7 +4013,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 86
        size 944 420
        hexactpos 1
@@ -4024,7 +4024,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AdminChatHdrTime {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 4 58
        size 100 24
        hexactpos 1
@@ -4039,7 +4039,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AdminChatHdrChannel {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 116 58
        size 100 24
        hexactpos 1
@@ -4054,7 +4054,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AdminChatHdrPlayer {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 228 58
        size 190 24
        hexactpos 1
@@ -4069,7 +4069,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AdminChatHdrMessage {
        ignorepointer 1
-       color 0.6751 0.8133 0.6344 1
+       color 0.8459 0.8133 0.7727 1
        position 438 58
        size 480 24
        hexactpos 1
@@ -4084,7 +4084,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatHeaderLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 82
        size 944 1
        hexactpos 1
@@ -4095,7 +4095,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatColSep1 {
        ignorepointer 1
-       color 0.1405 0.1949 0.0907 0.45
+       color 0.2652 0.2267 0.1881 0.45
        position 112 58
        size 1 448
        hexactpos 1
@@ -4106,7 +4106,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatColSep2 {
        ignorepointer 1
-       color 0.1405 0.1949 0.0907 0.45
+       color 0.2652 0.2267 0.1881 0.45
        position 226 58
        size 1 448
        hexactpos 1
@@ -4117,7 +4117,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatColSep3 {
        ignorepointer 1
-       color 0.1405 0.1949 0.0907 0.45
+       color 0.2652 0.2267 0.1881 0.45
        position 434 58
        size 1 448
        hexactpos 1
@@ -4142,7 +4142,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminChatMutePanel {
        visible 0
-       color 0.0444 0.0616 0.0287 0.94
+       color 0.0838 0.0717 0.0595 0.94
        position 262 128
        size 420 224
        hexactpos 1
@@ -4153,7 +4153,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass AdminChatMuteAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 0 0
          size 4 224
          hexactpos 1
@@ -4178,7 +4178,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass AdminChatMuteTargetText {
          ignorepointer 1
-         color 0.6751 0.8133 0.6344 1
+         color 0.8459 0.8133 0.7727 1
          position 22 54
          size 360 24
          hexactpos 1
@@ -4193,7 +4193,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         TextWidgetClass AdminChatMuteMinutesLabel {
          ignorepointer 1
-         color 0.6751 0.8133 0.6344 1
+         color 0.8459 0.8133 0.7727 1
          position 22 88
          size 120 24
          hexactpos 1
@@ -4208,7 +4208,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatMuteMinutesBg {
          ignorepointer 1
-         color 0.2253 0.3125 0.1453 0.9
+         color 0.3997 0.367 0.3197 0.9
          position 142 88
          size 100 32
          hexactpos 1
@@ -4219,7 +4219,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         EditBoxWidgetClass AdminChatMuteMinutesEdit {
          visible 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 148 91
          size 88 26
          hexactpos 1
@@ -4234,7 +4234,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatMuteApplyBtnBg {
          ignorepointer 1
-         color 0.093 0.129 0.06 0.78
+         color 0.1755 0.15 0.1245 0.78
          position 22 146
          size 120 36
          hexactpos 1
@@ -4245,7 +4245,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatMuteApplyBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 22 146
          size 3 36
          hexactpos 1
@@ -4256,7 +4256,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ButtonWidgetClass AdminChatMuteApplyBtn {
          visible 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 22 146
          size 120 36
          hexactpos 1
@@ -4270,7 +4270,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatUnmuteBtnBg {
          ignorepointer 1
-         color 0.093 0.129 0.06 0.78
+         color 0.1755 0.15 0.1245 0.78
          position 152 146
          size 120 36
          hexactpos 1
@@ -4281,7 +4281,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatUnmuteBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 152 146
          size 3 36
          hexactpos 1
@@ -4292,7 +4292,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ButtonWidgetClass AdminChatUnmuteBtn {
          visible 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 152 146
          size 120 36
          hexactpos 1
@@ -4306,7 +4306,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatMuteCloseBtnBg {
          ignorepointer 1
-         color 0.093 0.129 0.06 0.78
+         color 0.1755 0.15 0.1245 0.78
          position 282 146
          size 116 36
          hexactpos 1
@@ -4317,7 +4317,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         PanelWidgetClass AdminChatMuteCloseBtnAccent {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 282 146
          size 3 36
          hexactpos 1
@@ -4328,7 +4328,7 @@ FrameWidgetClass SMClanMenuRoot {
         }
         ButtonWidgetClass AdminChatMuteCloseBtn {
          visible 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 282 146
          size 116 36
          hexactpos 1
@@ -4357,7 +4357,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg0 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4368,7 +4368,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn0 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 0
        size 126 30
        hexactpos 1
@@ -4383,7 +4383,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder0 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 32
        size 126 2
        hexactpos 1
@@ -4395,7 +4395,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg1 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4406,7 +4406,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn1 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 136 0
        size 126 30
        hexactpos 1
@@ -4421,7 +4421,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder1 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 136 32
        size 126 2
        hexactpos 1
@@ -4433,7 +4433,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg2 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4444,7 +4444,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn2 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 272 0
        size 126 30
        hexactpos 1
@@ -4459,7 +4459,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder2 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 272 32
        size 126 2
        hexactpos 1
@@ -4471,7 +4471,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg3 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4482,7 +4482,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn3 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 408 0
        size 126 30
        hexactpos 1
@@ -4497,7 +4497,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder3 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 408 32
        size 126 2
        hexactpos 1
@@ -4509,7 +4509,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg4 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4520,7 +4520,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn4 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 544 0
        size 126 30
        hexactpos 1
@@ -4535,7 +4535,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder4 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 544 32
        size 126 2
        hexactpos 1
@@ -4547,7 +4547,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg5 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4558,7 +4558,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn5 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 680 0
        size 126 30
        hexactpos 1
@@ -4573,7 +4573,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder5 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 680 32
        size 126 2
        hexactpos 1
@@ -4585,7 +4585,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg6 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4596,7 +4596,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn6 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 816 0
        size 126 30
        hexactpos 1
@@ -4611,7 +4611,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder6 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 816 32
        size 126 2
        hexactpos 1
@@ -4623,7 +4623,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg7 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4634,7 +4634,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn7 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 36
        size 126 30
        hexactpos 1
@@ -4649,7 +4649,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder7 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 68
        size 126 2
        hexactpos 1
@@ -4661,7 +4661,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatBg8 {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 0
        size 96 30
        hexactpos 1
@@ -4672,7 +4672,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TopCatBtn8 {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 136 36
        size 126 30
        hexactpos 1
@@ -4687,7 +4687,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass TopCatUnder8 {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 136 68
        size 126 2
        hexactpos 1
@@ -4712,7 +4712,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TopsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 78
        size 944 436
        hexactpos 1
@@ -4723,7 +4723,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TopsHdrPlace {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 84
        size 50 18
        hexactpos 1
@@ -4737,7 +4737,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TopsHdrClan {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 70 84
        size 400 18
        hexactpos 1
@@ -4751,7 +4751,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TopsHdrValue {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 530 84
        size 400 18
        hexactpos 1
@@ -4765,7 +4765,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TopsHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 106
        size 944 1
        hexactpos 1
@@ -4790,7 +4790,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TopsHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 518
        size 944 18
        hexactpos 1
@@ -4817,7 +4817,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       PanelWidgetClass TreasuryHeroBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 0
        size 610 108
        hexactpos 1
@@ -4828,7 +4828,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TreasuryHeroAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 0
        size 3 108
        hexactpos 1
@@ -4839,7 +4839,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TreasuryRatesBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 624 0
        size 320 108
        hexactpos 1
@@ -4850,7 +4850,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositCardBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 122
        size 610 160
        hexactpos 1
@@ -4861,7 +4861,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WithdrawCardBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 624 122
        size 320 160
        hexactpos 1
@@ -4872,7 +4872,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass LevelCardBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 296
        size 944 158
        hexactpos 1
@@ -4883,7 +4883,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TreasuryRatesLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 624 36
        size 320 1
        hexactpos 1
@@ -4894,7 +4894,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositHeaderLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 158
        size 610 1
        hexactpos 1
@@ -4905,7 +4905,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WithdrawHeaderLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 624 158
        size 320 1
        hexactpos 1
@@ -4916,7 +4916,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass LevelHeaderLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 332
        size 944 1
        hexactpos 1
@@ -4940,7 +4940,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         MultilineTextWidgetClass LevelLadderText {
          ignorepointer 1
-         color 0.7166 0.8633 0.6734 1
+         color 0.8979 0.8633 0.8202 1
          position 0 0
          size 544 104
          hexactpos 1
@@ -4958,7 +4958,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass LevelColSep {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 604 342
        size 1 104
        hexactpos 1
@@ -4970,7 +4970,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass UpgradeProgressTrack {
        ignorepointer 1
        clipchildren 1
-       color 0.0597 0.0828 0.0385 0.7843
+       color 0.1127 0.0963 0.08 0.7843
        position 620 406
        size 300 10
        hexactpos 1
@@ -4981,7 +4981,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass UpgradeProgressFill {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 0 0
          size 1 1
          hexactpos 1
@@ -4994,7 +4994,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TreasuryBalanceText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 24 22
        size 560 44
        hexactpos 1
@@ -5009,7 +5009,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TreasuryMyText {
        ignorepointer 1
-       color 0.56 0.76 0.464 1
+       color 0.88 0.808 0.704 1
        position 24 70
        size 560 22
        hexactpos 1
@@ -5024,7 +5024,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass TreasuryRatesHeader {
        ignorepointer 1
-       color 0.4503 0.6112 0.3731 1
+       color 0.7077 0.6498 0.5661 1
        position 636 12
        size 296 20
        hexactpos 1
@@ -5052,7 +5052,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         MultilineTextWidgetClass TreasuryRatesText {
          ignorepointer 1
-         color 0.7166 0.8633 0.6734 1
+         color 0.8979 0.8633 0.8202 1
          position 0 0
          size 276 58
          hexactpos 1
@@ -5070,7 +5070,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass DepositHeader {
        ignorepointer 1
-       color 0.4503 0.6112 0.3731 1
+       color 0.7077 0.6498 0.5661 1
        position 24 132
        size 400 20
        hexactpos 1
@@ -5085,7 +5085,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 24 176
        size 250 44
        hexactpos 1
@@ -5096,7 +5096,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 24 176
        size 3 44
        hexactpos 1
@@ -5107,7 +5107,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DepositBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 24 176
        size 250 44
        hexactpos 1
@@ -5121,7 +5121,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 24 234
        size 200 34
        hexactpos 1
@@ -5132,7 +5132,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositAmountEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 24 266
        size 200 2
        hexactpos 1
@@ -5155,7 +5155,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositAmountBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 240 230
        size 230 44
        hexactpos 1
@@ -5166,7 +5166,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositAmountBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 240 230
        size 3 44
        hexactpos 1
@@ -5177,7 +5177,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DepositAmountBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 240 230
        size 230 44
        hexactpos 1
@@ -5191,7 +5191,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass WithdrawHeader {
        ignorepointer 1
-       color 0.4503 0.6112 0.3731 1
+       color 0.7077 0.6498 0.5661 1
        position 636 132
        size 296 20
        hexactpos 1
@@ -5206,7 +5206,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass WithdrawLabel {
        ignorepointer 1
-       color 0.56 0.76 0.464 1
+       color 0.88 0.808 0.704 1
        position 636 174
        size 296 22
        hexactpos 1
@@ -5221,7 +5221,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WithdrawEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 636 200
        size 296 34
        hexactpos 1
@@ -5232,7 +5232,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WithdrawAmountEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 636 232
        size 296 2
        hexactpos 1
@@ -5255,7 +5255,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WithdrawBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 636 240
        size 296 40
        hexactpos 1
@@ -5266,7 +5266,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WithdrawBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 636 240
        size 3 40
        hexactpos 1
@@ -5277,7 +5277,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass WithdrawBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 636 240
        size 296 40
        hexactpos 1
@@ -5291,7 +5291,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass LevelHeader {
        ignorepointer 1
-       color 0.4503 0.6112 0.3731 1
+       color 0.7077 0.6498 0.5661 1
        position 24 306
        size 400 20
        hexactpos 1
@@ -5306,7 +5306,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass LevelInfoText {
        ignorepointer 1
-       color 0.7166 0.8633 0.6734 1
+       color 0.8979 0.8633 0.8202 1
        position 620 342
        size 300 44
        hexactpos 1
@@ -5321,7 +5321,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass UpgradeProgressText {
        ignorepointer 1
-       color 0.4503 0.6112 0.3731 1
+       color 0.7077 0.6498 0.5661 1
        position 620 388
        size 300 14
        hexactpos 1
@@ -5336,7 +5336,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass UpgradeClanBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 620 420
        size 300 32
        hexactpos 1
@@ -5347,7 +5347,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass UpgradeClanBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 620 420
        size 3 32
        hexactpos 1
@@ -5358,7 +5358,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass UpgradeClanBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 620 420
        size 300 32
        hexactpos 1
@@ -5372,7 +5372,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass TreasuryHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 466
        size 944 60
        hexactpos 1
@@ -5413,7 +5413,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DescBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 944 300
        hexactpos 1
@@ -5424,7 +5424,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DescEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 0 338
        size 944 2
        hexactpos 1
@@ -5465,7 +5465,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SaveDescBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 0 356
        size 260 44
        hexactpos 1
@@ -5476,7 +5476,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SaveDescBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 0 356
        size 3 44
        hexactpos 1
@@ -5487,7 +5487,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass SaveDescBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 356
        size 260 44
        hexactpos 1
@@ -5501,7 +5501,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CloseDescBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 280 356
        size 200 44
        hexactpos 1
@@ -5512,7 +5512,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CloseDescBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 280 356
        size 3 44
        hexactpos 1
@@ -5523,7 +5523,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass CloseDescBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 280 356
        size 200 44
        hexactpos 1
@@ -5537,7 +5537,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass DescHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 0 416
        size 900 24
        hexactpos 1
@@ -5564,7 +5564,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       PanelWidgetClass InfoBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 0
        size 944 470
        hexactpos 1
@@ -5589,7 +5589,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass InfoDescLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 16 56
        size 200 20
        hexactpos 1
@@ -5617,7 +5617,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass InfoMembersLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 16 210
        size 300 20
        hexactpos 1
@@ -5631,7 +5631,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass InfoHdrName {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 28 236
        size 190 18
        hexactpos 1
@@ -5645,7 +5645,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass InfoHdrRank {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 220 236
        size 95 18
        hexactpos 1
@@ -5659,7 +5659,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass InfoHdrStatus {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 469 236
        size 120 18
        hexactpos 1
@@ -5673,7 +5673,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass InfoHdrTitle {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 326 236
        size 130 18
        hexactpos 1
@@ -5701,7 +5701,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ApplyBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 640 80
        size 280 44
        hexactpos 1
@@ -5712,7 +5712,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ApplyBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 640 80
        size 3 44
        hexactpos 1
@@ -5723,7 +5723,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ApplyBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 640 80
        size 280 44
        hexactpos 1
@@ -5737,7 +5737,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CloseInfoBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 640 134
        size 280 44
        hexactpos 1
@@ -5748,7 +5748,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CloseInfoBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 640 134
        size 3 44
        hexactpos 1
@@ -5759,7 +5759,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass CloseInfoBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 640 134
        size 280 44
        hexactpos 1
@@ -5773,7 +5773,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminEnterClanBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 640 188
        size 280 44
        hexactpos 1
@@ -5784,7 +5784,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AdminEnterClanBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 640 188
        size 3 44
        hexactpos 1
@@ -5795,7 +5795,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AdminEnterClanBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 640 188
        size 280 44
        hexactpos 1
@@ -5834,7 +5834,7 @@ FrameWidgetClass SMClanMenuRoot {
        "text valign" center
       }
       PanelWidgetClass MarketSearchBg {
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 384 5
        size 220 28
        hexactpos 1
@@ -5845,7 +5845,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MarketSearchEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 384 31
        size 220 2
        hexactpos 1
@@ -5868,7 +5868,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MarketSearchHint {
        ignorepointer 1
-       color 0.2521 0.3497 0.1627 1
+       color 0.4473 0.4107 0.3579 1
        position 394 8
        size 200 22
        hexactpos 1
@@ -5884,7 +5884,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MarketBg {
        visible 0
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 460
        hexactpos 1
@@ -5896,7 +5896,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MarketColSep1 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 242 40
        size 1 460
        hexactpos 1
@@ -5908,7 +5908,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MarketColSep2 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 320 40
        size 1 460
        hexactpos 1
@@ -5920,7 +5920,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MarketColSep3 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 421 40
        size 1 460
        hexactpos 1
@@ -5932,7 +5932,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MarketHdrLine {
        visible 1
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -5944,7 +5944,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrMarketItem {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 220 18
        hexactpos 1
@@ -5959,7 +5959,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrMarketQty {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 250 46
        size 64 18
        hexactpos 1
@@ -5974,7 +5974,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrMarketPrice {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 328 46
        size 86 18
        hexactpos 1
@@ -5989,7 +5989,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrMarketClan {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 429 46
        size 160 18
        hexactpos 1
@@ -6019,7 +6019,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MarketTilesSurface {
        visible 1
        ignorepointer 1
-       color 0.0236 0.0327 0.0152 0.68
+       color 0.0445 0.038 0.0315 0.68
        position 0 72
        size 604 428
        hexactpos 1
@@ -6057,7 +6057,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MarketActionsBg {
        ignorepointer 1
-       color 0.0442 0.0613 0.0285 0.82
+       color 0.0835 0.0713 0.0592 0.82
        position 620 40
        size 324 460
        hexactpos 1
@@ -6068,7 +6068,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MarketPreviewBg {
        ignorepointer 1
-       color 0.0229 0.0318 0.0148 0.92
+       color 0.0433 0.037 0.0307 0.92
        position 634 52
        size 296 136
        hexactpos 1
@@ -6081,7 +6081,7 @@ FrameWidgetClass SMClanMenuRoot {
        visible 0
        clipchildren 1
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 58
        size 272 122
        hexactpos 1
@@ -6092,7 +6092,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MarketInfoBg {
        ignorepointer 1
-       color 0.0537 0.0745 0.0347 0.88
+       color 0.1014 0.0867 0.0719 0.88
        position 634 196
        size 296 120
        hexactpos 1
@@ -6103,7 +6103,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass MarketInfoText {
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 205
        size 272 104
        hexactpos 1
@@ -6118,7 +6118,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass BuyLotBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 324
        size 296 38
        hexactpos 1
@@ -6129,7 +6129,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass BuyLotBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 324
        size 3 38
        hexactpos 1
@@ -6140,7 +6140,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass BuyLotBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 324
        size 296 38
        hexactpos 1
@@ -6154,7 +6154,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CancelLotBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 366
        size 296 34
        hexactpos 1
@@ -6165,7 +6165,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass CancelLotBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 366
        size 3 34
        hexactpos 1
@@ -6176,7 +6176,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass CancelLotBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 366
        size 296 34
        hexactpos 1
@@ -6190,7 +6190,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass SellLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 406
        size 296 18
        hexactpos 1
@@ -6205,7 +6205,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SellPriceEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 634 428
        size 140 30
        hexactpos 1
@@ -6216,7 +6216,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SellPriceEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 634 456
        size 140 2
        hexactpos 1
@@ -6239,7 +6239,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SellLotBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 786 428
        size 144 30
        hexactpos 1
@@ -6250,7 +6250,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass SellLotBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 786 428
        size 3 30
        hexactpos 1
@@ -6261,7 +6261,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass SellLotBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 786 428
        size 144 30
        hexactpos 1
@@ -6275,7 +6275,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass MarketHintText {
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 634 464
        size 296 34
        hexactpos 1
@@ -6315,7 +6315,7 @@ FrameWidgetClass SMClanMenuRoot {
        "text valign" center
       }
       PanelWidgetClass ServerMarketSearchBg {
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 620 5
        size 324 28
        hexactpos 1
@@ -6326,7 +6326,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ServerMarketSearchEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 620 31
        size 324 2
        hexactpos 1
@@ -6349,7 +6349,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ServerMarketSearchHint {
        ignorepointer 1
-       color 0.2521 0.3497 0.1627 1
+       color 0.4473 0.4107 0.3579 1
        position 630 8
        size 304 22
        hexactpos 1
@@ -6365,7 +6365,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass ServerMarketBg {
        visible 0
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 460
        hexactpos 1
@@ -6377,7 +6377,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass ServerMarketColSep1 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 242 40
        size 1 460
        hexactpos 1
@@ -6389,7 +6389,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass ServerMarketColSep2 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 338 40
        size 1 460
        hexactpos 1
@@ -6401,7 +6401,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass ServerMarketColSep3 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 459 40
        size 1 460
        hexactpos 1
@@ -6413,7 +6413,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass ServerMarketHdrLine {
        visible 1
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -6425,7 +6425,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrServerMarketItem {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 220 18
        hexactpos 1
@@ -6440,7 +6440,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrServerMarketQty {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 250 46
        size 82 18
        hexactpos 1
@@ -6455,7 +6455,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrServerMarketPrice {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 346 46
        size 108 18
        hexactpos 1
@@ -6470,7 +6470,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrServerMarketLimit {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 467 46
        size 120 18
        hexactpos 1
@@ -6500,7 +6500,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass ServerMarketTilesSurface {
        visible 1
        ignorepointer 1
-       color 0.0236 0.0327 0.0152 0.68
+       color 0.0445 0.038 0.0315 0.68
        position 0 72
        size 604 428
        hexactpos 1
@@ -6538,7 +6538,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ServerMarketActionsBg {
        ignorepointer 1
-       color 0.0442 0.0613 0.0285 0.82
+       color 0.0835 0.0713 0.0592 0.82
        position 620 40
        size 324 460
        hexactpos 1
@@ -6549,7 +6549,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ServerMarketPreviewBg {
        ignorepointer 1
-       color 0.0229 0.0318 0.0148 0.92
+       color 0.0433 0.037 0.0307 0.92
        position 634 52
        size 296 156
        hexactpos 1
@@ -6562,7 +6562,7 @@ FrameWidgetClass SMClanMenuRoot {
        visible 0
        clipchildren 1
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 58
        size 272 144
        hexactpos 1
@@ -6573,7 +6573,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ServerMarketInfoBg {
        ignorepointer 1
-       color 0.0537 0.0745 0.0347 0.88
+       color 0.1014 0.0867 0.0719 0.88
        position 634 216
        size 296 126
        hexactpos 1
@@ -6584,7 +6584,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass ServerMarketInfoText {
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 226
        size 272 108
        hexactpos 1
@@ -6599,7 +6599,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass BuyServerMarketBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 354
        size 296 40
        hexactpos 1
@@ -6610,7 +6610,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass BuyServerMarketBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 354
        size 3 40
        hexactpos 1
@@ -6621,7 +6621,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass BuyServerMarketBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 354
        size 296 40
        hexactpos 1
@@ -6635,7 +6635,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass ServerMarketHintText {
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 634 410
        size 296 72
        hexactpos 1
@@ -6675,7 +6675,7 @@ FrameWidgetClass SMClanMenuRoot {
        "text valign" center
       }
       PanelWidgetClass AuctionSearchBg {
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 620 5
        size 324 28
        hexactpos 1
@@ -6686,7 +6686,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionSearchEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 620 31
        size 324 2
        hexactpos 1
@@ -6709,7 +6709,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AuctionSearchHint {
        ignorepointer 1
-       color 0.2521 0.3497 0.1627 1
+       color 0.4473 0.4107 0.3579 1
        position 630 8
        size 304 22
        hexactpos 1
@@ -6725,7 +6725,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionBg {
        visible 0
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 460
        hexactpos 1
@@ -6737,7 +6737,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionColSep1 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 207 40
        size 1 460
        hexactpos 1
@@ -6749,7 +6749,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionColSep2 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 302 40
        size 1 460
        hexactpos 1
@@ -6761,7 +6761,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionColSep3 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 386 40
        size 1 460
        hexactpos 1
@@ -6773,7 +6773,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionColSep4 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 480 40
        size 1 460
        hexactpos 1
@@ -6785,7 +6785,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionHdrLine {
        visible 1
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -6797,7 +6797,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrAuctionItem {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 184 18
        hexactpos 1
@@ -6812,7 +6812,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrAuctionStart {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 214 46
        size 82 18
        hexactpos 1
@@ -6827,7 +6827,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrAuctionBid {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 310 46
        size 70 18
        hexactpos 1
@@ -6842,7 +6842,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrAuctionTime {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 394 46
        size 80 18
        hexactpos 1
@@ -6857,7 +6857,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrAuctionSeller {
        visible 0
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 488 46
        size 100 18
        hexactpos 1
@@ -6887,7 +6887,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AuctionTilesSurface {
        visible 1
        ignorepointer 1
-       color 0.0236 0.0327 0.0152 0.68
+       color 0.0445 0.038 0.0315 0.68
        position 0 72
        size 604 428
        hexactpos 1
@@ -6925,7 +6925,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionActionsBg {
        ignorepointer 1
-       color 0.0442 0.0613 0.0285 0.82
+       color 0.0835 0.0713 0.0592 0.82
        position 620 40
        size 324 460
        hexactpos 1
@@ -6936,7 +6936,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionPreviewBg {
        ignorepointer 1
-       color 0.0229 0.0318 0.0148 0.92
+       color 0.0433 0.037 0.0307 0.92
        position 634 52
        size 296 104
        hexactpos 1
@@ -6949,7 +6949,7 @@ FrameWidgetClass SMClanMenuRoot {
        visible 0
        clipchildren 1
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 58
        size 272 90
        hexactpos 1
@@ -6960,7 +6960,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionInfoBg {
        ignorepointer 1
-       color 0.0537 0.0745 0.0347 0.88
+       color 0.1014 0.0867 0.0719 0.88
        position 634 162
        size 296 164
        hexactpos 1
@@ -6971,7 +6971,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass AuctionInfoText {
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 168
        size 272 152
        hexactpos 1
@@ -6986,7 +6986,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionBidBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 332
        size 140 34
        hexactpos 1
@@ -6997,7 +6997,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionBidBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 332
        size 3 34
        hexactpos 1
@@ -7008,7 +7008,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AuctionBidBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 332
        size 140 34
        hexactpos 1
@@ -7022,7 +7022,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionCancelBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 790 332
        size 140 34
        hexactpos 1
@@ -7033,7 +7033,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionCancelBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 790 332
        size 3 34
        hexactpos 1
@@ -7044,7 +7044,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AuctionCancelBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 790 332
        size 140 34
        hexactpos 1
@@ -7058,7 +7058,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AuctionStartLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 376
        size 58 22
        hexactpos 1
@@ -7073,7 +7073,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionStartEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 692 374
        size 78 26
        hexactpos 1
@@ -7084,7 +7084,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionStartEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 692 398
        size 78 2
        hexactpos 1
@@ -7107,7 +7107,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AuctionStepLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 778 376
        size 38 22
        hexactpos 1
@@ -7122,7 +7122,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionStepEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 816 374
        size 114 26
        hexactpos 1
@@ -7133,7 +7133,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionStepEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 816 398
        size 114 2
        hexactpos 1
@@ -7156,7 +7156,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass AuctionDurationLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 410
        size 58 22
        hexactpos 1
@@ -7171,7 +7171,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionDurationEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 692 408
        size 78 26
        hexactpos 1
@@ -7182,7 +7182,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionDurationEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 692 432
        size 78 2
        hexactpos 1
@@ -7205,7 +7205,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionSellBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 778 406
        size 152 34
        hexactpos 1
@@ -7216,7 +7216,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AuctionSellBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 778 406
        size 3 34
        hexactpos 1
@@ -7227,7 +7227,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AuctionSellBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 778 406
        size 152 34
        hexactpos 1
@@ -7241,7 +7241,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass AuctionHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 448
        size 296 52
        hexactpos 1
@@ -7282,7 +7282,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 50
        size 944 450
        hexactpos 1
@@ -7293,7 +7293,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesColSep1 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 76 50
        size 1 450
        hexactpos 1
@@ -7304,7 +7304,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesColSep2 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 386 50
        size 1 450
        hexactpos 1
@@ -7315,7 +7315,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesColSep3 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 630 50
        size 1 450
        hexactpos 1
@@ -7326,7 +7326,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesColSep4 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 752 50
        size 1 450
        hexactpos 1
@@ -7337,7 +7337,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 78
        size 944 1
        hexactpos 1
@@ -7348,7 +7348,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrPlayerTitlePlace {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 12 56
        size 52 18
        hexactpos 1
@@ -7362,7 +7362,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrPlayerTitleName {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 84 56
        size 290 18
        hexactpos 1
@@ -7376,7 +7376,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrPlayerTitleTitle {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 394 56
        size 224 18
        hexactpos 1
@@ -7390,7 +7390,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrPlayerTitleXP {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 638 56
        size 102 18
        hexactpos 1
@@ -7404,7 +7404,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrPlayerTitleClan {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 760 56
        size 172 18
        hexactpos 1
@@ -7433,7 +7433,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass PlayerTitleCardBg {
        visible 0
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 640 40
        size 304 220
        hexactpos 1
@@ -7445,7 +7445,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass PlayerTitleCardAccent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 640 40
        size 4 220
        hexactpos 1
@@ -7456,7 +7456,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass PlayerTitleMineText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 260 0
        size 350 28
        hexactpos 1
@@ -7471,7 +7471,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass PlayerTitleProgressText {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 620 0
        size 210 28
        hexactpos 1
@@ -7488,7 +7488,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass PlayerTitleProgressTrack {
        ignorepointer 1
        clipchildren 1
-       color 0.0597 0.0828 0.0385 0.7843
+       color 0.1127 0.0963 0.08 0.7843
        position 0 34
        size 944 4
        hexactpos 1
@@ -7499,7 +7499,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass PlayerTitleProgressFill {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 0 0
          size 1 1
          hexactpos 1
@@ -7512,7 +7512,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesRefreshBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 842 0
        size 102 28
        hexactpos 1
@@ -7523,7 +7523,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PlayerTitlesRefreshBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 842 0
        size 4 28
        hexactpos 1
@@ -7534,7 +7534,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass PlayerTitlesRefreshBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 842 0
        size 102 28
        hexactpos 1
@@ -7549,7 +7549,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass PlayerTitlesHintBg {
        visible 0
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.45
+       color 0.1228 0.105 0.0871 0.45
        position 640 276
        size 304 224
        hexactpos 1
@@ -7561,7 +7561,7 @@ FrameWidgetClass SMClanMenuRoot {
       MultilineTextWidgetClass PlayerTitlesHintText {
        visible 0
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 660 296
        size 264 184
        hexactpos 1
@@ -7602,7 +7602,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 42
        size 610 238
        hexactpos 1
@@ -7613,7 +7613,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractsHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 70
        size 610 1
        hexactpos 1
@@ -7624,7 +7624,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrContractType {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 12 48
        size 84 18
        hexactpos 1
@@ -7638,7 +7638,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrContractTarget {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 110 48
        size 220 18
        hexactpos 1
@@ -7652,7 +7652,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrContractReward {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 340 48
        size 92 18
        hexactpos 1
@@ -7666,7 +7666,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrContractTime {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 438 48
        size 78 18
        hexactpos 1
@@ -7680,7 +7680,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrContractStatus {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 522 48
        size 76 18
        hexactpos 1
@@ -7721,7 +7721,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractHistoryBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 322
        size 610 178
        hexactpos 1
@@ -7746,7 +7746,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractActionsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 630 42
        size 314 458
        hexactpos 1
@@ -7757,7 +7757,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractTargetPreviewPanel {
        visible 0
-       color 0.0229 0.0318 0.0148 0.94
+       color 0.0433 0.037 0.0307 0.94
        position 320 42
        size 290 238
        hexactpos 1
@@ -7768,7 +7768,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         TextWidgetClass ContractTargetPreviewName {
          ignorepointer 1
-         color 0.83 1 0.78 1
+         color 1 1 0.95 1
          position 12 8
          size 236 22
          hexactpos 1
@@ -7782,7 +7782,7 @@ FrameWidgetClass SMClanMenuRoot {
          "text valign" center
         }
         ButtonWidgetClass ContractTargetPreviewCloseBtn {
-         color 0.83 1 0.78 0.85
+         color 1 1 0.95 0.85
          position 256 8
          size 22 22
          hexactpos 1
@@ -7814,7 +7814,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ContractTargetsHeaderText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 646 58
        size 280 22
        hexactpos 1
@@ -7842,7 +7842,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ContractItemsHeaderText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 646 202
        size 280 22
        hexactpos 1
@@ -7870,7 +7870,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ContractPriceLabel {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 646 316
        size 88 12
        hexactpos 1
@@ -7884,7 +7884,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ContractDurationLabel {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 744 316
        size 88 12
        hexactpos 1
@@ -7898,7 +7898,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass ContractQuantityLabel {
        ignorepointer 1
-       color 0.6861 0.8267 0.6448 1
+       color 0.8597 0.8267 0.7853 1
        position 842 316
        size 86 12
        hexactpos 1
@@ -7912,7 +7912,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractPriceEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 646 326
        size 88 28
        hexactpos 1
@@ -7923,7 +7923,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractPriceEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 646 352
        size 88 2
        hexactpos 1
@@ -7947,7 +7947,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractDurationEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 744 326
        size 88 28
        hexactpos 1
@@ -7958,7 +7958,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractDurationEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 744 352
        size 88 2
        hexactpos 1
@@ -7982,7 +7982,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractQuantityEditBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 842 326
        size 86 28
        hexactpos 1
@@ -7993,7 +7993,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractQuantityEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 842 352
        size 86 2
        hexactpos 1
@@ -8017,7 +8017,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractCreateKillBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 646 366
        size 134 32
        hexactpos 1
@@ -8039,7 +8039,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ContractCreateKillBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 646 366
        size 134 32
        hexactpos 1
@@ -8053,7 +8053,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractCreateItemBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 794 366
        size 134 32
        hexactpos 1
@@ -8064,7 +8064,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractCreateItemBtnAccent {
        ignorepointer 1
-       color 0.96 0.672 0.192 0.72
+       color 0.8806 0.6874 0.2618 0.72
        position 794 366
        size 3 32
        hexactpos 1
@@ -8075,7 +8075,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ContractCreateItemBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 794 366
        size 134 32
        hexactpos 1
@@ -8089,7 +8089,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractAcceptBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 646 410
        size 88 30
        hexactpos 1
@@ -8100,7 +8100,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractAcceptBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 646 410
        size 3 30
        hexactpos 1
@@ -8111,7 +8111,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ContractAcceptBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 646 410
        size 88 30
        hexactpos 1
@@ -8125,7 +8125,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractTurnInBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 744 410
        size 88 30
        hexactpos 1
@@ -8136,7 +8136,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractTurnInBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 744 410
        size 3 30
        hexactpos 1
@@ -8147,7 +8147,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ContractTurnInBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 744 410
        size 88 30
        hexactpos 1
@@ -8161,7 +8161,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractAbandonBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 842 410
        size 86 30
        hexactpos 1
@@ -8172,7 +8172,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractAbandonBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 842 410
        size 3 30
        hexactpos 1
@@ -8183,7 +8183,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ContractAbandonBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 842 410
        size 86 30
        hexactpos 1
@@ -8197,7 +8197,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractRefreshBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 826 0
        size 118 28
        hexactpos 1
@@ -8208,7 +8208,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ContractRefreshBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 826 0
        size 3 28
        hexactpos 1
@@ -8219,7 +8219,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ContractRefreshBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 826 0
        size 118 28
        hexactpos 1
@@ -8233,7 +8233,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass ContractInfoText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 646 446
        size 282 48
        hexactpos 1
@@ -8274,7 +8274,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchPersonalBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 432 0
        size 100 32
        hexactpos 1
@@ -8286,7 +8286,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AchPersonalUnder {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 432 34
        size 100 2
        hexactpos 1
@@ -8297,7 +8297,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AchPersonalBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 432 0
        size 100 32
        hexactpos 1
@@ -8311,7 +8311,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchClanBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 540 0
        size 110 32
        hexactpos 1
@@ -8323,7 +8323,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AchClanUnder {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 540 34
        size 110 2
        hexactpos 1
@@ -8334,7 +8334,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass AchClanBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 540 0
        size 110 32
        hexactpos 1
@@ -8348,7 +8348,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchievementsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 460
        hexactpos 1
@@ -8359,7 +8359,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchievementsColSep1 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 314 40
        size 1 460
        hexactpos 1
@@ -8370,7 +8370,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchievementsColSep2 {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 435 40
        size 1 460
        hexactpos 1
@@ -8381,7 +8381,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchievementsHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -8392,7 +8392,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrAchName {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 290 18
        hexactpos 1
@@ -8406,7 +8406,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrAchProgress {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 322 46
        size 104 18
        hexactpos 1
@@ -8420,7 +8420,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass HdrAchReward {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 443 46
        size 146 18
        hexactpos 1
@@ -8448,7 +8448,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass AchievementsActionsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 620 40
        size 324 460
        hexactpos 1
@@ -8459,7 +8459,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass AchievementInfoText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 58
        size 296 260
        hexactpos 1
@@ -8475,7 +8475,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass AchievementProgressTrack {
        ignorepointer 1
        clipchildren 1
-       color 0.0597 0.0828 0.0385 0.7843
+       color 0.1127 0.0963 0.08 0.7843
        position 634 322
        size 296 10
        hexactpos 1
@@ -8486,7 +8486,7 @@ FrameWidgetClass SMClanMenuRoot {
        {
         PanelWidgetClass AchievementProgressFill {
          ignorepointer 1
-         color 0.1761 0.8511 0.1291 1
+         color 0.7214 0.4508 0.2002 1
          position 0 0
          size 1 1
          hexactpos 1
@@ -8499,7 +8499,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClaimAchievementBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 342
        size 296 36
        hexactpos 1
@@ -8510,7 +8510,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass ClaimAchievementBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 342
        size 3 36
        hexactpos 1
@@ -8521,7 +8521,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass ClaimAchievementBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 342
        size 296 36
        hexactpos 1
@@ -8535,7 +8535,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass AchievementsHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 394
        size 296 80
        hexactpos 1
@@ -8575,7 +8575,7 @@ FrameWidgetClass SMClanMenuRoot {
        "text valign" center
       }
       PanelWidgetClass StorageSearchBg {
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 384 5
        size 220 28
        hexactpos 1
@@ -8586,7 +8586,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass StorageSearchEditUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 384 31
        size 220 2
        hexactpos 1
@@ -8609,7 +8609,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass StorageSearchHint {
        ignorepointer 1
-       color 0.2521 0.3497 0.1627 1
+       color 0.4473 0.4107 0.3579 1
        position 394 8
        size 200 22
        hexactpos 1
@@ -8625,7 +8625,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass StorageBg {
        visible 0
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 460
        hexactpos 1
@@ -8637,7 +8637,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass StorageColSep1 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 230 40
        size 1 460
        hexactpos 1
@@ -8649,7 +8649,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass StorageColSep2 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 302 40
        size 1 460
        hexactpos 1
@@ -8661,7 +8661,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass StorageColSep3 {
        visible 0
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 481 40
        size 1 460
        hexactpos 1
@@ -8673,7 +8673,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass StorageHdrLine {
        visible 1
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -8685,7 +8685,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrStorageItem {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 210 18
        hexactpos 1
@@ -8700,7 +8700,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrStorageQty {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 238 46
        size 60 18
        hexactpos 1
@@ -8715,7 +8715,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrStorageWho {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 310 46
        size 166 18
        hexactpos 1
@@ -8730,7 +8730,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass HdrStorageDate {
        visible 1
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 489 46
        size 110 18
        hexactpos 1
@@ -8760,7 +8760,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass StorageTilesSurface {
        visible 1
        ignorepointer 1
-       color 0.0236 0.0327 0.0152 0.68
+       color 0.0445 0.038 0.0315 0.68
        position 0 72
        size 604 428
        hexactpos 1
@@ -8798,7 +8798,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass StorageActionsBg {
        ignorepointer 1
-       color 0.0442 0.0613 0.0285 0.82
+       color 0.0835 0.0713 0.0592 0.82
        position 620 40
        size 324 460
        hexactpos 1
@@ -8809,7 +8809,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass StoragePreviewBg {
        ignorepointer 1
-       color 0.0229 0.0318 0.0148 0.92
+       color 0.0433 0.037 0.0307 0.92
        position 634 52
        size 296 136
        hexactpos 1
@@ -8822,7 +8822,7 @@ FrameWidgetClass SMClanMenuRoot {
        visible 0
        clipchildren 1
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 58
        size 272 122
        hexactpos 1
@@ -8833,7 +8833,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass StorageInfoBg {
        ignorepointer 1
-       color 0.0537 0.0745 0.0347 0.88
+       color 0.1014 0.0867 0.0719 0.88
        position 634 188
        size 296 110
        hexactpos 1
@@ -8844,7 +8844,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass StorageInfoText {
        ignorepointer 1
-       color 0.747 0.9 0.702 1
+       color 0.936 0.9 0.855 1
        position 646 196
        size 272 96
        hexactpos 1
@@ -8859,7 +8859,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositToStorageBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 304
        size 296 38
        hexactpos 1
@@ -8870,7 +8870,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DepositToStorageBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 304
        size 3 38
        hexactpos 1
@@ -8881,7 +8881,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DepositToStorageBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 304
        size 296 38
        hexactpos 1
@@ -8895,7 +8895,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TakeFromStorageBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 348
        size 296 38
        hexactpos 1
@@ -8906,7 +8906,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass TakeFromStorageBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 348
        size 3 38
        hexactpos 1
@@ -8917,7 +8917,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass TakeFromStorageBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 348
        size 296 38
        hexactpos 1
@@ -8931,7 +8931,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass StorageHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 396
        size 296 100
        hexactpos 1
@@ -8972,7 +8972,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 0 40
        size 604 460
        hexactpos 1
@@ -8983,7 +8983,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermsColSep {
        ignorepointer 1
-       color 0.1519 0.2107 0.098 0.7843
+       color 0.2866 0.245 0.2033 0.7843
        position 430 40
        size 1 460
        hexactpos 1
@@ -8994,7 +8994,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermsHdrLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 0 68
        size 604 1
        hexactpos 1
@@ -9005,7 +9005,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass PermsHdrAction {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 12 46
        size 410 18
        hexactpos 1
@@ -9019,7 +9019,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass PermsHdrRank {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 442 46
        size 150 18
        hexactpos 1
@@ -9047,7 +9047,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermsActionsBg {
        ignorepointer 1
-       color 0.0651 0.0903 0.042 0.5882
+       color 0.1228 0.105 0.0871 0.5882
        position 620 40
        size 324 460
        hexactpos 1
@@ -9058,7 +9058,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermRankUpBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 60
        size 296 40
        hexactpos 1
@@ -9069,7 +9069,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermRankUpBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 60
        size 3 40
        hexactpos 1
@@ -9080,7 +9080,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass PermRankUpBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 60
        size 296 40
        hexactpos 1
@@ -9094,7 +9094,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermRankDownBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 108
        size 296 40
        hexactpos 1
@@ -9105,7 +9105,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermRankDownBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 108
        size 3 40
        hexactpos 1
@@ -9116,7 +9116,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass PermRankDownBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 108
        size 296 40
        hexactpos 1
@@ -9130,7 +9130,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass PermsHintText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 160
        size 296 82
        hexactpos 1
@@ -9146,7 +9146,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass WebhookStatusText {
        visible 0
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 250
        size 296 24
        hexactpos 1
@@ -9161,7 +9161,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass WebhookEditBg {
        visible 0
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 634 278
        size 296 34
        hexactpos 1
@@ -9173,7 +9173,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass WebhookEditUnderline {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 634 310
        size 296 2
        hexactpos 1
@@ -9197,7 +9197,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookSaveBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 320
        size 142 36
        hexactpos 1
@@ -9208,7 +9208,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookSaveBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 320
        size 3 36
        hexactpos 1
@@ -9219,7 +9219,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass WebhookSaveBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 320
        size 142 36
        hexactpos 1
@@ -9233,7 +9233,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookClearBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 788 320
        size 142 36
        hexactpos 1
@@ -9244,7 +9244,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookClearBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 788 320
        size 3 36
        hexactpos 1
@@ -9255,7 +9255,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass WebhookClearBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 788 320
        size 142 36
        hexactpos 1
@@ -9269,7 +9269,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookTestBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 362
        size 296 36
        hexactpos 1
@@ -9280,7 +9280,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookTestBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 362
        size 3 36
        hexactpos 1
@@ -9291,7 +9291,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass WebhookTestBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 362
        size 296 36
        hexactpos 1
@@ -9305,7 +9305,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookAuditBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 404
        size 296 36
        hexactpos 1
@@ -9316,7 +9316,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass WebhookAuditBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 404
        size 3 36
        hexactpos 1
@@ -9327,7 +9327,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass WebhookAuditBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 404
        size 296 36
        hexactpos 1
@@ -9341,7 +9341,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermsCloseBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 634 452
        size 296 40
        hexactpos 1
@@ -9352,7 +9352,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass PermsCloseBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 634 452
        size 3 40
        hexactpos 1
@@ -9363,7 +9363,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass PermsCloseBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 634 452
        size 296 40
        hexactpos 1
@@ -9390,7 +9390,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       PanelWidgetClass DisbandConfirmCard {
        ignorepointer 1
-       color 0.0559 0.0776 0.0361 1
+       color 0.1055 0.0902 0.0749 1
        position 260 220
        size 480 240
        hexactpos 1
@@ -9402,7 +9402,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DisbandConfirmAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 260 220
        size 4 240
        hexactpos 1
@@ -9414,7 +9414,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass DisbandConfirmTitle {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 284 240
        size 432 34
        hexactpos 1
@@ -9431,7 +9431,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass DisbandConfirmTitleLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.5882
+       color 0.7214 0.4508 0.2002 0.5882
        position 284 280
        size 452 1
        hexactpos 1
@@ -9443,7 +9443,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       MultilineTextWidgetClass DisbandConfirmText {
        ignorepointer 1
-       color 0.7166 0.8633 0.6734 1
+       color 0.8979 0.8633 0.8202 1
        position 284 292
        size 432 100
        hexactpos 1
@@ -9459,7 +9459,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DisbandConfirmNoBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 284 408
        size 210 38
        hexactpos 1
@@ -9474,7 +9474,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass DisbandConfirmYesBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 506 408
        size 210 38
        hexactpos 1
@@ -9543,7 +9543,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass MapHeaderText {
      ignorepointer 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position -322 -202
      size 300 28
      halign center_ref
@@ -9561,7 +9561,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     TextWidgetClass MapHintText {
      ignorepointer 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 161 -202
      size 622 22
      halign center_ref
@@ -9580,7 +9580,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     ButtonWidgetClass MapCloseBtn {
      visible 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 30 16
      size 200 40
      halign right_ref
@@ -9597,7 +9597,7 @@ FrameWidgetClass SMClanMenuRoot {
     TextWidgetClass MapCoordsText {
      visible 0
      ignorepointer 1
-     color 0.83 1 0.78 1
+     color 1 1 0.95 1
      position 24 24
      size 520 24
      valign bottom_ref
@@ -9615,7 +9615,7 @@ FrameWidgetClass SMClanMenuRoot {
     }
     PanelWidgetClass MapMarkerEditPanel {
      visible 0
-     color 0.03 0.0416 0.0193 0.9608
+     color 0.0566 0.0484 0.0401 0.9608
      position -224 -196
      size 360 392
      halign center_ref
@@ -9629,7 +9629,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       PanelWidgetClass MapMarkerEditAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 1
+       color 0.7214 0.4508 0.2002 1
        position 0 0
        size 4 392
        hexactpos 1
@@ -9641,7 +9641,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditTitleText {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 16
        size 282 28
        hexactpos 1
@@ -9657,7 +9657,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditCloseBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 316 14
        size 30 30
        hexactpos 1
@@ -9672,7 +9672,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditNameLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 58
        size 300 18
        hexactpos 1
@@ -9688,7 +9688,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditNameBg {
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 22 82
        size 316 32
        hexactpos 1
@@ -9700,7 +9700,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditNameUnderline {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 22 112
        size 316 2
        hexactpos 1
@@ -9711,7 +9711,7 @@ FrameWidgetClass SMClanMenuRoot {
        style rover_sim_colorable
       }
       EditBoxWidgetClass MapMarkerEditNameEdit {
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 34 88
        size 292 20
        hexactpos 1
@@ -9725,7 +9725,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditColorLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 126
        size 300 18
        hexactpos 1
@@ -9741,7 +9741,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditColorSwatch {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 150
        size 36 84
        hexactpos 1
@@ -9753,7 +9753,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditRLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 70 149
        size 18 22
        hexactpos 1
@@ -9770,7 +9770,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerEditRedBg {
        visible 0
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 92 146
        size 54 28
        hexactpos 1
@@ -9782,7 +9782,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       EditBoxWidgetClass MapMarkerEditRedEdit {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 101 151
        size 36 18
        hexactpos 1
@@ -9796,7 +9796,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditRedDecBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 154 146
        size 30 28
        hexactpos 1
@@ -9811,7 +9811,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditRedIncBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 188 146
        size 30 28
        hexactpos 1
@@ -9843,7 +9843,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditRedValueText {
        ignorepointer 1
-       color 0.83 1 0.78 0.78
+       color 1 1 0.95 0.78
        position 284 147
        size 46 24
        hexactpos 1
@@ -9860,7 +9860,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditGLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 70 179
        size 18 22
        hexactpos 1
@@ -9877,7 +9877,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerEditGreenBg {
        visible 0
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 92 176
        size 54 28
        hexactpos 1
@@ -9889,7 +9889,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       EditBoxWidgetClass MapMarkerEditGreenEdit {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 101 181
        size 36 18
        hexactpos 1
@@ -9903,7 +9903,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditGreenDecBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 154 176
        size 30 28
        hexactpos 1
@@ -9918,7 +9918,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditGreenIncBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 188 176
        size 30 28
        hexactpos 1
@@ -9932,7 +9932,7 @@ FrameWidgetClass SMClanMenuRoot {
        font "gui/fonts/sdf_MetronBook24"
       }
       SliderWidgetClass MapMarkerEditGreenSlider {
-       color 0.35 1 0.45 0.86
+       color 0.8256 0.6444 0.2454 0.86
        position 92 181
        size 182 18
        hexactpos 1
@@ -9950,7 +9950,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditGreenValueText {
        ignorepointer 1
-       color 0.83 1 0.78 0.78
+       color 1 1 0.95 0.78
        position 284 177
        size 46 24
        hexactpos 1
@@ -9967,7 +9967,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditBLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 70 209
        size 18 22
        hexactpos 1
@@ -9984,7 +9984,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerEditBlueBg {
        visible 0
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 92 206
        size 54 28
        hexactpos 1
@@ -9996,7 +9996,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       EditBoxWidgetClass MapMarkerEditBlueEdit {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 101 211
        size 36 18
        hexactpos 1
@@ -10010,7 +10010,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditBlueDecBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 154 206
        size 30 28
        hexactpos 1
@@ -10025,7 +10025,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditBlueIncBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 188 206
        size 30 28
        hexactpos 1
@@ -10039,7 +10039,7 @@ FrameWidgetClass SMClanMenuRoot {
        font "gui/fonts/sdf_MetronBook24"
       }
       SliderWidgetClass MapMarkerEditBlueSlider {
-       color 0.1267 0.7917 0.5383 0.86
+       color 0.8715 0.6802 0.259 0.86
        position 92 211
        size 182 18
        hexactpos 1
@@ -10057,7 +10057,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditBlueValueText {
        ignorepointer 1
-       color 0.83 1 0.78 0.78
+       color 1 1 0.95 0.78
        position 284 207
        size 46 24
        hexactpos 1
@@ -10075,7 +10075,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerEditColorPrevBg {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 70 150
        size 44 32
        hexactpos 1
@@ -10086,7 +10086,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditColorPrevBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 70 150
        size 44 32
        hexactpos 1
@@ -10102,7 +10102,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerEditColorNextBg {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 120 150
        size 44 32
        hexactpos 1
@@ -10113,7 +10113,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditColorNextBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 120 150
        size 44 32
        hexactpos 1
@@ -10128,7 +10128,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditIconLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 238
        size 300 18
        hexactpos 1
@@ -10144,7 +10144,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditIconPrevBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 22 260
        size 40 34
        hexactpos 1
@@ -10156,7 +10156,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditIconPrevBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 260
        size 40 34
        hexactpos 1
@@ -10171,7 +10171,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditIconPreviewBg {
        ignorepointer 1
-       color 0.0229 0.0318 0.0148 0.92
+       color 0.0433 0.037 0.0307 0.92
        position 70 260
        size 40 34
        hexactpos 1
@@ -10183,7 +10183,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ImageWidgetClass MapMarkerEditIconPreview {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 74 262
        size 32 30
        hexactpos 1
@@ -10197,7 +10197,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditIconNameText {
        ignorepointer 1
-       color 0.83 1 0.78 0.9
+       color 1 1 0.95 0.9
        position 116 260
        size 156 34
        hexactpos 1
@@ -10214,7 +10214,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditIconNextBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 276 260
        size 40 34
        hexactpos 1
@@ -10226,7 +10226,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditIconNextBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 276 260
        size 40 34
        hexactpos 1
@@ -10241,7 +10241,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapMarkerEditInfoText {
        ignorepointer 1
-       color 0.83 1 0.78 0.72
+       color 1 1 0.95 0.72
        position 22 304
        size 316 24
        hexactpos 1
@@ -10257,7 +10257,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditSaveBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 22 348
        size 150 34
        hexactpos 1
@@ -10268,7 +10268,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditSaveBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 22 348
        size 3 34
        hexactpos 1
@@ -10279,7 +10279,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditSaveBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 348
        size 150 34
        hexactpos 1
@@ -10294,7 +10294,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditDeleteBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 188 348
        size 150 34
        hexactpos 1
@@ -10305,7 +10305,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkerEditDeleteBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 188 348
        size 3 34
        hexactpos 1
@@ -10316,7 +10316,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapMarkerEditDeleteBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 188 348
        size 150 34
        hexactpos 1
@@ -10332,7 +10332,7 @@ FrameWidgetClass SMClanMenuRoot {
      }
     }
     PanelWidgetClass MapMarkersBg {
-     color 0.03 0.0416 0.0193 0.9608
+     color 0.0566 0.0484 0.0401 0.9608
      position 322 69
       size 296 502
       halign center_ref
@@ -10346,7 +10346,7 @@ FrameWidgetClass SMClanMenuRoot {
      {
       ButtonWidgetClass MapModePrevBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 8 9
        size 36 30
        hexactpos 1
@@ -10361,7 +10361,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapModeLabel {
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 58 9
        size 180 30
        hexactpos 1
@@ -10378,7 +10378,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapModeNextBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 252 9
        size 36 30
        hexactpos 1
@@ -10393,7 +10393,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapMarkersHeaderLine {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 14 70
        size 268 2
        hexactpos 1
@@ -10406,7 +10406,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass MapMarkerNameLabel {
        visible 0
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 14 47
        size 268 18
        hexactpos 1
@@ -10423,7 +10423,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerNameBg {
        visible 0
        ignorepointer 1
-       color 0.2025 0.2809 0.1307 1
+       color 0.3822 0.3267 0.2711 1
        position 14 69
        size 268 30
        hexactpos 1
@@ -10436,7 +10436,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapMarkerNameEditUnderline {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.45
+       color 0.7214 0.4508 0.2002 0.45
        position 14 97
        size 268 2
        hexactpos 1
@@ -10448,7 +10448,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       EditBoxWidgetClass MapMarkerNameEdit {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 22 73
        size 252 22
        hexactpos 1
@@ -10463,7 +10463,7 @@ FrameWidgetClass SMClanMenuRoot {
       TextWidgetClass MapColorLabel {
        visible 0
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 14 108
        size 268 16
        hexactpos 1
@@ -10480,7 +10480,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapColorSwatch {
        visible 0
        ignorepointer 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 21 130
        size 22 20
        hexactpos 1
@@ -10492,7 +10492,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapColorBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 72 127
        size 196 26
        hexactpos 1
@@ -10507,7 +10507,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       TextWidgetClass MapSelectedText {
        ignorepointer 1
-       color 0.83 1 0.78 0.72
+       color 1 1 0.95 0.72
        position 14 49
        size 268 16
        hexactpos 1
@@ -10524,7 +10524,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapAddMarkerBtnBg {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 14 179
        size 268 30
        hexactpos 1
@@ -10536,7 +10536,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapAddMarkerBtnAccent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 14 179
        size 3 30
        hexactpos 1
@@ -10547,7 +10547,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapAddMarkerBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 14 179
        size 268 30
        hexactpos 1
@@ -10563,7 +10563,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapRemoveMarkerBtnBg {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 14 211
        size 268 30
        hexactpos 1
@@ -10575,7 +10575,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapRemoveMarkerBtnAccent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 14 211
        size 3 30
        hexactpos 1
@@ -10586,7 +10586,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapRemoveMarkerBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 14 211
        size 268 30
        hexactpos 1
@@ -10601,7 +10601,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapShowMeBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 14 430
        size 268 30
        hexactpos 1
@@ -10612,7 +10612,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapShowMeBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 14 430
        size 3 30
        hexactpos 1
@@ -10623,7 +10623,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapShowMeBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 14 430
        size 268 30
        hexactpos 1
@@ -10638,7 +10638,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapToggle3DBtnBg {
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 14 464
        size 128 30
        hexactpos 1
@@ -10649,7 +10649,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       PanelWidgetClass MapToggle3DBtnAccent {
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 14 464
        size 3 30
        hexactpos 1
@@ -10660,7 +10660,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapToggle3DBtn {
        visible 1
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 14 464
        size 128 30
        hexactpos 1
@@ -10676,7 +10676,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapAdminBasesBtnBg {
        visible 0
        ignorepointer 1
-       color 0.093 0.129 0.06 0.85
+       color 0.1755 0.15 0.1245 0.85
        position 154 464
        size 128 30
        hexactpos 1
@@ -10688,7 +10688,7 @@ FrameWidgetClass SMClanMenuRoot {
       PanelWidgetClass MapAdminBasesBtnAccent {
        visible 0
        ignorepointer 1
-       color 0.1761 0.8511 0.1291 0.72
+       color 0.7214 0.4508 0.2002 0.72
        position 154 464
        size 3 30
        hexactpos 1
@@ -10699,7 +10699,7 @@ FrameWidgetClass SMClanMenuRoot {
       }
       ButtonWidgetClass MapAdminBasesBtn {
        visible 0
-       color 0.83 1 0.78 1
+       color 1 1 0.95 1
        position 154 464
        size 128 30
        hexactpos 1

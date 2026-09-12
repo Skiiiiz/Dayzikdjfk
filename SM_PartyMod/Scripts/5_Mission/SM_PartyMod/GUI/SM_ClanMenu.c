@@ -1135,7 +1135,7 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (!button)
 			return;
 		button.SetText(SM_PartyLoc.Text(text));
-		button.SetTextColor(ARGB(255, 212, 255, 199));
+		button.SetTextColor(ARGB(255, 255, 255, 242));
 	}
 
 	protected void ShowBtnDressing(string btnName, bool show)
@@ -1161,20 +1161,20 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (enabled)
 		{
 			if (bg)
-				bg.SetColor(ARGB(230, 26, 37, 17));
+				bg.SetColor(ARGB(230, 50, 43, 35));
 			if (ac)
-				ac.SetColor(ARGB(230, 45, 217, 33));
+				ac.SetColor(ARGB(230, 184, 115, 51));
 			if (btn)
-				btn.SetTextColor(ARGB(255, 212, 255, 199));
+				btn.SetTextColor(ARGB(255, 255, 255, 242));
 		}
 		else
 		{
 			if (bg)
-				bg.SetColor(ARGB(150, 22, 30, 14));
+				bg.SetColor(ARGB(150, 41, 35, 29));
 			if (ac)
-				ac.SetColor(ARGB(120, 101, 136, 83));
+				ac.SetColor(ARGB(120, 158, 145, 126));
 			if (btn)
-				btn.SetTextColor(ARGB(180, 109, 148, 90));
+				btn.SetTextColor(ARGB(180, 171, 157, 137));
 		}
 	}
 
@@ -1223,12 +1223,12 @@ class SM_ClanMenu extends UIScriptedMenu
 	{
 		for (int i = 0; i < m_TabLabels.Count(); i++)
 		{
-			int labelColor = ARGB(190, 112, 152, 93);
-			int iconColor = ARGB(175, 116, 158, 96);
+			int labelColor = ARGB(190, 176, 162, 141);
+			int iconColor = ARGB(175, 207, 173, 105);
 			if (i == m_CurrentTab)
 			{
-				labelColor = ARGB(255, 199, 240, 187);
-				iconColor = ARGB(255, 229, 191, 60);
+				labelColor = ARGB(255, 250, 240, 228);
+				iconColor = ARGB(255, 249, 200, 94);
 			}
 
 			if (m_TabLabels[i])
@@ -1489,10 +1489,10 @@ class SM_ClanMenu extends UIScriptedMenu
 			return;
 		}
 
-		w.SetColor(ARGB(90, 26, 36, 17));
+		w.SetColor(ARGB(90, 50, 42, 35));
 		ButtonWidget button = ButtonWidget.Cast(w);
 		if (button)
-			button.SetTextColor(ARGB(255, 212, 255, 199));
+			button.SetTextColor(ARGB(255, 255, 255, 242));
 	}
 
 	protected ButtonWidget GetActiveTabButton()
@@ -1532,7 +1532,7 @@ class SM_ClanMenu extends UIScriptedMenu
 
 		if (w == m_OnlineBtn)
 		{
-			w.SetColor(ARGB(55, 26, 36, 17));
+			w.SetColor(ARGB(55, 50, 42, 35));
 			return;
 		}
 
@@ -1542,10 +1542,10 @@ class SM_ClanMenu extends UIScriptedMenu
 			return;
 		}
 
-		w.SetColor(ARGB(240, 26, 36, 17));
+		w.SetColor(ARGB(240, 50, 42, 35));
 		ButtonWidget button = ButtonWidget.Cast(w);
 		if (button)
-			button.SetTextColor(ARGB(255, 212, 255, 199));
+			button.SetTextColor(ARGB(255, 255, 255, 242));
 	}
 
 	protected bool IsSettingToggleWidget(Widget w)
@@ -1642,7 +1642,7 @@ class SM_ClanMenu extends UIScriptedMenu
 		{
 			Widget ul = layoutRoot.FindAnyWidget(w.GetName() + "Underline");
 			if (ul)
-				ul.SetColor(ARGB(255, 45, 217, 33));
+				ul.SetColor(ARGB(255, 184, 115, 51));
 		}
 		return super.OnFocus(w, x, y);
 	}
@@ -1671,7 +1671,7 @@ class SM_ClanMenu extends UIScriptedMenu
 		{
 			Widget ul = layoutRoot.FindAnyWidget(w.GetName() + "Underline");
 			if (ul)
-				ul.SetColor(ARGB(115, 45, 217, 33));
+				ul.SetColor(ARGB(115, 184, 115, 51));
 		}
 		return super.OnFocusLost(w, x, y);
 	}
@@ -2229,7 +2229,7 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (current > maxValue)
 			widget.SetColor(ARGB(255, 235, 80, 80));
 		else
-			widget.SetColor(ARGB(255, 128, 173, 106));
+			widget.SetColor(ARGB(255, 201, 184, 160));
 	}
 
 	protected bool IsCreateFormValid(string name, string tag, string desc)
@@ -2282,13 +2282,13 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (m_CreateClanBtnBg)
 		{
 			if (canCreate)
-				m_CreateClanBtnBg.SetColor(ARGB(235, 37, 52, 24));
+				m_CreateClanBtnBg.SetColor(ARGB(235, 70, 60, 50));
 			else
-				m_CreateClanBtnBg.SetColor(ARGB(235, 33, 46, 21));
+				m_CreateClanBtnBg.SetColor(ARGB(235, 62, 53, 44));
 		}
 
 		if (m_CreateClanBtn)
-			m_CreateClanBtn.SetTextColor(ARGB(255, 212, 255, 199));
+			m_CreateClanBtn.SetTextColor(ARGB(255, 255, 255, 242));
 	}
 
 	protected void UpdateCreateButtonState(string name, string tag, string desc)
@@ -2298,15 +2298,15 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (m_CreateClanBtn)
 		{
 			m_CreateClanBtn.Enable(true);
-			m_CreateClanBtn.SetTextColor(ARGB(255, 212, 255, 199));
+			m_CreateClanBtn.SetTextColor(ARGB(255, 255, 255, 242));
 		}
 
 		if (m_CreateClanBtnBg)
 		{
 			if (canCreate)
-				m_CreateClanBtnBg.SetColor(ARGB(235, 28, 39, 18));
+				m_CreateClanBtnBg.SetColor(ARGB(235, 53, 45, 38));
 			else
-				m_CreateClanBtnBg.SetColor(ARGB(235, 26, 37, 17));
+				m_CreateClanBtnBg.SetColor(ARGB(235, 50, 43, 35));
 		}
 	}
 
@@ -3421,7 +3421,7 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (localPlayer && localPlayer.IsInVehicle())
 			localPlayerIcon = SM_MapMarkerIconSet.GetPath(6);
 		if (player)
-			m_ClanMap.AddUserMark(player.GetPosition(), SM_PartyLoc.Text("#STR_SMP_00344"), ARGB(255, 212, 255, 199), localPlayerIcon);
+			m_ClanMap.AddUserMark(player.GetPosition(), SM_PartyLoc.Text("#STR_SMP_00344"), ARGB(255, 255, 255, 242), localPlayerIcon);
 
 		NormalizeMapMarkerMode();
 		SM_ClanClientData.EnsurePersonalMapMarkersLoaded();
@@ -3492,7 +3492,7 @@ class SM_ClanMenu extends UIScriptedMenu
 			if (SM_ClanClientData.HasBase)
 			{
 				AddBaseRadiusMapMarks();
-				m_ClanMap.AddUserMark(SM_ClanClientData.BasePos, SM_PartyLoc.Text("#STR_SMP_00308"), ARGB(255, 48, 234, 36), "\\dz\\gear\\navigation\\data\\map_camp_ca.paa");
+				m_ClanMap.AddUserMark(SM_ClanClientData.BasePos, SM_PartyLoc.Text("#STR_SMP_00308"), ARGB(255, 199, 124, 55), "\\dz\\gear\\navigation\\data\\map_camp_ca.paa");
 			}
 
 			foreach (SM_ClanPing ping : SM_ClanClientData.Pings)
@@ -3500,7 +3500,7 @@ class SM_ClanMenu extends UIScriptedMenu
 				if (!ping)
 					continue;
 
-				m_ClanMap.AddUserMark(ping.Position, SM_PartyLoc.Text(ping.GetMapLabel()), ping.GetColor(ARGB(255, 48, 234, 36)), ping.GetIconPath());
+				m_ClanMap.AddUserMark(ping.Position, SM_PartyLoc.Text(ping.GetMapLabel()), ping.GetColor(ARGB(255, 199, 124, 55)), ping.GetIconPath());
 			}
 		}
 
@@ -4318,9 +4318,9 @@ class SM_ClanMenu extends UIScriptedMenu
 			ButtonWidget toggle = ButtonWidget.Cast(row.FindAnyWidget("SettingRowToggle"));
 			ImageWidget toggleIcon = ImageWidget.Cast(row.FindAnyWidget("SettingRowToggleIcon"));
 			if (dec)
-				dec.SetTextColor(ARGB(255, 199, 240, 187));
+				dec.SetTextColor(ARGB(255, 250, 240, 228));
 			if (inc)
-				inc.SetTextColor(ARGB(255, 199, 240, 187));
+				inc.SetTextColor(ARGB(255, 250, 240, 228));
 			// Убираем белую обводку/заливку фокуса: style EmptyHighlight рисует
 			// WhitePixel в состоянии Focus, и вокруг иконки тумблера это выглядит
 			// как белая рамка. Меню мышиное — фокус кнопкам не нужен.
@@ -4332,7 +4332,7 @@ class SM_ClanMenu extends UIScriptedMenu
 				ClearSettingToggleFrame(toggle);
 			}
 			if (toggleIcon)
-				toggleIcon.SetColor(ARGB(255, 212, 255, 199));
+				toggleIcon.SetColor(ARGB(255, 255, 255, 242));
 
 			if (IsToggleSetting(i))
 			{
@@ -4406,12 +4406,12 @@ class SM_ClanMenu extends UIScriptedMenu
 			ButtonWidget minc = ButtonWidget.Cast(mrow.FindAnyWidget("SettingRowInc"));
 			if (mdec)
 			{
-				mdec.SetTextColor(ARGB(255, 199, 240, 187));
+				mdec.SetTextColor(ARGB(255, 250, 240, 228));
 				mdec.SetFlags(WidgetFlags.NOFOCUS);
 			}
 			if (minc)
 			{
-				minc.SetTextColor(ARGB(255, 199, 240, 187));
+				minc.SetTextColor(ARGB(255, 250, 240, 228));
 				minc.SetFlags(WidgetFlags.NOFOCUS);
 			}
 			m_MemberRowWidgets.Insert(mrow);
@@ -4607,7 +4607,7 @@ class SM_ClanMenu extends UIScriptedMenu
 	{
 		if (!SM_ClanClientData.HasClan)
 		{
-			m_CreateHintText.SetColor(ARGB(255, 212, 255, 199));
+			m_CreateHintText.SetColor(ARGB(255, 255, 255, 242));
 			m_CreateHintText.SetText(SM_PartyLoc.Text("#STR_SMP_00664"));
 			UpdateCreateCounters();
 			ApplyCreateLogo();
@@ -4679,15 +4679,15 @@ class SM_ClanMenu extends UIScriptedMenu
 
 			if (!member.Online)
 			{
-				m_MembersList.SetItemColor(row, 0, ARGB(255, 81, 112, 52));
-				m_MembersList.SetItemColor(row, 1, ARGB(255, 81, 112, 52));
-				m_MembersList.SetItemColor(row, 2, ARGB(255, 81, 112, 52));
-				m_MembersList.SetItemColor(row, 3, ARGB(255, 81, 112, 52));
-				m_MembersList.SetItemColor(row, 4, ARGB(255, 81, 112, 52));
+				m_MembersList.SetItemColor(row, 0, ARGB(255, 143, 131, 114));
+				m_MembersList.SetItemColor(row, 1, ARGB(255, 143, 131, 114));
+				m_MembersList.SetItemColor(row, 2, ARGB(255, 143, 131, 114));
+				m_MembersList.SetItemColor(row, 3, ARGB(255, 143, 131, 114));
+				m_MembersList.SetItemColor(row, 4, ARGB(255, 143, 131, 114));
 			}
 			else if (member.Rank == leaderRank)
 			{
-				m_MembersList.SetItemColor(row, 1, ARGB(255, 235, 190, 60));
+				m_MembersList.SetItemColor(row, 1, ARGB(255, 232, 181, 69));
 			}
 			if (member.Online && SM_ClanClientData.PlayerExperienceClanListEnabled && member.PlayerTitleColor != 0)
 				m_MembersList.SetItemColor(row, 2, member.PlayerTitleColor);
@@ -4870,18 +4870,18 @@ class SM_ClanMenu extends UIScriptedMenu
 					int xpos = visibleIndex * 106;
 					m_TopCatBtns[u].SetSize(96, 30);
 					m_TopCatBtns[u].SetPos(xpos, 0);
-					int catColor = ARGB(210, 125, 169, 103);
+					int catColor = ARGB(210, 196, 180, 157);
 					if (active)
-						catColor = ARGB(255, 199, 240, 187);
+						catColor = ARGB(255, 250, 240, 228);
 					m_TopCatBtns[u].SetTextColor(catColor);
 
 					if (m_TopCatBgs[u])
 					{
 						m_TopCatBgs[u].SetSize(96, 30);
 						m_TopCatBgs[u].SetPos(xpos, 0);
-						int bgColor = ARGB(217, 24, 33, 15);
+						int bgColor = ARGB(217, 45, 38, 32);
 						if (active)
-							bgColor = ARGB(242, 36, 50, 23);
+							bgColor = ARGB(242, 69, 59, 49);
 						m_TopCatBgs[u].SetColor(bgColor);
 					}
 					visibleIndex++;
@@ -5073,11 +5073,11 @@ class SM_ClanMenu extends UIScriptedMenu
 			m_TopsList.SetItem(row, SM_PartyLoc.Text(FormatTopValue(entry, m_TopCategory)), NULL, 2);
 
 			if (p == 0)
-				m_TopsList.SetItemColor(row, 0, ARGB(255, 235, 190, 60));
+				m_TopsList.SetItemColor(row, 0, ARGB(255, 232, 181, 69));
 			else if (p == 1)
-				m_TopsList.SetItemColor(row, 0, ARGB(255, 140, 190, 116));
+				m_TopsList.SetItemColor(row, 0, ARGB(255, 220, 202, 176));
 			else if (p == 2)
-				m_TopsList.SetItemColor(row, 0, ARGB(255, 190, 130, 70));
+				m_TopsList.SetItemColor(row, 0, ARGB(255, 177, 113, 53));
 
 			if (SM_ClanClientData.HasClan && entry.Name == SM_ClanClientData.ClanName)
 				m_TopsList.SetItemColor(row, 1, SM_ClanClientData.GetClanColor());
@@ -5709,10 +5709,10 @@ class SM_ClanMenu extends UIScriptedMenu
 
 			if (!member.Online)
 			{
-				m_InfoMembersList.SetItemColor(row, 0, ARGB(255, 81, 112, 52));
-				m_InfoMembersList.SetItemColor(row, 1, ARGB(255, 81, 112, 52));
-				m_InfoMembersList.SetItemColor(row, 2, ARGB(255, 81, 112, 52));
-				m_InfoMembersList.SetItemColor(row, 3, ARGB(255, 81, 112, 52));
+				m_InfoMembersList.SetItemColor(row, 0, ARGB(255, 143, 131, 114));
+				m_InfoMembersList.SetItemColor(row, 1, ARGB(255, 143, 131, 114));
+				m_InfoMembersList.SetItemColor(row, 2, ARGB(255, 143, 131, 114));
+				m_InfoMembersList.SetItemColor(row, 3, ARGB(255, 143, 131, 114));
 			}
 			else if (member.PlayerTitleColor != 0)
 			{
@@ -6957,49 +6957,49 @@ class SM_ClanMenu extends UIScriptedMenu
 		{
 			tile.SetColor(ARGB(0, 0, 0, 0));
 			if (accent)
-				accent.SetColor(ARGB(255, 45, 217, 33));
+				accent.SetColor(ARGB(255, 184, 115, 51));
 			if (border)
-				border.SetColor(ARGB(255, 17, 24, 11));
+				border.SetColor(ARGB(255, 33, 28, 23));
 			if (surface)
-				surface.SetColor(ARGB(245, 32, 45, 21));
+				surface.SetColor(ARGB(245, 61, 52, 43));
 			if (previewBg)
 				previewBg.Show(false);
 			if (infoBand)
-				infoBand.SetColor(ARGB(246, 27, 38, 17));
+				infoBand.SetColor(ARGB(246, 51, 44, 36));
 			if (bottomLine)
-				bottomLine.SetColor(ARGB(220, 23, 32, 15));
+				bottomLine.SetColor(ARGB(220, 44, 37, 31));
 		}
 		else if (disabled)
 		{
 			tile.SetColor(ARGB(0, 0, 0, 0));
 			if (accent)
-				accent.SetColor(ARGB(0, 41, 200, 30));
+				accent.SetColor(ARGB(0, 169, 106, 47));
 			if (border)
-				border.SetColor(ARGB(150, 22, 31, 14));
+				border.SetColor(ARGB(150, 42, 36, 30));
 			if (surface)
-				surface.SetColor(ARGB(190, 19, 27, 13));
+				surface.SetColor(ARGB(190, 37, 31, 26));
 			if (previewBg)
 				previewBg.Show(false);
 			if (infoBand)
-				infoBand.SetColor(ARGB(190, 18, 25, 12));
+				infoBand.SetColor(ARGB(190, 34, 29, 24));
 			if (bottomLine)
-				bottomLine.SetColor(ARGB(120, 29, 40, 19));
+				bottomLine.SetColor(ARGB(120, 55, 47, 39));
 		}
 		else
 		{
 			tile.SetColor(ARGB(0, 0, 0, 0));
 			if (accent)
-				accent.SetColor(ARGB(0, 41, 200, 30));
+				accent.SetColor(ARGB(0, 169, 106, 47));
 			if (border)
-				border.SetColor(ARGB(255, 17, 24, 11));
+				border.SetColor(ARGB(255, 33, 28, 23));
 			if (surface)
-				surface.SetColor(ARGB(245, 19, 26, 12));
+				surface.SetColor(ARGB(245, 36, 31, 25));
 			if (previewBg)
 				previewBg.Show(false);
 			if (infoBand)
-				infoBand.SetColor(ARGB(245, 15, 21, 10));
+				infoBand.SetColor(ARGB(245, 28, 24, 20));
 			if (bottomLine)
-				bottomLine.SetColor(ARGB(220, 22, 30, 14));
+				bottomLine.SetColor(ARGB(220, 41, 35, 29));
 		}
 	}
 
@@ -7018,33 +7018,33 @@ class SM_ClanMenu extends UIScriptedMenu
 		{
 			nameText.SetText(SM_PartyLoc.Text(name));
 			if (disabled)
-				nameText.SetColor(ARGB(180, 109, 148, 90));
+				nameText.SetColor(ARGB(180, 171, 157, 137));
 			else
-				nameText.SetColor(ARGB(255, 199, 240, 187));
+				nameText.SetColor(ARGB(255, 250, 240, 228));
 		}
 		if (meta1Text)
 		{
 			meta1Text.SetText(SM_PartyLoc.Text(meta1));
 			if (disabled)
-				meta1Text.SetColor(ARGB(170, 109, 148, 90));
+				meta1Text.SetColor(ARGB(170, 171, 157, 137));
 			else
-				meta1Text.SetColor(ARGB(255, 138, 188, 115));
+				meta1Text.SetColor(ARGB(255, 217, 200, 174));
 		}
 		if (meta2Text)
 		{
 			meta2Text.SetText(SM_PartyLoc.Text(meta2));
 			if (disabled)
-				meta2Text.SetColor(ARGB(170, 105, 142, 87));
+				meta2Text.SetColor(ARGB(170, 164, 151, 131));
 			else
-				meta2Text.SetColor(ARGB(255, 55, 255, 40));
+				meta2Text.SetColor(ARGB(255, 226, 141, 63));
 		}
 		if (meta3Text)
 		{
 			meta3Text.SetText(SM_PartyLoc.Text(meta3));
 			if (disabled)
-				meta3Text.SetColor(ARGB(155, 83, 115, 53));
+				meta3Text.SetColor(ARGB(155, 147, 135, 117));
 			else
-				meta3Text.SetColor(ARGB(255, 113, 153, 94));
+				meta3Text.SetColor(ARGB(255, 177, 163, 142));
 		}
 
 		Widget track = tile.FindAnyWidget("TileProgressTrack");
@@ -7686,7 +7686,7 @@ class SM_ClanMenu extends UIScriptedMenu
 			shown++;
 
 			if (item.Locked)
-				ColorServerMarketRow(row, ARGB(255, 74, 103, 48));
+				ColorServerMarketRow(row, ARGB(255, 132, 121, 106));
 			else if (item.IsSoldOut())
 				ColorServerMarketRow(row, ARGB(255, 180, 95, 95));
 			else if (item.GetLimitLeft() <= 0)
@@ -7871,7 +7871,7 @@ class SM_ClanMenu extends UIScriptedMenu
 			if (lot.SecondsLeft <= 0)
 			{
 				for (int col = 0; col < 5; col++)
-					m_AuctionList.SetItemColor(row, col, ARGB(255, 105, 142, 87));
+					m_AuctionList.SetItemColor(row, col, ARGB(255, 165, 152, 132));
 			}
 
 			if (buildAuctionTiles)
@@ -8051,30 +8051,30 @@ class SM_ClanMenu extends UIScriptedMenu
 
 		if (m_AchPersonalBg)
 		{
-			int pbg = ARGB(217, 24, 33, 15);
+			int pbg = ARGB(217, 45, 38, 32);
 			if (personalActive)
-				pbg = ARGB(242, 36, 50, 23);
+				pbg = ARGB(242, 69, 59, 49);
 			m_AchPersonalBg.SetColor(pbg);
 		}
 		if (m_AchClanBg)
 		{
-			int cbg = ARGB(217, 24, 33, 15);
+			int cbg = ARGB(217, 45, 38, 32);
 			if (!personalActive)
-				cbg = ARGB(242, 36, 50, 23);
+				cbg = ARGB(242, 69, 59, 49);
 			m_AchClanBg.SetColor(cbg);
 		}
 		if (m_AchPersonalBtn)
 		{
-			int ptx = ARGB(210, 125, 169, 103);
+			int ptx = ARGB(210, 196, 180, 157);
 			if (personalActive)
-				ptx = ARGB(255, 199, 240, 187);
+				ptx = ARGB(255, 250, 240, 228);
 			m_AchPersonalBtn.SetTextColor(ptx);
 		}
 		if (m_AchClanBtn)
 		{
-			int ctx = ARGB(210, 125, 169, 103);
+			int ctx = ARGB(210, 196, 180, 157);
 			if (!personalActive)
-				ctx = ARGB(255, 199, 240, 187);
+				ctx = ARGB(255, 250, 240, 228);
 			m_AchClanBtn.SetTextColor(ctx);
 		}
 		if (m_AchPersonalUnder)
@@ -8131,12 +8131,12 @@ class SM_ClanMenu extends UIScriptedMenu
 			if (achievement.Claimed)
 			{
 				for (int col = 0; col < 3; col++)
-					m_AchievementsList.SetItemColor(row, col, ARGB(255, 81, 112, 52));
+					m_AchievementsList.SetItemColor(row, col, ARGB(255, 143, 131, 114));
 			}
 			else if (achievement.Completed)
 			{
 				for (int readyCol = 0; readyCol < 3; readyCol++)
-					m_AchievementsList.SetItemColor(row, readyCol, ARGB(255, 50, 244, 37));
+					m_AchievementsList.SetItemColor(row, readyCol, ARGB(255, 207, 129, 57));
 			}
 			shown++;
 		}
@@ -8244,7 +8244,7 @@ class SM_ClanMenu extends UIScriptedMenu
 			if (SM_ClanClientData.MyPlayerTitleColor != 0)
 				m_PlayerTitleMineText.SetColor(SM_ClanClientData.MyPlayerTitleColor);
 			else
-				m_PlayerTitleMineText.SetColor(ARGB(255, 199, 240, 187));
+				m_PlayerTitleMineText.SetColor(ARGB(255, 250, 240, 228));
 		}
 
 		string progressText = "#STR_SMP_00852" + SM_ClanClientData.MyPlayerXP.ToString() + " XP";
@@ -8273,7 +8273,7 @@ class SM_ClanMenu extends UIScriptedMenu
 			if (SM_ClanClientData.MyPlayerTitleColor != 0)
 				m_PlayerTitleProgressFill.SetColor(SM_ClanClientData.MyPlayerTitleColor);
 			else
-				m_PlayerTitleProgressFill.SetColor(ARGB(255, 45, 217, 33));
+				m_PlayerTitleProgressFill.SetColor(ARGB(255, 184, 115, 51));
 		}
 
 		for (int i = 0; i < SM_ClanClientData.PlayerTitles.Count(); i++)
@@ -8303,7 +8303,7 @@ class SM_ClanMenu extends UIScriptedMenu
 			if (!view.Online)
 			{
 				for (int col = 0; col < 5; col++)
-					m_PlayerTitlesList.SetItemColor(row, col, ARGB(255, 86, 120, 56));
+					m_PlayerTitlesList.SetItemColor(row, col, ARGB(255, 153, 141, 123));
 			}
 			else
 			{
@@ -8342,8 +8342,8 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (contractType == SM_ContractType.KILL)
 			return ARGB(255, 235, 105, 95);
 		if (contractType == SM_ContractType.ITEM)
-			return ARGB(255, 245, 174, 51);
-		return ARGB(255, 199, 240, 187);
+			return ARGB(255, 228, 179, 71);
+		return ARGB(255, 250, 240, 228);
 	}
 
 	protected int GetContractMapMarkerColor(int contractType)
@@ -8351,8 +8351,8 @@ class SM_ClanMenu extends UIScriptedMenu
 		if (contractType == SM_ContractType.KILL)
 			return ARGB(255, 255, 40, 40);
 		if (contractType == SM_ContractType.ITEM)
-			return ARGB(255, 245, 174, 51);
-		return ARGB(255, 50, 244, 37);
+			return ARGB(255, 228, 179, 71);
+		return ARGB(255, 207, 129, 57);
 	}
 
 	protected string GetContractMapMarkerIcon(int contractType)
@@ -8725,12 +8725,12 @@ class SM_ClanMenu extends UIScriptedMenu
 			else if (view.IsCreator)
 			{
 				for (int creatorCol = 0; creatorCol < 5; creatorCol++)
-					m_ContractsList.SetItemColor(row, creatorCol, ARGB(255, 66, 229, 46));
+					m_ContractsList.SetItemColor(row, creatorCol, ARGB(255, 210, 145, 83));
 			}
 			else if (view.Status == SM_ContractStatus.ACCEPTED)
 			{
 				for (int accCol = 0; accCol < 5; accCol++)
-					m_ContractsList.SetItemColor(row, accCol, ARGB(255, 138, 187, 114));
+					m_ContractsList.SetItemColor(row, accCol, ARGB(255, 217, 199, 173));
 			}
 			m_ContractsList.SetItemColor(row, 0, contractTypeColor);
 			m_ContractsList.SetItemColor(row, 1, contractTypeColor);

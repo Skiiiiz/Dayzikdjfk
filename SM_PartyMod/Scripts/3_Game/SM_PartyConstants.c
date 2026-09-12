@@ -293,29 +293,29 @@ class SM_ChatChannelPalette
 {
 	static int GetBackgroundColor(int channel)
 	{
-		return ARGB(255, 16, 20, 12);
+		return ARGB(255, 22, 19, 16);
 	}
 
 	static int GetBorderColor(int channel)
 	{
-		return ARGB(255, 40, 54, 28);
+		return ARGB(255, 58, 49, 40);
 	}
 
 	static int GetTextColor(int channel)
 	{
-		return ARGB(255, 205, 235, 195);
+		return ARGB(255, 236, 228, 216);
 	}
 
 	static int GetAccentColor(int channel)
 	{
 		if (channel == SM_ChatChannel.GLOBAL)
-			return ARGB(255, 70, 150, 90);
+			return ARGB(255, 210, 171, 133);
 		if (channel == SM_ChatChannel.LOCAL)
-			return ARGB(255, 224, 168, 46);
+			return ARGB(255, 232, 181, 69);
 		if (channel == SM_ChatChannel.CLAN)
-			return ARGB(255, 60, 200, 45);
+			return ARGB(255, 184, 115, 51);
 
-		return ARGB(255, 150, 200, 150);
+		return ARGB(255, 179, 166, 146);
 	}
 }
 
@@ -330,17 +330,17 @@ class SM_VanillaChat
 	{
 		int soft  = SM_ClanClientData.ChatColorServer; // сервер/система
 		if (soft == 0)
-			soft = ARGB(255, 150, 200, 150);
+			soft = ARGB(255, 179, 166, 146);
 		int alert = SM_ClanClientData.ChatColorAlert;
 		if (alert == 0)
-			alert = ARGB(255, 224, 168, 46);
+			alert = ARGB(255, 232, 181, 69);
 		int direct = SM_ClanClientData.ChatColorDirect;
 		if (direct == 0)
-			direct = ARGB(255, 205, 235, 195);
+			direct = ARGB(255, 236, 228, 216);
 		int global = SM_ClanClientData.ChatColorGlobal;
 		if (global == 0)
-			global = ARGB(255, 150, 215, 175);
-		int light = ARGB(255, 205, 235, 195); // светлый — текст
+			global = ARGB(255, 210, 171, 133);
+		int light = ARGB(255, 236, 228, 216); // светлый — текст
 
 		labelColor = soft;
 		textColor = light;
