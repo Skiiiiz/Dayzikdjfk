@@ -1,0 +1,3 @@
+prefix=SM_PartyMod
+Mikero=DePbo.dll.9.98
+version=26063017

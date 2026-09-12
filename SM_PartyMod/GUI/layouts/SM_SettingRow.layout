@@ -1,0 +1,141 @@
+PanelWidgetClass SMSettingRow {
+ color 0 0 0 0
+ position 0 0
+ size 448 30
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass SettingRowBg {
+   ignorepointer 1
+   color 0.093 0.129 0.06 0.85
+   position 0 0
+   size 1.0 30
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  PanelWidgetClass SettingRowAccent {
+   ignorepointer 1
+   color 0.1761 0.8511 0.1291 0.55
+   position 0 0
+   size 0.0067 30
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  TextWidgetClass SettingRowLabel {
+   ignorepointer 1
+   color 0.747 0.9 0.702 1
+   position 0.03125 0
+   size 0.50446 30
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+   "exact text size" 13
+   "text valign" center
+   "text halign" left
+  }
+  TextWidgetClass SettingRowValue {
+   ignorepointer 1
+   color 0.216 1 0.1584 1
+   position 0.54018 0
+   size 0.19196 30
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+   "exact text size" 13
+   "text valign" center
+   "text halign" center
+  }
+  PanelWidgetClass SettingRowDecBg {
+   ignorepointer 1
+   color 0.1571 0.2179 0.1013 1
+   position 0.74554 3
+   size 0.08929 24
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  ButtonWidgetClass SettingRowDec {
+   visible 1
+   color 0.83 1 0.78 1
+   position 0.74554 3
+   size 0.08929 24
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style EmptyHighlight
+   text "-"
+   text_proportion 0.6
+   font "gui/fonts/sdf_MetronBook24"
+  }
+  PanelWidgetClass SettingRowIncBg {
+   ignorepointer 1
+   color 0.1571 0.2179 0.1013 1
+   position 0.84375 3
+   size 0.08929 24
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  ButtonWidgetClass SettingRowInc {
+   visible 1
+   color 0.83 1 0.78 1
+   position 0.84375 3
+   size 0.08929 24
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style EmptyHighlight
+   text "+"
+   text_proportion 0.6
+   font "gui/fonts/sdf_MetronBook24"
+  }
+  ButtonWidgetClass SettingRowToggle {
+   visible 0
+   color 0.83 1 0.78 0
+   position 0.80357 3
+   size 0.12946 24
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   style None
+   text ""
+  }
+  ImageWidgetClass SettingRowToggleIcon {
+   visible 0
+   ignorepointer 1
+   color 0.83 1 0.78 1
+   position 0.81696 4
+   size 0.10268 22
+   hexactpos 0
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   mode blend
+   "src alpha" 1
+   stretch 1
+  }
+ }
+}

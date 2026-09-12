@@ -1,0 +1,14 @@
+RichTextWidgetClass ClanChatRowText {
+ ignorepointer 1
+ color 0.83 1 0.78 1
+ position 0 0
+ size 532 20
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ text ""
+ font "gui/fonts/sdf_MetronBook24"
+ "exact text" 1
+ "exact text size" 14
+}

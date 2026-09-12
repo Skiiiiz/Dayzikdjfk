@@ -1,0 +1,55 @@
+PanelWidgetClass ClanPingRoot {
+ ignorepointer 1
+ color 0 0 0 0
+ position 0 0
+ size 200 58
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  ImageWidgetClass PingIcon {
+   ignorepointer 1
+   color 0.1902 0.9193 0.1395 1
+   position 90 34
+   size 20 20
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   "src alpha" 1
+   stretch 1
+  }
+  TextWidgetClass PingAuthorText {
+   ignorepointer 1
+   color 0.1902 0.9193 0.1395 1
+   position 0 0
+   size 200 16
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+   "exact text size" 14
+   "text halign" center
+  }
+  TextWidgetClass PingDistText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+   position 0 16
+   size 200 16
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronLight24"
+   "exact text" 1
+   "exact text size" 13
+   "text halign" center
+  }
+ }
+}

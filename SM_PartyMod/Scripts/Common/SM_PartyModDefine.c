@@ -1,0 +1,1 @@
+#define SM_PARTYMOD

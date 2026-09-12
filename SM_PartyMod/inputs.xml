@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<modded_inputs>
+	<inputs>
+		<actions>
+			<input name="UASMPClanMenu" loc="#STR_SMP_00756" visible="1" />
+			<input name="UASMPClanMap" loc="#STR_SMP_00755" visible="1" />
+			<input name="UASMPClanPing" loc="#STR_SMP_00640" visible="1" />
+			<input name="UASMPClanPingClear" loc="#STR_SMP_00765" visible="1" />
+			<input name="UASMPToggle3DMarkers" loc="#STR_SMP_01109" visible="1" />
+		</actions>
+
+		<sorting name="SM_PartyMod" loc="SM_PartyMod">
+			<input name="UASMPClanMenu" />
+			<input name="UASMPClanMap" />
+			<input name="UASMPClanPing" />
+			<input name="UASMPClanPingClear" />
+			<input name="UASMPToggle3DMarkers" />
+		</sorting>
+	</inputs>
+
+	<preset>
+		<input name="UASMPClanMenu">
+			<btn name="kP" />
+		</input>
+		<input name="UASMPClanMap">
+			<btn name="kM" />
+		</input>
+		<input name="UASMPClanPing">
+			<btn name="kT" />
+		</input>
+		<input name="UASMPClanPingClear">
+			<btn name="kY" />
+		</input>
+		<input name="UASMPToggle3DMarkers">
+			<btn name="kU" />
+		</input>
+	</preset>
+</modded_inputs>

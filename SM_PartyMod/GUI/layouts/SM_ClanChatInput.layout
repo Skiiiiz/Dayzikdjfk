@@ -1,0 +1,163 @@
+FrameWidgetClass SMClanChatRoot {
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ priority 950
+ {
+  TextWidgetClass ClanChatHintText {
+   ignorepointer 1
+   color 0.546 0.741 0.4524 0.88
+   position 36 176
+    size 760 18
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronLight24"
+   "exact text" 1
+   "exact text size" 12
+   "text valign" center
+  }
+  PanelWidgetClass ClanChatPanel {
+   color 0.0145 0.0201 0.0093 0.92
+   position 20 124
+   size 760 46
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    PanelWidgetClass ClanChatChannelPill {
+      ignorepointer 1
+      color 0.124 0.172 0.08 1
+      position 8 8
+      size 92 30
+      hexactpos 1
+      vexactpos 1
+      hexactsize 1
+      vexactsize 1
+      style rover_sim_colorable
+      {
+       PanelWidgetClass ClanChatChannelFill {
+        ignorepointer 1
+        color 0.0657 0.0911 0.0424 1
+        position 1 1
+        size 90 28
+        hexactpos 1
+        vexactpos 1
+        hexactsize 1
+        vexactsize 1
+        style rover_sim_colorable
+        {
+         PanelWidgetClass ClanChatChannelAccent {
+          ignorepointer 1
+          color 0.0871 0.5442 0.37 1
+          position 0 0
+          size 4 28
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+         }
+         TextWidgetClass ClanChatChannelText {
+          ignorepointer 1
+          color 0.7291 0.8784 0.6852 1
+          position 4 0
+          size 86 28
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 14
+          "text halign" center
+          "text valign" center
+         }
+        }
+       }
+      }
+     }
+    PanelWidgetClass ClanChatInputBg {
+     ignorepointer 1
+     color 0.124 0.172 0.08 1
+     position 108 8
+     size 644 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      EditBoxWidgetClass ClanChatEditBox {
+       color 0 0 0 0
+       position 12 0
+       size 620 30
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 146
+       style Default
+       "exact text" 0
+       font "gui/fonts/sdf_MetronLight24"
+      }
+      PanelWidgetClass ClanChatInputCover {
+       ignorepointer 1
+       color 0.0657 0.0911 0.0424 1
+       position 1 1
+       size 642 28
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 147
+       style rover_sim_colorable
+      }
+      TextWidgetClass ClanChatVisibleText {
+       ignorepointer 1
+       color 0.7802 0.94 0.7332 1
+       position 12 0
+       size 620 30
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 148
+       text ""
+       font "gui/fonts/sdf_MetronLight24"
+       "limit visible" 1
+       "exact text" 0
+       "text halign" left
+       "text valign" center
+      }
+      PanelWidgetClass ClanChatInputUnderline {
+       ignorepointer 1
+       color 0.1761 0.8511 0.1291 0.45
+       position 0 28
+       size 644 2
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 149
+       style rover_sim_colorable
+      }
+     }
+    }
+   }
+  }
+ }
+}

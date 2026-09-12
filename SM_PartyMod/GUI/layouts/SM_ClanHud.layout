@@ -1,0 +1,22 @@
+FrameWidgetClass SMClanHudRoot {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ priority 10
+ {
+  PanelWidgetClass ClanHudPanel {
+   ignorepointer 1
+   color 0 0 0 0
+   position 12 120
+   size 210 460
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+ }
+}

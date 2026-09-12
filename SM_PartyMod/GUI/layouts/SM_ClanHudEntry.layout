@@ -1,0 +1,110 @@
+PanelWidgetClass ClanHudEntry {
+ ignorepointer 1
+ color 0 0 0 0.4314
+ position 0 0
+ size 210 38
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_colorable
+ {
+  PanelWidgetClass AccentStrip {
+   ignorepointer 1
+   color 0.7649 0.9216 0.7188 1
+   position 0 0
+  size 3 38
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  TextWidgetClass MemberNameText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+  position 8 2
+  size 136 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+  "exact text size" 13
+   "text valign" center
+  }
+  TextWidgetClass HealthPctText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+  position 148 2
+  size 54 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronLight24"
+   "exact text" 1
+  "exact text size" 12
+   "text valign" center
+   "text halign" right
+  }
+  PanelWidgetClass HealthBarBg {
+   ignorepointer 1
+   color 0.0729 0.1011 0.047 0.8627
+  position 8 19
+  size 190 5
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    PanelWidgetClass HealthBarFill {
+     ignorepointer 1
+     color 0.2 0.8 0.2 1
+     position 0 0
+   size 1 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+   }
+  }
+  TextWidgetClass StatusText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+  position 8 24
+  size 132 14
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronLight24"
+   "exact text" 1
+  "exact text size" 10
+   "text valign" center
+  }
+  TextWidgetClass DistanceText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+  position 142 24
+  size 56 14
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronLight24"
+   "exact text" 1
+  "exact text size" 10
+   "text valign" center
+   "text halign" right
+  }
+ }
+}

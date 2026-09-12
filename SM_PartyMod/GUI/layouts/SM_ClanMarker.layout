@@ -1,0 +1,42 @@
+PanelWidgetClass ClanMarkerRoot {
+ ignorepointer 1
+ color 0 0 0 0
+ position 0 0
+ size 240 36
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  TextWidgetClass MarkerNameText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+   position 0 0
+   size 240 18
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+   "exact text size" 15
+   "text halign" center
+  }
+  TextWidgetClass MarkerDistText {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+   position 0 18
+   size 240 16
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronLight24"
+   "exact text" 1
+   "exact text size" 13
+   "text halign" center
+  }
+ }
+}

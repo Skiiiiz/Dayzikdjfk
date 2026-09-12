@@ -1,0 +1,13 @@
+PanelWidgetClass SMMapCircleSegment {
+ visible 1
+ ignorepointer 1
+ color 0.1761 0.8511 0.1291 0.82
+ position 0 0
+ size 24 2
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ priority 35
+ style rover_sim_colorable
+}

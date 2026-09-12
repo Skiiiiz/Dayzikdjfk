@@ -1,0 +1,64 @@
+PanelWidgetClass SMMapMarkerWidgetRoot {
+ visible 1
+ ignorepointer 1
+ color 0 0 0 0
+ position 0 0
+ size 34 34
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ priority 90
+ {
+  PanelWidgetClass MapMarkerWidgetGlow {
+   ignorepointer 1
+   color 0.03 0.0416 0.0193 0.72
+   position 4 4
+   size 26 26
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 91
+   style rover_sim_colorable
+  }
+  ImageWidgetClass MapMarkerWidgetIcon {
+   ignorepointer 1
+   color 0.83 1 0.78 1
+   position 7 5
+   size 20 20
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 92
+  }
+  PanelWidgetClass MapMarkerWidgetAccent {
+   ignorepointer 1
+   color 0.1761 0.8511 0.1291 1
+   position 15 27
+   size 4 4
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 93
+   style rover_sim_colorable
+  }
+  ButtonWidgetClass MapMarkerWidgetButton {
+   visible 1
+   color 0.83 1 0.78 0
+   position 0 0
+   size 34 34
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 94
+   style EmptyHighlight
+   text ""
+   text_proportion 0
+   font "gui/fonts/sdf_MetronBook24"
+  }
+ }
+}
