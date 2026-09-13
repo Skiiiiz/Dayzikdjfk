@@ -1633,7 +1633,7 @@ class SM_DungeonManager
 		if (len < 0.01)
 			dir = Vector(1, 0, 0);
 		else
-			dir = dir / len;
+			dir = dir * (1.0 / len);
 
 		vector target = zone.Center + dir * (zone.RadiusMeters + 5);
 		target[1] = pos[1];
