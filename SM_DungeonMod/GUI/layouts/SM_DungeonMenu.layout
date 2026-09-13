@@ -1,0 +1,700 @@
+FrameWidgetClass SMDMenuRoot {
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ priority 50
+ {
+  PanelWidgetClass SMDMenuWindow {
+   visible 1
+   color 0.0566 0.0484 0.0401 0.9608
+   position 0 0
+   size 1000 640
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass SMDTitleText {
+     ignorepointer 1
+     color 0.936 0.9 0.855 1
+     position 24 16
+     size 400 28
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "#STR_SMD_MENU_TITLE"
+     font "gui/fonts/sdf_MetronBold24"
+     "text valign" center
+     "text halign" left
+    }
+    ButtonWidgetClass SMDCloseBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 940 14
+     size 46 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "X"
+     font "gui/fonts/sdf_MetronBold24"
+    }
+    ButtonWidgetClass SMDTabDungeonsBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 10 56
+     size 190 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_TAB_DUNGEONS"
+     font "gui/fonts/MetronBook16"
+    }
+    ButtonWidgetClass SMDTabBookingsBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 204 56
+     size 190 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_TAB_BOOKINGS"
+     font "gui/fonts/MetronBook16"
+    }
+    ButtonWidgetClass SMDTabInvitesBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 398 56
+     size 190 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_TAB_INVITES"
+     font "gui/fonts/MetronBook16"
+    }
+    ButtonWidgetClass SMDTabFinderBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 592 56
+     size 190 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_TAB_FINDER"
+     font "gui/fonts/MetronBook16"
+    }
+    ButtonWidgetClass SMDTabAdminBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 786 56
+     size 190 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_TAB_ADMIN"
+     font "gui/fonts/MetronBook16"
+    }
+    TextWidgetClass SMDStatusText {
+     ignorepointer 1
+     color 0.8849 0.553 0.2455 1
+     position 10 606
+     size 980 24
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text ""
+     font "gui/fonts/MetronBook16"
+     "text valign" center
+     "text halign" left
+    }
+    PanelWidgetClass SMDPanelDungeons {
+     visible 1
+     color 0 0 0 0
+     position 10 98
+     size 980 470
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextListboxWidgetClass SMDDungeonsList {
+       disabled 0
+       position 0 0
+       size 580 470
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       "title visible" 0
+       colums "Name;55;Players;20;Status;25;"
+       lines 16
+       font "gui/fonts/MetronBook16"
+      }
+      TextWidgetClass SMDDifficultyLabel {
+       ignorepointer 1
+       color 0.936 0.9 0.855 1
+       position 600 10
+       size 150 26
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "#STR_SMD_COL_DIFF"
+       font "gui/fonts/MetronBook16"
+       "text valign" center
+       "text halign" left
+      }
+      ButtonWidgetClass SMDDifficultyPrevBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 40
+       size 50 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "<"
+       font "gui/fonts/sdf_MetronBold24"
+      }
+      TextWidgetClass SMDDifficultyValueText {
+       ignorepointer 1
+       color 0.8849 0.553 0.2455 1
+       position 654 40
+       size 220 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text ""
+       font "gui/fonts/MetronBook16"
+       "text valign" center
+       "text halign" center
+      }
+      ButtonWidgetClass SMDDifficultyNextBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 878 40
+       size 50 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text ">"
+       font "gui/fonts/sdf_MetronBold24"
+      }
+      TextWidgetClass SMDModeLabel {
+       ignorepointer 1
+       color 0.936 0.9 0.855 1
+       position 600 84
+       size 150 26
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "#STR_SMD_COL_MODE"
+       font "gui/fonts/MetronBook16"
+       "text valign" center
+       "text halign" left
+      }
+      ButtonWidgetClass SMDModePrevBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 114
+       size 50 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "<"
+       font "gui/fonts/sdf_MetronBold24"
+      }
+      TextWidgetClass SMDModeValueText {
+       ignorepointer 1
+       color 0.8849 0.553 0.2455 1
+       position 654 114
+       size 220 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text ""
+       font "gui/fonts/MetronBook16"
+       "text valign" center
+       "text halign" center
+      }
+      ButtonWidgetClass SMDModeNextBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 878 114
+       size 50 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text ">"
+       font "gui/fonts/sdf_MetronBold24"
+      }
+      TextWidgetClass SMDSlotLabel {
+       ignorepointer 1
+       color 0.936 0.9 0.855 1
+       position 600 158
+       size 150 26
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "#STR_SMD_COL_TIME"
+       font "gui/fonts/MetronBook16"
+       "text valign" center
+       "text halign" left
+      }
+      ButtonWidgetClass SMDSlotPrevBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 188
+       size 50 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "<"
+       font "gui/fonts/sdf_MetronBold24"
+      }
+      TextWidgetClass SMDSlotValueText {
+       ignorepointer 1
+       color 0.8849 0.553 0.2455 1
+       position 654 188
+       size 220 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text ""
+       font "gui/fonts/MetronBook16"
+       "text valign" center
+       "text halign" center
+      }
+      ButtonWidgetClass SMDSlotNextBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 878 188
+       size 50 32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text ">"
+       font "gui/fonts/sdf_MetronBold24"
+      }
+      MultilineEditBoxWidgetClass SMDFinderCommentEdit {
+       visible 0
+       position 600 232
+       size 328 80
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       text ""
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDRegisterBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 326
+       size 328 44
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_REGISTER"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDAdminToggleBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 382
+       size 328 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_ENABLE"
+       font "gui/fonts/MetronBook16"
+      }
+      TextWidgetClass SMDDescriptionText {
+       ignorepointer 1
+       color 0.7 0.68 0.64 1
+       position 600 432
+       size 328 34
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text ""
+       font "gui/fonts/MetronBook16"
+       "text valign" top
+       "text halign" left
+      }
+     }
+    }
+    PanelWidgetClass SMDPanelBookings {
+     visible 0
+     color 0 0 0 0
+     position 10 98
+     size 980 470
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextListboxWidgetClass SMDBookingsList {
+       disabled 0
+       position 0 0
+       size 580 300
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       "title visible" 0
+       colums "Dungeon;26;Difficulty;18;Mode;18;Time;20;Status;18;"
+       lines 10
+       font "gui/fonts/MetronBook16"
+      }
+      TextWidgetClass SMDBookingDetailsText {
+       ignorepointer 1
+       color 0.8 0.78 0.74 1
+       position 0 310
+       size 580 150
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text ""
+       font "gui/fonts/MetronBook16"
+       "text valign" top
+       "text halign" left
+      }
+      ButtonWidgetClass SMDCancelBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 10
+       size 370 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_CANCEL"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDLeaveBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 58
+       size 370 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_LEAVE"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDInviteBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 106
+       size 370 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_INVITE"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDKickBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 600 154
+       size 370 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_KICK"
+       font "gui/fonts/MetronBook16"
+      }
+      TextListboxWidgetClass SMDOnlinePlayersList {
+       visible 0
+       disabled 0
+       position 600 202
+       size 370 180
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       "title visible" 0
+       colums "Name;100;"
+       lines 8
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDSendInviteBtn {
+       visible 0
+       color 1 1 0.95 1
+       position 600 392
+       size 370 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_INVITE"
+       font "gui/fonts/MetronBook16"
+      }
+     }
+    }
+    PanelWidgetClass SMDPanelInvites {
+     visible 0
+     color 0 0 0 0
+     position 10 98
+     size 980 470
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextListboxWidgetClass SMDInvitesList {
+       disabled 0
+       position 0 0
+       size 700 400
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       "title visible" 0
+       colums "Dungeon;25;Difficulty;18;From;27;Expires;30;"
+       lines 14
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDAcceptBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 720 0
+       size 260 44
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_ACCEPT"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDDeclineBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 720 54
+       size 260 44
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_DECLINE"
+       font "gui/fonts/MetronBook16"
+      }
+     }
+    }
+    PanelWidgetClass SMDPanelFinder {
+     visible 0
+     color 0 0 0 0
+     position 10 98
+     size 980 470
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextListboxWidgetClass SMDFinderList {
+       disabled 0
+       position 0 0
+       size 700 400
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       "title visible" 0
+       colums "Dungeon;20;Difficulty;13;Leader;17;Party;10;Start;18;Comment;22;"
+       lines 14
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDJoinBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 720 0
+       size 260 44
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_JOIN_LISTING"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDUnlistBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 720 54
+       size 260 44
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_CLOSE_LISTING"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDRefreshFinderBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 720 108
+       size 260 44
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_REFRESH"
+       font "gui/fonts/MetronBook16"
+      }
+     }
+    }
+    PanelWidgetClass SMDPanelAdmin {
+     visible 0
+     color 0 0 0 0
+     position 10 98
+     size 980 470
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      ButtonWidgetClass SMDAdminSubRunsBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 0 0
+       size 190 36
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_ADMIN_ACTIVE_RUNS"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDAdminSubPenaltiesBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 200 0
+       size 190 36
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_ADMIN_PENALTIES"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDAdminReloadBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 790 0
+       size 190 36
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_RELOAD"
+       font "gui/fonts/MetronBook16"
+      }
+      TextListboxWidgetClass SMDAdminList {
+       disabled 0
+       position 0 46
+       size 980 360
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Editor
+       "title visible" 0
+       colums "Col1;30;Col2;25;Col3;25;Col4;20;"
+       lines 13
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDAdminActionBtn {
+       visible 1
+       color 1 1 0.95 1
+       position 0 416
+       size 300 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_FORCE_CANCEL"
+       font "gui/fonts/MetronBook16"
+      }
+      ButtonWidgetClass SMDAdminAction2Btn {
+       visible 1
+       color 1 1 0.95 1
+       position 320 416
+       size 300 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style EmptyHighlight
+       text "#STR_SMD_BTN_PARDON"
+       font "gui/fonts/MetronBook16"
+      }
+     }
+    }
+   }
+  }
+ }
+}

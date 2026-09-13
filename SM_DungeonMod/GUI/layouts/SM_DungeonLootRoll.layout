@@ -1,0 +1,107 @@
+FrameWidgetClass SMDRollRoot {
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ priority 40
+ {
+  PanelWidgetClass SMDRollPanel {
+   visible 1
+   color 0.0566 0.0484 0.0401 0.92
+   position 0 0
+   size 420 190
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass SMDRollTitle {
+     ignorepointer 1
+     color 0.936 0.9 0.855 1
+     position 0 12
+     size 420 26
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "#STR_SMD_ROLL_TITLE"
+     font "gui/fonts/sdf_MetronBold24"
+     "text valign" center
+     "text halign" center
+    }
+    TextWidgetClass SMDRollItemText {
+     ignorepointer 1
+     color 0.8849 0.553 0.2455 1
+     position 0 46
+     size 420 26
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text ""
+     font "gui/fonts/MetronBook16"
+     "text valign" center
+     "text halign" center
+    }
+    TextWidgetClass SMDRollTimerText {
+     ignorepointer 1
+     color 0.7 0.68 0.64 1
+     position 0 76
+     size 420 24
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text ""
+     font "gui/fonts/MetronBook16"
+     "text valign" center
+     "text halign" center
+    }
+    ButtonWidgetClass SMDRollNeedBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 12 116
+     size 128 46
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_BTN_NEED"
+     font "gui/fonts/MetronBook16"
+    }
+    ButtonWidgetClass SMDRollGreedBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 146 116
+     size 128 46
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_BTN_GREED"
+     font "gui/fonts/MetronBook16"
+    }
+    ButtonWidgetClass SMDRollPassBtn {
+     visible 1
+     color 1 1 0.95 1
+     position 280 116
+     size 128 46
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style EmptyHighlight
+     text "#STR_SMD_BTN_PASS"
+     font "gui/fonts/MetronBook16"
+    }
+   }
+  }
+ }
+}

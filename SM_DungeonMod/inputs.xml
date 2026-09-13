@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<modded_inputs>
+	<inputs>
+		<actions>
+			<input name="UASMDDungeonMenu" loc="#STR_SMD_MENU_TITLE" visible="1" />
+		</actions>
+
+		<sorting name="SM_DungeonMod" loc="SM_DungeonMod">
+			<input name="UASMDDungeonMenu" />
+		</sorting>
+	</inputs>
+
+	<preset>
+		<input name="UASMDDungeonMenu">
+			<btn name="kJ" />
+		</input>
+	</preset>
+</modded_inputs>
