@@ -293,9 +293,7 @@ class SM_DungeonManager
 
 	protected bool BookingOccupiesCalendar(SM_DungeonBooking booking)
 	{
-		return booking.Status == SM_DungeonBookingStatus.PENDING
-			|| booking.Status == SM_DungeonBookingStatus.CONFIRMED
-			|| booking.Status == SM_DungeonBookingStatus.ACTIVE;
+		return booking.Status == SM_DungeonBookingStatus.PENDING || booking.Status == SM_DungeonBookingStatus.CONFIRMED || booking.Status == SM_DungeonBookingStatus.ACTIVE;
 	}
 
 	protected int CountActiveBookingsFor(string uid)
@@ -1366,10 +1364,7 @@ class SM_DungeonManager
 				continue;
 			}
 
-			bool finished = booking.Status == SM_DungeonBookingStatus.CANCELLED
-				|| booking.Status == SM_DungeonBookingStatus.COMPLETED
-				|| booking.Status == SM_DungeonBookingStatus.NO_SHOW
-				|| booking.Status == SM_DungeonBookingStatus.EXPIRED;
+			bool finished = booking.Status == SM_DungeonBookingStatus.CANCELLED || booking.Status == SM_DungeonBookingStatus.COMPLETED || booking.Status == SM_DungeonBookingStatus.NO_SHOW || booking.Status == SM_DungeonBookingStatus.EXPIRED;
 
 			if (finished && now - booking.EndMinute > 2 * 1440)
 			{
