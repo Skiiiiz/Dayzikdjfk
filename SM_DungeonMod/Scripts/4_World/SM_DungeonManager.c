@@ -1054,13 +1054,13 @@ class SM_DungeonManager
 			string inviteDifficultyName = "";
 			if (inviteBooking)
 			{
-				SM_DungeonDefinition dungeon = m_Config.GetDungeon(inviteBooking.DungeonId);
-				if (dungeon)
+				SM_DungeonDefinition inviteDungeon = m_Config.GetDungeon(inviteBooking.DungeonId);
+				if (inviteDungeon)
 				{
-					inviteDungeonName = dungeon.Name;
-					SM_DungeonDifficultyConfig diff = dungeon.GetDifficulty(inviteBooking.DifficultyIndex);
-					if (diff)
-						inviteDifficultyName = SM_DungeonLoc.Text(diff.Name);
+					inviteDungeonName = inviteDungeon.Name;
+					SM_DungeonDifficultyConfig inviteDiff = inviteDungeon.GetDifficulty(inviteBooking.DifficultyIndex);
+					if (inviteDiff)
+						inviteDifficultyName = SM_DungeonLoc.Text(inviteDiff.Name);
 				}
 			}
 

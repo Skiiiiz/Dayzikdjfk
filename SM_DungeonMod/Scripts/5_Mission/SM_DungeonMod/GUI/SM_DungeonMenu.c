@@ -521,17 +521,17 @@ class SM_DungeonMenu extends UIScriptedMenu
 		{
 			foreach (SM_DungeonAdminRunView run : SM_DungeonClientData.AdminRuns)
 			{
-				int row = m_AdminList.AddItem(run.DungeonName, NULL, 0);
-				m_AdminList.SetItem(row, SM_DungeonRunPhase.ToLabel(run.Phase), NULL, 1);
-				m_AdminList.SetItem(row, run.SecondsRemaining.ToString(), NULL, 2);
-				m_AdminList.SetItem(row, run.ParticipantCount.ToString(), NULL, 3);
+				int runRow = m_AdminList.AddItem(run.DungeonName, NULL, 0);
+				m_AdminList.SetItem(runRow, SM_DungeonRunPhase.ToLabel(run.Phase), NULL, 1);
+				m_AdminList.SetItem(runRow, run.SecondsRemaining.ToString(), NULL, 2);
+				m_AdminList.SetItem(runRow, run.ParticipantCount.ToString(), NULL, 3);
 			}
 		}
 		else
 		{
 			foreach (SM_DungeonAdminPenaltyView penalty : SM_DungeonClientData.AdminPenalties)
 			{
-				int row = m_AdminList.AddItem(penalty.Name, NULL, 0);
+				int penaltyRow = m_AdminList.AddItem(penalty.Name, NULL, 0);
 
 				string lockText = "-";
 				if (penalty.PermaBanned)
@@ -539,9 +539,9 @@ class SM_DungeonMenu extends UIScriptedMenu
 				else if (penalty.LockUntilMinute > 0)
 					lockText = SM_DungeonClock.FormatAbsoluteMinute(penalty.LockUntilMinute);
 
-				m_AdminList.SetItem(row, lockText, NULL, 1);
-				m_AdminList.SetItem(row, penalty.OffenseCount.ToString(), NULL, 2);
-				m_AdminList.SetItem(row, "", NULL, 3);
+				m_AdminList.SetItem(penaltyRow, lockText, NULL, 1);
+				m_AdminList.SetItem(penaltyRow, penalty.OffenseCount.ToString(), NULL, 2);
+				m_AdminList.SetItem(penaltyRow, "", NULL, 3);
 			}
 		}
 
