@@ -799,13 +799,20 @@ class SM_PartyUtil
 		return true;
 	}
 
-	static string CompassDir(vector from, vector to)
+	// Азимут "from -> to" в градусах, 0..360, 0 = север (+Z).
+	static float BearingDegrees(vector from, vector to)
 	{
 		float dx = to[0] - from[0];
 		float dz = to[2] - from[2];
 		float angle = Math.Atan2(dx, dz) * Math.RAD2DEG;
 		if (angle < 0)
 			angle += 360;
+		return angle;
+	}
+
+	static string CompassDir(vector from, vector to)
+	{
+		float angle = BearingDegrees(from, to);
 
 		if (angle >= 337.5 || angle < 22.5) return "#STR_SMP_00895";
 		if (angle < 67.5) return "#STR_SMP_00898";

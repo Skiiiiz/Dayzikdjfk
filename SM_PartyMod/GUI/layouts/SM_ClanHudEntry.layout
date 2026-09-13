@@ -20,11 +20,37 @@ PanelWidgetClass ClanHudEntry {
    vexactsize 1
    style rover_sim_colorable
   }
+  PanelWidgetClass HealthRingAnchor {
+   ignorepointer 1
+   color 0 0 0 0
+   position 4 4
+   size 30 30
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  TextWidgetClass HealthPctText {
+   ignorepointer 1
+   color 1 1 0.95 1
+   position 4 4
+   size 30 30
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+  "exact text size" 11
+   "text valign" center
+   "text halign" center
+  }
   TextWidgetClass MemberNameText {
    ignorepointer 1
    color 1 1 0.95 1
-  position 8 2
-  size 136 15
+  position 42 4
+  size 102 15
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -35,51 +61,11 @@ PanelWidgetClass ClanHudEntry {
   "exact text size" 13
    "text valign" center
   }
-  TextWidgetClass HealthPctText {
-   ignorepointer 1
-   color 1 1 0.95 1
-  position 148 2
-  size 54 15
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   text ""
-   font "gui/fonts/sdf_MetronLight24"
-   "exact text" 1
-  "exact text size" 12
-   "text valign" center
-   "text halign" right
-  }
-  PanelWidgetClass HealthBarBg {
-   ignorepointer 1
-   color 0.1376 0.1176 0.0976 0.8627
-  position 8 19
-  size 190 5
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   style rover_sim_colorable
-   {
-    PanelWidgetClass HealthBarFill {
-     ignorepointer 1
-     color 0.5504 0.4296 0.1636 1
-     position 0 0
-   size 1 1
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 0
-     style rover_sim_colorable
-    }
-   }
-  }
   TextWidgetClass StatusText {
    ignorepointer 1
    color 1 1 0.95 1
-  position 8 24
-  size 132 14
+  position 42 20
+  size 102 14
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -93,8 +79,8 @@ PanelWidgetClass ClanHudEntry {
   TextWidgetClass DistanceText {
    ignorepointer 1
    color 1 1 0.95 1
-  position 142 24
-  size 56 14
+  position 148 20
+  size 54 14
    hexactpos 1
    vexactpos 1
    hexactsize 1

@@ -4,17 +4,39 @@ class SM_ClanHud
 	protected const int COMPACT_ENTRY_HEIGHT = 26;
 	protected const int PANEL_WIDTH = 210;
 	protected const int COMPACT_PANEL_WIDTH = 176;
-	protected const float BAR_WIDTH = 190;
-	protected const float COMPACT_BAR_WIDTH = 164;
-	protected const float BAR_HEIGHT = 5;
-	protected const float COMPACT_BAR_HEIGHT = 3;
 	protected const float MARKER_WIDTH = 240;
 	protected const float PING_WIDTH = 200;
 	protected const float PING_ICON_ANCHOR_Y = 44;
 
+	// Здоровье участника рисуется сегментированным кольцом (радиальные тики,
+	// та же техника SetRotation, что уже используется для радиуса базы на
+	// карте в SM_ClanMenu.c), а не полоской — компактный режим кольцо
+	// прячет и оставляет только цифру, чтобы не городить вторую геометрию.
+	protected const int RING_SIZE = 30;
+	protected const int RING_SEGMENTS = 12;
+	protected const float RING_RADIUS = 11;
+	protected const float RING_SEG_LEN = 6;
+	protected const float RING_SEG_THICK = 2;
+
+	// Полосковый компас сверху экрана: показывает направление на живых
+	// участников клана даже когда они вне поля зрения (в отличие от
+	// существующих 3D-меток m_MarkerRoots, которые видны только когда цель
+	// реально в кадре). Показывается на тех же условиях, что и сам HUD
+	// (HudEnabled + HasClan) — отдельного тумблера в настройках пока нет.
+	protected const int COMPASS_TICK_COUNT = 24;
+	protected const int COMPASS_LABEL_COUNT = 8;
+	protected const float COMPASS_WIDTH = 460;
+
+	protected Widget m_CompassRoot;
+	protected Widget m_CompassAnchor;
+	protected ref array<Widget> m_CompassTicks = new array<Widget>;
+	protected ref array<TextWidget> m_CompassLabels = new array<TextWidget>;
+	protected ref array<Widget> m_CompassMarkerRoots = new array<Widget>;
+
 	protected Widget m_Root;
 	protected Widget m_Panel;
 	protected ref array<Widget> m_EntryRoots = new array<Widget>;
+	protected ref array<ref array<Widget>> m_RingSegments = new array<ref array<Widget>>;
 	protected ref array<Widget> m_MarkerRoots = new array<Widget>;
 	protected ref array<Widget> m_PingRoots = new array<Widget>;
 	protected ref array<Widget> m_MapMarkerRoots = new array<Widget>;
@@ -33,6 +55,42 @@ class SM_ClanHud
 			m_Panel.Show(false);
 			m_Root.Show(true);
 		}
+
+		InitCompass();
+	}
+
+	protected void InitCompass()
+	{
+		m_CompassRoot = GetGame().GetWorkspace().CreateWidgets("SM_PartyMod/GUI/layouts/SM_ClanCompassStrip.layout");
+		if (!m_CompassRoot)
+			return;
+
+		m_CompassAnchor = m_CompassRoot.FindAnyWidget("CompassAnchor");
+
+		for (int i = 0; i < COMPASS_TICK_COUNT; i++)
+			m_CompassTicks.Insert(m_CompassRoot.FindAnyWidget("CompassTick" + i.ToString()));
+
+		for (int l = 0; l < COMPASS_LABEL_COUNT; l++)
+			m_CompassLabels.Insert(TextWidget.Cast(m_CompassRoot.FindAnyWidget("CompassLabel" + l.ToString())));
+
+		SetCompassLabelText(0, "#STR_SMP_00895");
+		SetCompassLabelText(1, "#STR_SMP_00898");
+		SetCompassLabelText(2, "#STR_SMP_00285");
+		SetCompassLabelText(3, "#STR_SMP_01085");
+		SetCompassLabelText(4, "#STR_SMP_01084");
+		SetCompassLabelText(5, "#STR_SMP_01086");
+		SetCompassLabelText(6, "#STR_SMP_00436");
+		SetCompassLabelText(7, "#STR_SMP_00914");
+
+		m_CompassRoot.Show(true);
+	}
+
+	protected void SetCompassLabelText(int index, string key)
+	{
+		if (index < 0 || index >= m_CompassLabels.Count())
+			return;
+		if (m_CompassLabels[index])
+			m_CompassLabels[index].SetText(SM_PartyLoc.Text(key));
 	}
 
 	void Update(float timeslice)
@@ -44,9 +102,13 @@ class SM_ClanHud
 		if (SM_HudVisibility.IsGameHudHidden())
 		{
 			m_Root.Show(false);
+			if (m_CompassRoot)
+				m_CompassRoot.Show(false);
 			return;
 		}
 		m_Root.Show(true);
+
+		UpdateCompass();
 
 		if (SM_ClanClientData.HudDirty)
 		{
@@ -97,20 +159,6 @@ class SM_ClanHud
 		return PANEL_WIDTH;
 	}
 
-	protected float GetBarWidth()
-	{
-		if (SM_ClanClientData.HudCompact)
-			return COMPACT_BAR_WIDTH;
-		return BAR_WIDTH;
-	}
-
-	protected float GetBarHeight()
-	{
-		if (SM_ClanClientData.HudCompact)
-			return COMPACT_BAR_HEIGHT;
-		return BAR_HEIGHT;
-	}
-
 	protected int ClampHudCoord(int value, int maxValue)
 	{
 		if (value < 0)
@@ -138,7 +186,11 @@ class SM_ClanHud
 		posY = ClampHudCoord(SM_ClanClientData.HudOffsetY, maxY);
 	}
 
-	protected void ApplyEntryLayout(Widget entry, TextWidget nameText, TextWidget pctText, TextWidget statusText, TextWidget distText, Widget accent, Widget healthBg)
+	// Компактный режим сознательно остаётся без кольца: у него другая,
+	// более низкая геометрия строки (26px), под которую пришлось бы вести
+	// вторую версию кольца. Вместо этого HP-цифра в компактном режиме сама
+	// перекрашивается по здоровью (см. Rebuild) — как раньше был просто %.
+	protected void ApplyEntryLayout(Widget entry, TextWidget nameText, TextWidget pctText, TextWidget statusText, TextWidget distText, Widget accent, Widget ringAnchor)
 	{
 		if (!entry)
 			return;
@@ -152,6 +204,8 @@ class SM_ClanHud
 				accent.SetPos(0, 0);
 				accent.SetSize(2, COMPACT_ENTRY_HEIGHT - 2);
 			}
+			if (ringAnchor)
+				ringAnchor.Show(false);
 			if (nameText)
 			{
 				nameText.SetPos(6, 1);
@@ -170,11 +224,6 @@ class SM_ClanHud
 				pctText.SetSize(28, 14);
 				pctText.SetTextExactSize(10);
 			}
-			if (healthBg)
-			{
-				healthBg.SetPos(6, 18);
-				healthBg.SetSize(GetBarWidth(), GetBarHeight());
-			}
 			if (statusText)
 			{
 				statusText.Show(false);
@@ -190,35 +239,120 @@ class SM_ClanHud
 			accent.SetPos(0, 0);
 			accent.SetSize(3, ENTRY_HEIGHT - 4);
 		}
-		if (nameText)
+		if (ringAnchor)
 		{
-			nameText.SetPos(8, 2);
-			nameText.SetSize(136, 15);
-			nameText.SetTextExactSize(13);
+			ringAnchor.Show(true);
+			ringAnchor.SetPos(4, 4);
+			ringAnchor.SetSize(RING_SIZE, RING_SIZE);
 		}
 		if (pctText)
 		{
-			pctText.SetPos(148, 2);
-			pctText.SetSize(54, 15);
-			pctText.SetTextExactSize(12);
+			pctText.SetPos(4, 4);
+			pctText.SetSize(RING_SIZE, RING_SIZE);
+			pctText.SetTextExactSize(11);
 		}
-		if (healthBg)
+		if (nameText)
 		{
-			healthBg.SetPos(8, 19);
-			healthBg.SetSize(GetBarWidth(), GetBarHeight());
+			nameText.SetPos(42, 4);
+			nameText.SetSize(102, 15);
+			nameText.SetTextExactSize(13);
 		}
 		if (statusText)
 		{
-			statusText.SetPos(8, 24);
-			statusText.SetSize(132, 14);
+			statusText.SetPos(42, 20);
+			statusText.SetSize(102, 14);
 			statusText.SetTextExactSize(10);
 			statusText.Show(true);
 		}
 		if (distText)
 		{
-			distText.SetPos(142, 24);
-			distText.SetSize(56, 14);
+			distText.SetPos(148, 20);
+			distText.SetSize(54, 14);
 			distText.SetTextExactSize(10);
+		}
+	}
+
+	// Строит сегментированное кольцо здоровья вокруг центра ringAnchor:
+	// N радиальных тиков, каждый — свой SMHudRingSegment.layout, позиция и
+	// поворот выставляются один раз при создании (SetRotation — та же
+	// техника, что уже рисует круг радиуса базы на карте в SM_ClanMenu.c).
+	// На каждый Rebuild меняется только цвет уже готовых тиков.
+	protected ref array<Widget> BuildHealthRing(Widget entry)
+	{
+		ref array<Widget> segments = new array<Widget>;
+		if (!entry)
+			return segments;
+
+		Widget anchor = entry.FindAnyWidget("HealthRingAnchor");
+		if (!anchor)
+			return segments;
+
+		float center = RING_SIZE * 0.5;
+		for (int i = 0; i < RING_SEGMENTS; i++)
+		{
+			Widget seg = GetGame().GetWorkspace().CreateWidgets("SM_PartyMod/GUI/layouts/SM_HudRingSegment.layout", anchor);
+			if (!seg)
+				continue;
+
+			float angle = (Math.PI2 * i) / RING_SEGMENTS - Math.PI2 * 0.25;
+			float segCenterX = center + Math.Cos(angle) * RING_RADIUS;
+			float segCenterY = center + Math.Sin(angle) * RING_RADIUS;
+
+			seg.SetSize(RING_SEG_LEN, RING_SEG_THICK);
+			seg.SetPos(segCenterX - RING_SEG_LEN * 0.5, segCenterY - RING_SEG_THICK * 0.5);
+			seg.SetRotation(0, 0, angle * Math.RAD2DEG);
+			segments.Insert(seg);
+		}
+		return segments;
+	}
+
+	protected void UpdateHealthRing(array<Widget> segments, float hp, float hudAlpha)
+	{
+		if (!segments || segments.Count() == 0)
+			return;
+
+		int litColor = GetHealthColor(hp, hudAlpha);
+		int dimColor = AlphaColor(200, ARGB(255, 60, 54, 46), hudAlpha);
+		int lit = Math.Round(hp * segments.Count());
+
+		for (int i = 0; i < segments.Count(); i++)
+		{
+			if (!segments[i])
+				continue;
+			if (i < lit)
+				segments[i].SetColor(litColor);
+			else
+				segments[i].SetColor(dimColor);
+		}
+	}
+
+	// Красный (критично) -> медь (полное здоровье, основной акцент мода) —
+	// сознательно без зелёного канала-доминанты нигде в градиенте.
+	protected int GetHealthColor(float hp, float hudAlpha)
+	{
+		int r = Math.Round(220 - 36 * hp);
+		int g = Math.Round(60 + 55 * hp);
+		int b = Math.Round(50 + hp);
+		return AlphaColor(255, ARGB(255, r, g, b), hudAlpha);
+	}
+
+	// Держит m_EntryRoots/m_RingSegments синхронными: SyncWidgetCount из
+	// общего хелпера здесь не подходит, потому что при создании новой
+	// строки нужно сразу же построить и её кольцо.
+	protected void SyncEntryWidgets(int target)
+	{
+		while (m_EntryRoots.Count() < target)
+		{
+			Widget newWidget = GetGame().GetWorkspace().CreateWidgets("SM_PartyMod/GUI/layouts/SM_ClanHudEntry.layout", m_Panel);
+			m_EntryRoots.Insert(newWidget);
+			m_RingSegments.Insert(BuildHealthRing(newWidget));
+		}
+		while (m_EntryRoots.Count() > target)
+		{
+			int last = m_EntryRoots.Count() - 1;
+			m_EntryRoots[last].Unlink();
+			m_EntryRoots.Remove(last);
+			m_RingSegments.Remove(last);
 		}
 	}
 
@@ -231,7 +365,7 @@ class SM_ClanHud
 		if (!SM_ClanClientData.HudEnabled || !SM_ClanClientData.HasClan)
 			m_VisibleCount = 0;
 
-		SyncWidgetCount(m_EntryRoots, m_VisibleCount, "SM_PartyMod/GUI/layouts/SM_ClanHudEntry.layout", m_Panel);
+		SyncEntryWidgets(m_VisibleCount);
 
 		int markerCount = 0;
 		if (SM_ClanClientData.MarkersEnabled && SM_ClanClientData.Local3DMarkersEnabled)
@@ -270,10 +404,9 @@ class SM_ClanHud
 			TextWidget statusText = TextWidget.Cast(entry.FindAnyWidget("StatusText"));
 			TextWidget distText = TextWidget.Cast(entry.FindAnyWidget("DistanceText"));
 			Widget accent = entry.FindAnyWidget("AccentStrip");
-			Widget healthBg = entry.FindAnyWidget("HealthBarBg");
-			Widget fill = entry.FindAnyWidget("HealthBarFill");
+			Widget ringAnchor = entry.FindAnyWidget("HealthRingAnchor");
 
-			ApplyEntryLayout(entry, nameText, pctText, statusText, distText, accent, healthBg);
+			ApplyEntryLayout(entry, nameText, pctText, statusText, distText, accent, ringAnchor);
 
 			float hp = member.Health;
 			if (hp < 0)
@@ -291,25 +424,13 @@ class SM_ClanHud
 			if (pctText)
 			{
 				int hpPct = Math.Round(hp * 100);
-				pctText.SetText(SM_PartyLoc.Text(hpPct.ToString() + "%"));
-				pctText.SetColor(AlphaColor(255, ARGB(255, 255, 255, 242), hudAlpha));
+				pctText.SetText(SM_PartyLoc.Text(hpPct.ToString()));
+				pctText.SetColor(GetHealthColor(hp, hudAlpha));
 			}
 			if (distText)
 				distText.SetColor(AlphaColor(255, ARGB(255, 255, 255, 242), hudAlpha));
-			if (healthBg)
-				healthBg.SetColor(AlphaColor(220, ARGB(255, 35, 30, 25), hudAlpha));
-
-			if (fill)
-			{
-				float frac = hp;
-				if (frac < 0.02 && hp > 0)
-					frac = 0.02;
-				fill.SetSize(frac, 1.0);
-
-				int r = 220 - hp * 170;
-				int g = 60 + hp * 160;
-				fill.SetColor(ARGB(GetAlphaByte(255, hudAlpha), r, g, 50));
-			}
+			if (!SM_ClanClientData.HudCompact && i < m_RingSegments.Count())
+				UpdateHealthRing(m_RingSegments[i], hp, hudAlpha);
 
 			if (statusText)
 			{
@@ -497,6 +618,113 @@ class SM_ClanHud
 			icon.SetImage(0);
 			icon.SetColor(color);
 			icon.Show(true);
+		}
+	}
+
+	protected float NormalizeAngle(float deg)
+	{
+		while (deg > 180)
+			deg -= 360;
+		while (deg < -180)
+			deg += 360;
+		return deg;
+	}
+
+	protected void UpdateCompass()
+	{
+		if (!m_CompassRoot || !m_CompassAnchor)
+			return;
+
+		bool show = SM_ClanClientData.HudEnabled && SM_ClanClientData.HasClan;
+		m_CompassRoot.Show(show);
+		if (!show)
+			return;
+
+		Man player = GetGame().GetPlayer();
+		if (!player)
+			return;
+
+		vector rayDir = GetGame().GetCurrentCameraDirection();
+		if (rayDir.Length() <= 0)
+			return;
+
+		float heading = Math.Atan2(rayDir[0], rayDir[2]) * Math.RAD2DEG;
+		vector myPos = player.GetPosition();
+		float half = COMPASS_WIDTH * 0.5;
+		float pxPerDeg = COMPASS_WIDTH / 180.0;
+
+		for (int i = 0; i < m_CompassTicks.Count(); i++)
+		{
+			Widget tick = m_CompassTicks[i];
+			if (!tick)
+				continue;
+			float tickDeg = i * (360.0 / m_CompassTicks.Count());
+			float rel = NormalizeAngle(tickDeg - heading);
+			if (rel < -90 || rel > 90)
+			{
+				tick.Show(false);
+				continue;
+			}
+			tick.SetPos(Math.Round(half + rel * pxPerDeg), 24);
+			tick.Show(true);
+		}
+
+		for (int l = 0; l < m_CompassLabels.Count(); l++)
+		{
+			TextWidget label = m_CompassLabels[l];
+			if (!label)
+				continue;
+			float labelDeg = l * (360.0 / m_CompassLabels.Count());
+			float relL = NormalizeAngle(labelDeg - heading);
+			if (relL < -90 || relL > 90)
+			{
+				label.Show(false);
+				continue;
+			}
+			label.SetPos(Math.Round(half + relL * pxPerDeg - 20), 0);
+			label.Show(true);
+		}
+
+		SyncWidgetCount(m_CompassMarkerRoots, m_VisibleCount, "SM_PartyMod/GUI/layouts/SM_ClanCompassMarker.layout", m_CompassAnchor);
+		int clanColor = SM_ClanClientData.GetClanColor();
+		for (int m = 0; m < m_VisibleCount; m++)
+		{
+			Widget marker = m_CompassMarkerRoots[m];
+			if (!marker)
+				continue;
+
+			SM_ClanMemberView member = SM_ClanClientData.VisibleHudMembers[m];
+			if (!member || member.Uid == SM_ClanClientData.MyUid)
+			{
+				marker.Show(false);
+				continue;
+			}
+
+			vector memberPos = GetMemberWorldPosition(member);
+			float bearing = SM_PartyUtil.BearingDegrees(myPos, memberPos);
+			float relM = NormalizeAngle(bearing - heading);
+			if (relM < -90 || relM > 90)
+			{
+				marker.Show(false);
+				continue;
+			}
+
+			marker.SetPos(Math.Round(half + relM * pxPerDeg - 60), 0);
+			marker.Show(true);
+
+			Widget diamond = marker.FindAnyWidget("CompassMarkerDiamond");
+			if (diamond)
+			{
+				diamond.SetRotation(0, 0, 45);
+				diamond.SetColor(clanColor);
+			}
+			TextWidget markerText = TextWidget.Cast(marker.FindAnyWidget("CompassMarkerText"));
+			if (markerText)
+			{
+				float dist = vector.Distance(myPos, memberPos);
+				markerText.SetText(SM_PartyLoc.Text(member.Name + " " + SM_PartyUtil.FormatDistance(dist)));
+				markerText.SetColor(clanColor);
+			}
 		}
 	}
 

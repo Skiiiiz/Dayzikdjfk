@@ -1,0 +1,430 @@
+FrameWidgetClass SMClanCompassRoot {
+  ignorepointer 1
+  position 0 0
+  size 1 1
+  hexactpos 0
+  vexactpos 0
+  hexactsize 0
+  vexactsize 0
+  priority 20
+  {
+    PanelWidgetClass CompassAnchor {
+      ignorepointer 1
+      color 0 0 0 0
+      position 490 22
+      size 460 26
+      hexactpos 1
+      vexactpos 1
+      hexactsize 1
+      vexactsize 1
+      {
+        PanelWidgetClass CompassBaseline {
+          ignorepointer 1
+          color 0.2275 0.1922 0.1569 0.9
+          position 0 24
+          size 460 1
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassCenterMark {
+          ignorepointer 1
+          color 0.9098 0.7098 0.2706 1
+          position 229 8
+          size 2 16
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick0 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick1 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick2 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick3 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick4 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick5 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick6 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick7 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick8 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick9 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick10 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick11 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick12 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick13 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick14 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick15 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick16 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick17 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick18 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick19 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick20 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick21 {
+          ignorepointer 1
+          color 0.7216 0.4510 0.2000 0.85
+          position 229 24
+          size 1 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick22 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        PanelWidgetClass CompassTick23 {
+          ignorepointer 1
+          color 0.4275 0.3843 0.3216 0.7
+          position 229 24
+          size 1 8
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          style rover_sim_colorable
+        }
+        TextWidgetClass CompassLabel0 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel1 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel2 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel3 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel4 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel5 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel6 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+        TextWidgetClass CompassLabel7 {
+          ignorepointer 1
+          color 0.7333 0.6706 0.5725 1
+          position 209 0
+          size 40 14
+          hexactpos 1
+          vexactpos 1
+          hexactsize 1
+          vexactsize 1
+          text ""
+          font "gui/fonts/sdf_MetronBook24"
+          "exact text" 1
+          "exact text size" 11
+          "text halign" center
+        }
+      }
+    }
+  }
+}

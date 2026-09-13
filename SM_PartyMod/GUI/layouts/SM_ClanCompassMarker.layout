@@ -1,0 +1,38 @@
+PanelWidgetClass SMClanCompassMarker {
+ ignorepointer 1
+ color 0 0 0 0
+ position 0 0
+ size 120 26
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass CompassMarkerDiamond {
+   ignorepointer 1
+   color 0.7216 0.4510 0.2000 1
+   position 55 0
+   size 8 8
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  TextWidgetClass CompassMarkerText {
+   ignorepointer 1
+   color 0.7216 0.4510 0.2000 1
+   position 0 10
+   size 120 14
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text ""
+   font "gui/fonts/sdf_MetronBook24"
+   "exact text" 1
+   "exact text size" 10
+   "text halign" center
+  }
+ }
+}

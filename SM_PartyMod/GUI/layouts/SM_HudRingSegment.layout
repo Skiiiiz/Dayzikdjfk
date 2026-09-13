@@ -1,0 +1,12 @@
+PanelWidgetClass SMHudRingSegment {
+ visible 1
+ ignorepointer 1
+ color 0.2353 0.2118 0.1804 0.9
+ position 0 0
+ size 6 2
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_colorable
+}
