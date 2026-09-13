@@ -417,11 +417,19 @@ class SM_DungeonMenu extends UIScriptedMenu
 		int startMinute = view.AvailableSlots[m_SelectedSlotIndex % view.AvailableSlots.Count()];
 
 		if (mode == SM_DungeonMode.SOLO)
+		{
 			SendRegisterSolo(view.Id, m_SelectedDifficultyIndex, startMinute);
+		}
 		else if (mode == SM_DungeonMode.INVITE_GROUP)
+		{
 			SendRegisterGroupCreate(view.Id, m_SelectedDifficultyIndex, startMinute);
+		}
 		else
-			SendFinderPublish(view.Id, m_SelectedDifficultyIndex, startMinute, m_FinderCommentEdit.GetText());
+		{
+			string comment;
+			m_FinderCommentEdit.GetText(comment);
+			SendFinderPublish(view.Id, m_SelectedDifficultyIndex, startMinute, comment);
+		}
 	}
 
 	protected void RefreshBookingsList()
