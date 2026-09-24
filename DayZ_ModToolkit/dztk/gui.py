@@ -460,6 +460,7 @@ class TextureTab(Tab):
 
         pf = ttk.LabelFrame(right, text="Предпросмотр", padding=6)
         pf.grid(row=2, column=0, sticky="nsew")
+        self.preview_frame = pf
         self.preview_lbl = ttk.Label(pf, anchor="center", text="Выберите файл в списке")
         self.preview_lbl.pack(fill="both", expand=True)
         self.preview_info = ttk.Label(pf, foreground=MUTED)
@@ -508,7 +509,10 @@ class TextureTab(Tab):
                 w, h = im.size
                 pow2 = paa.is_pow2(w) and paa.is_pow2(h)
                 desc = f"{w}x{h}" + ("" if pow2 else " — не степень двойки!")
-            im.thumbnail((180, 180))
+            self.preview_frame.update_idletasks()
+            side = min(self.preview_frame.winfo_width() - 16, self.preview_frame.winfo_height() - 70)
+            side = max(64, min(side, 512))
+            im.thumbnail((side, side))
             bg = Image.new("RGBA", im.size, (60, 60, 70, 255))
             for y in range(0, im.size[1], 16):          # «шахматка» под прозрачностью
                 for x in range(0, im.size[0], 16):
@@ -541,7 +545,7 @@ class TextureTab(Tab):
 
         def on_result(r: convert.Result, done, total):
             def ui():
-                self.files.set_status(r.task.src, "✔ " + r.message if r.ok else "✖ ошибка", r.ok)
+                self.files.set_status(r.task.src, "✔ " + r.message.split()[-1] if r.ok else "✖ ошибка", r.ok)
                 self.app.progress(done, total)
                 self.app.log(("OK   " if r.ok else "ERR  ") + f"{r.task.src.name} -> {r.task.dst}  ({r.message})",
                              None if r.ok else "error")
@@ -886,7 +890,7 @@ class App:
         self.v_ffmpeg = tk.StringVar(value=self.settings.get("ffmpeg", ""))
 
         root.title(f"{APP_NAME} {APP_VERSION}")
-        root.geometry("1100x760")
+        root.geometry("1100x820")
         root.minsize(900, 620)
         style = ttk.Style()
         try:
@@ -914,7 +918,7 @@ class App:
         logf = ttk.LabelFrame(main, text="Журнал", padding=4)
         logf.grid(row=1, column=0, sticky="ew", pady=(6, 0))
         logf.columnconfigure(0, weight=1)
-        self.log_text = tk.Text(logf, height=7, wrap="word", state="disabled", font=("Consolas", 9))
+        self.log_text = tk.Text(logf, height=6, wrap="word", state="disabled", font=("Consolas", 9))
         self.log_text.grid(row=0, column=0, sticky="ew")
         lsb = ttk.Scrollbar(logf, orient="vertical", command=self.log_text.yview)
         lsb.grid(row=0, column=1, sticky="ns")

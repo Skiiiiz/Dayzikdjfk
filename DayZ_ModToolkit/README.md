@@ -10,6 +10,16 @@
 | **config.cpp ⇄ bin** | бинаризация `config.cpp` → `config.bin` с проверкой ошибок и распаковка `config.bin` → `config.cpp` |
 | **Проверка ошибок** | синтаксис и смысловые ошибки во всех файлах мода, ссылки между файлами |
 
+![Проверка ошибок](docs/1_check.png)
+
+<details><summary>Остальные вкладки</summary>
+
+![Текстуры PAA](docs/2_textures.png)
+![Звук → OGG](docs/3_audio.png)
+![config.cpp ⇄ bin](docs/4_configs.png)
+
+</details>
+
 ## Готовая программа
 
 `DayZModToolkit.exe` — один файл для Windows 10/11. Python и ffmpeg уже встроены, устанавливать ничего не нужно.

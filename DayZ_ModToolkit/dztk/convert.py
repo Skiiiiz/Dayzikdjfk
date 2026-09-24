@@ -140,7 +140,7 @@ def config_task(overwrite: bool = False, check: bool = True):
             issues = issues + cfg.semantic_check(root, str(t.src))
             errors = [i for i in issues if i.level == "error"]
             if errors:
-                return Result(t, False, f"ошибок: {len(errors)} — " + errors[0].format(), issues)
+                return Result(t, False, f"не бинаризован, ошибок: {len(errors)}", issues)
         t.dst.parent.mkdir(parents=True, exist_ok=True)
         t.dst.write_bytes(rap.write_rap(root))
         warn = [i for i in issues if i.level == "warning"]
