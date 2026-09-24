@@ -4,3 +4,4 @@ dist/
 __pycache__/
 ffmpeg.exe
 .pytest_cache/
+version_info.txt

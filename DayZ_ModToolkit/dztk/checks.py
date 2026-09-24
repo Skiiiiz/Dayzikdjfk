@@ -15,9 +15,12 @@
 
 Проверки по всему моду: ссылки на несуществующие файлы (.paa/.ogg/.layout/...),
 ключи #STR_ без перевода, папки скриптов из CfgMods, «плохие» имена файлов.
+С индексом игры (vanilla.py): modded class/extends/override и внешние классы конфига.
 """
 
 from __future__ import annotations
+
+from dztk.i18n import tr
 
 import csv
 import io
@@ -53,6 +56,8 @@ class ModContext:
     str_refs: List[Tuple[str, Issue]] = field(default_factory=list)
     str_keys: Set[str] = field(default_factory=set)
     has_stringtable: bool = False
+    scripts: List[Path] = field(default_factory=list)
+    configs: List[Tuple["cfg.ClassNode", str]] = field(default_factory=list)
 
     @classmethod
     def build(cls, root: Path) -> "ModContext":
@@ -139,6 +144,8 @@ def check_config_cpp(path: Path, ctx: Optional[ModContext] = None) -> List[Issue
         return [e.issue]
     issues = issues + cfg.semantic_check(root, str(path))
     _collect_cfg_refs(root, str(path), ctx)
+    if ctx is not None:
+        ctx.configs.append((root, str(path)))
     return issues
 
 
@@ -161,15 +168,17 @@ def _collect_cfg_refs(root: cfg.ClassNode, file: str, ctx: Optional[ModContext])
 def check_config_bin(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     data = path.read_bytes()
     if not rap.is_rapified(data):
-        return [Issue("error", "файл не является бинарным конфигом (нет сигнатуры raP)", str(path))]
+        return [Issue("error", tr("файл не является бинарным конфигом (нет сигнатуры raP)"), str(path))]
     try:
         root = rap.read_rap(data)
     except Exception as e:
-        return [Issue("error", f"повреждённый config.bin: {e}", str(path))]
+        return [Issue("error", tr("повреждённый config.bin: {0}").format(e), str(path))]
     issues = [i for i in cfg.semantic_check(root, str(path)) if i.code not in ("undefined-base",)]
     for i in issues:
         i.line = 0
     _collect_cfg_refs(root, str(path), ctx)
+    if ctx is not None:
+        ctx.configs.append((root, str(path)))
     return issues
 
 
@@ -185,6 +194,7 @@ def check_script(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     text = cfg.read_text(path)
     issues = enforce.check_script(path, text)
     if ctx is not None:
+        ctx.scripts.append(path)
         lexer_issues: List[Issue] = []
         for t in enforce._Lexer(text, str(path), lexer_issues).run():
             if t.kind == "string" and len(t.text) >= 2 and t.text[0] == '"' and t.text[-1] == '"':
@@ -208,7 +218,7 @@ def check_layout(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
             if ch == '"':
                 j = line.find('"', i + 1)
                 if j < 0:
-                    issues.append(Issue("error", "незакрытая строка (нет закрывающей \")", file, ln, i + 1, "string"))
+                    issues.append(Issue("error", tr("незакрытая строка (нет закрывающей \")"), file, ln, i + 1, "string"))
                     break
                 value = line[i + 1:j]
                 _add_ref(ctx, value, Issue("warning", "", file, ln, i + 1))
@@ -220,16 +230,16 @@ def check_layout(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
                 stack.append((ln, i + 1))
             elif ch == "}":
                 if not stack:
-                    issues.append(Issue("error", "лишняя закрывающая скобка '}'", file, ln, i + 1, "brackets"))
+                    issues.append(Issue("error", tr("лишняя закрывающая скобка '}'"), file, ln, i + 1, "brackets"))
                 else:
                     stack.pop()
             i += 1
     for ln, col in stack:
-        issues.append(Issue("error", "не закрыта скобка '{'", file, ln, col, "brackets"))
+        issues.append(Issue("error", tr("не закрыта скобка '{'"), file, ln, col, "brackets"))
     if path.suffix.lower() == ".layout" and text.strip():
         first = text.strip().split(None, 1)[0]
         if not first.endswith("WidgetClass"):
-            issues.append(Issue("warning", f"layout начинается с '{first}', ожидался класс виджета (...WidgetClass)",
+            issues.append(Issue("warning", tr("layout начинается с '{0}', ожидался класс виджета (...WidgetClass)").format(first),
                                 file, 1, 1, "layout"))
     return issues
 
@@ -271,16 +281,15 @@ def _check_types_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> List
         name = t.get("name")
         ln = lines.get(f"type:{name}", 0)
         if not name:
-            issues.append(Issue("error", "<type> без атрибута name", file, ln, 0, "types"))
+            issues.append(Issue("error", tr("<type> без атрибута name"), file, ln, 0, "types"))
             continue
         key = name.lower()
         if key in seen:
-            issues.append(Issue("warning", f"тип '{name}' объявлен повторно (строка {seen[key]}) — "
-                                           f"действовать будет последнее объявление", file, ln, 0, "types-dup"))
+            issues.append(Issue("warning", tr("тип '{0}' объявлен повторно (строка {1}) — действовать будет последнее объявление").format(name, seen[key]), file, ln, 0, "types-dup"))
         seen[key] = ln
         for child in t:
             if child.tag not in TYPES_CHILDREN:
-                issues.append(Issue("warning", f"'{name}': неизвестный тег <{child.tag}>", file, ln, 0, "types"))
+                issues.append(Issue("warning", tr("'{0}': неизвестный тег <{1}>").format(name, child.tag), file, ln, 0, "types"))
         vals = {}
         for tag in ("nominal", "lifetime", "restock", "min", "quantmin", "quantmax", "cost"):
             el = t.find(tag)
@@ -288,38 +297,37 @@ def _check_types_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> List
                 continue
             v = _num(_int(el))
             if v is None:
-                issues.append(Issue("error", f"'{name}': <{tag}> должно быть целым числом, сейчас '{_int(el)}'",
+                issues.append(Issue("error", tr("'{0}': <{1}> должно быть целым числом, сейчас '{2}'").format(name, tag, _int(el)),
                                     file, ln, 0, "types"))
             else:
                 vals[tag] = v
         if "nominal" in vals and "min" in vals and vals["min"] > vals["nominal"]:
-            issues.append(Issue("error", f"'{name}': min ({vals['min']}) больше nominal ({vals['nominal']})",
+            issues.append(Issue("error", tr("'{0}': min ({1}) больше nominal ({2})").format(name, vals['min'], vals['nominal']),
                                 file, ln, 0, "types"))
         for q in ("quantmin", "quantmax"):
             if q in vals and not (vals[q] == -1 or 0 <= vals[q] <= 100):
-                issues.append(Issue("error", f"'{name}': {q} должен быть -1 или от 0 до 100", file, ln, 0, "types"))
+                issues.append(Issue("error", tr("'{0}': {1} должен быть -1 или от 0 до 100").format(name, q), file, ln, 0, "types"))
         if vals.get("quantmin", -1) != -1 and vals.get("quantmax", -1) != -1 and vals["quantmin"] > vals["quantmax"]:
-            issues.append(Issue("error", f"'{name}': quantmin больше quantmax", file, ln, 0, "types"))
+            issues.append(Issue("error", tr("'{0}': quantmin больше quantmax").format(name), file, ln, 0, "types"))
         if (vals.get("quantmin", -1) == -1) != (vals.get("quantmax", -1) == -1):
-            issues.append(Issue("warning", f"'{name}': quantmin и quantmax должны быть оба -1 или оба заданы",
+            issues.append(Issue("warning", tr("'{0}': quantmin и quantmax должны быть оба -1 или оба заданы").format(name),
                                 file, ln, 0, "types"))
         if vals.get("nominal", 0) > 0 and vals.get("lifetime", 1) <= 0:
-            issues.append(Issue("warning", f"'{name}': nominal > 0, но lifetime = {vals.get('lifetime')}",
+            issues.append(Issue("warning", tr("'{0}': nominal > 0, но lifetime = {1}").format(name, vals.get('lifetime')),
                                 file, ln, 0, "types"))
         if vals.get("nominal", 0) > 0 and t.find("usage") is None and t.find("value") is None:
-            issues.append(Issue("info", f"'{name}': nominal > 0, но нет ни <usage>, ни <value> — "
-                                        f"предмет может не появляться", file, ln, 0, "types"))
+            issues.append(Issue("info", tr("'{0}': nominal > 0, но нет ни <usage>, ни <value> — предмет может не появляться").format(name), file, ln, 0, "types"))
         fl = t.find("flags")
         if fl is not None:
             for a, v in fl.attrib.items():
                 if a not in TYPES_FLAGS:
-                    issues.append(Issue("warning", f"'{name}': неизвестный флаг {a}", file, ln, 0, "types"))
+                    issues.append(Issue("warning", tr("'{0}': неизвестный флаг {1}").format(name, a), file, ln, 0, "types"))
                 elif v not in ("0", "1"):
-                    issues.append(Issue("error", f"'{name}': флаг {a} должен быть 0 или 1", file, ln, 0, "types"))
+                    issues.append(Issue("error", tr("'{0}': флаг {1} должен быть 0 или 1").format(name, a), file, ln, 0, "types"))
         for tag in ("category", "usage", "value", "tag"):
             for el in t.findall(tag):
                 if not el.get("name"):
-                    issues.append(Issue("error", f"'{name}': <{tag}> без атрибута name", file, ln, 0, "types"))
+                    issues.append(Issue("error", tr("'{0}': <{1}> без атрибута name").format(name, tag), file, ln, 0, "types"))
     return issues
 
 
@@ -330,9 +338,9 @@ def _check_events_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> Lis
         name = ev.get("name") or ""
         ln = lines.get(f"event:{name}", 0)
         if not name:
-            issues.append(Issue("error", "<event> без атрибута name", file, ln, 0, "events"))
+            issues.append(Issue("error", tr("<event> без атрибута name"), file, ln, 0, "events"))
         if name.lower() in seen:
-            issues.append(Issue("warning", f"событие '{name}' объявлено повторно", file, ln, 0, "events"))
+            issues.append(Issue("warning", tr("событие '{0}' объявлено повторно").format(name), file, ln, 0, "events"))
         seen.add(name.lower())
         vals = {}
         for tag in ("nominal", "min", "max", "lifetime", "restock", "saferadius", "distanceradius",
@@ -341,21 +349,21 @@ def _check_events_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> Lis
             if el is not None:
                 v = _num(_int(el))
                 if v is None:
-                    issues.append(Issue("error", f"'{name}': <{tag}> должно быть целым числом", file, ln, 0, "events"))
+                    issues.append(Issue("error", tr("'{0}': <{1}> должно быть целым числом").format(name, tag), file, ln, 0, "events"))
                 else:
                     vals[tag] = v
         if "min" in vals and "max" in vals and vals["min"] > vals["max"]:
-            issues.append(Issue("error", f"'{name}': min больше max", file, ln, 0, "events"))
+            issues.append(Issue("error", tr("'{0}': min больше max").format(name), file, ln, 0, "events"))
         if "active" in vals and vals["active"] not in (0, 1):
-            issues.append(Issue("error", f"'{name}': active должен быть 0 или 1", file, ln, 0, "events"))
+            issues.append(Issue("error", tr("'{0}': active должен быть 0 или 1").format(name), file, ln, 0, "events"))
         ch = ev.find("children")
         if ch is not None:
             for c in ch.findall("child"):
                 if not c.get("type"):
-                    issues.append(Issue("error", f"'{name}': <child> без type", file, ln, 0, "events"))
+                    issues.append(Issue("error", tr("'{0}': <child> без type").format(name), file, ln, 0, "events"))
                 lo, hi = _num(c.get("min")), _num(c.get("max"))
                 if lo is not None and hi is not None and lo > hi:
-                    issues.append(Issue("error", f"'{name}': у child {c.get('type')} min больше max",
+                    issues.append(Issue("error", tr("'{0}': у child {1} min больше max").format(name, c.get('type')),
                                         file, ln, 0, "events"))
     return issues
 
@@ -370,10 +378,10 @@ def _check_spawnable_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> 
             if ch is not None:
                 v = _num(ch, float)
                 if v is None or not 0 <= v <= 1:
-                    issues.append(Issue("error", f"'{name}': chance='{ch}' должен быть от 0 до 1 (<{el.tag}>)",
+                    issues.append(Issue("error", tr("'{0}': chance='{1}' должен быть от 0 до 1 (<{2}>)").format(name, ch, el.tag),
                                         file, ln, 0, "spawnable"))
             if el.tag == "item" and not el.get("name"):
-                issues.append(Issue("error", f"'{name}': <item> без name", file, ln, 0, "spawnable"))
+                issues.append(Issue("error", tr("'{0}': <item> без name").format(name), file, ln, 0, "spawnable"))
     return issues
 
 
@@ -383,12 +391,12 @@ def _check_globals_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> Li
         name, typ, val = v.get("name"), v.get("type"), v.get("value")
         ln = lines.get(f"var:{name}", 0)
         if not name or typ is None or val is None:
-            issues.append(Issue("error", "<var> должен иметь name, type и value", file, ln, 0, "globals"))
+            issues.append(Issue("error", tr("<var> должен иметь name, type и value"), file, ln, 0, "globals"))
             continue
         if typ == "0" and _num(val) is None:
-            issues.append(Issue("error", f"'{name}': type=0 (целое), но value='{val}'", file, ln, 0, "globals"))
+            issues.append(Issue("error", tr("'{0}': type=0 (целое), но value='{1}'").format(name, val), file, ln, 0, "globals"))
         if typ == "1" and _num(val, float) is None:
-            issues.append(Issue("error", f"'{name}': type=1 (дробное), но value='{val}'", file, ln, 0, "globals"))
+            issues.append(Issue("error", tr("'{0}': type=1 (дробное), но value='{1}'").format(name, val), file, ln, 0, "globals"))
     return issues
 
 
@@ -407,7 +415,7 @@ def check_xml(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     try:
         text = raw.decode("utf-8-sig")
     except UnicodeDecodeError:
-        issues.append(Issue("warning", "файл не в UTF-8", file, 0, 0, "encoding"))
+        issues.append(Issue("warning", tr("файл не в UTF-8"), file, 0, 0, "encoding"))
         text = raw.decode("cp1251", "replace")
     try:
         root = ET.fromstring(text.encode("utf-8") if text.lstrip().startswith("<?xml") else text)
@@ -415,13 +423,13 @@ def check_xml(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
         line, col = getattr(e, "position", (0, 0))
         msg = str(e).split(":")[0]
         hints = {
-            "mismatched tag": "несовпадающий закрывающий тег",
-            "not well-formed (invalid token)": "недопустимый символ (например, & без &amp; или лишняя <)",
-            "unclosed token": "незакрытый тег или атрибут",
-            "no element found": "файл обрывается: не закрыт корневой тег",
-            "junk after document element": "лишнее содержимое после корневого тега",
-            "duplicate attribute": "повторяющийся атрибут",
-            "syntax error": "синтаксическая ошибка",
+            "mismatched tag": tr("несовпадающий закрывающий тег"),
+            "not well-formed (invalid token)": tr("недопустимый символ (например, & без &amp; или лишняя <)"),
+            "unclosed token": tr("незакрытый тег или атрибут"),
+            "no element found": tr("файл обрывается: не закрыт корневой тег"),
+            "junk after document element": tr("лишнее содержимое после корневого тега"),
+            "duplicate attribute": tr("повторяющийся атрибут"),
+            "syntax error": tr("синтаксическая ошибка"),
         }
         return [Issue("error", f"XML: {hints.get(msg, msg)}", file, line, col + 1, "xml")]
     lines = _xml_lines(text)
@@ -447,14 +455,14 @@ def check_json(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     try:
         text = raw.decode("utf-8-sig")
     except UnicodeDecodeError:
-        return [Issue("error", "файл не в UTF-8", file, 0, 0, "encoding")]
+        return [Issue("error", tr("файл не в UTF-8"), file, 0, 0, "encoding")]
     issues: List[Issue] = []
 
     def hook(pairs):
         keys = set()
         for k, _ in pairs:
             if k in keys:
-                issues.append(Issue("warning", f"ключ \"{k}\" повторяется в одном объекте", file, 0, 0, "json-dup"))
+                issues.append(Issue("warning", tr("ключ \"{0}\" повторяется в одном объекте").format(k), file, 0, 0, "json-dup"))
             keys.add(k)
         return dict(pairs)
 
@@ -462,21 +470,20 @@ def check_json(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
         json.loads(text, object_pairs_hook=hook)
     except json.JSONDecodeError as e:
         msg = e.msg
-        tr = {
-            "Expecting ',' delimiter": "пропущена запятая",
-            "Expecting property name enclosed in double quotes": "ожидалось имя в двойных кавычках "
-                                                                 "(лишняя запятая перед } или одинарные кавычки?)",
-            "Expecting value": "ожидалось значение (лишняя запятая, комментарий или пропущено значение)",
-            "Expecting ':' delimiter": "пропущено двоеточие",
-            "Unterminated string starting at": "незакрытая строка",
-            "Extra data": "лишние данные после конца JSON",
-            "Invalid control character at": "управляющий символ внутри строки",
+        json_hints = {
+            "Expecting ',' delimiter": tr("пропущена запятая"),
+            "Expecting property name enclosed in double quotes": tr("ожидалось имя в двойных кавычках (лишняя запятая перед } или одинарные кавычки?)"),
+            "Expecting value": tr("ожидалось значение (лишняя запятая, комментарий или пропущено значение)"),
+            "Expecting ':' delimiter": tr("пропущено двоеточие"),
+            "Unterminated string starting at": tr("незакрытая строка"),
+            "Extra data": tr("лишние данные после конца JSON"),
+            "Invalid control character at": tr("управляющий символ внутри строки"),
         }
         if re.search(r"^\s*//|/\*", text, re.M):
-            msg_extra = " (комментарии в JSON не допускаются)"
+            msg_extra = tr(" (комментарии в JSON не допускаются)")
         else:
             msg_extra = ""
-        return [Issue("error", f"JSON: {tr.get(msg, msg)}{msg_extra}", file, e.lineno, e.colno, "json")]
+        return [Issue("error", f"JSON: {json_hints.get(msg, msg)}{msg_extra}", file, e.lineno, e.colno, "json")]
     return issues
 
 
@@ -491,20 +498,20 @@ def check_stringtable(path: Path, ctx: Optional[ModContext] = None) -> List[Issu
     try:
         text = raw.decode("utf-8-sig")
     except UnicodeDecodeError:
-        return [Issue("error", "stringtable.csv должен быть в кодировке UTF-8", file, 0, 0, "encoding")]
+        return [Issue("error", tr("stringtable.csv должен быть в кодировке UTF-8"), file, 0, 0, "encoding")]
     rows = []
     reader = csv.reader(io.StringIO(text), strict=True)
     try:
         for row in reader:
             rows.append((reader.line_num, row))
     except csv.Error as e:
-        return [Issue("error", f"CSV: {e} (проверьте кавычки: внутри строки кавычка пишется как \"\")",
+        return [Issue("error", tr("CSV: {0} (проверьте кавычки: внутри строки кавычка пишется как \"\")").format(e),
                       file, reader.line_num, 0, "csv")]
     if not rows:
-        return [Issue("error", "файл пустой", file)]
+        return [Issue("error", tr("файл пустой"), file)]
     header = rows[0][1]
     if not header or header[0].strip().lower() != "language":
-        issues.append(Issue("error", "первая колонка заголовка должна называться \"Language\"", file, 1, 1, "csv"))
+        issues.append(Issue("error", tr("первая колонка заголовка должна называться \"Language\""), file, 1, 1, "csv"))
     ncols = len(header)
     seen: Dict[str, int] = {}
     keys = set()
@@ -512,20 +519,20 @@ def check_stringtable(path: Path, ctx: Optional[ModContext] = None) -> List[Issu
         if not row or all(not c.strip() for c in row):
             continue
         if len(row) != ncols:
-            issues.append(Issue("error", f"колонок {len(row)}, а в заголовке {ncols}", file, ln, 0, "csv"))
+            issues.append(Issue("error", tr("колонок {0}, а в заголовке {1}").format(len(row), ncols), file, ln, 0, "csv"))
         key = row[0].strip()
         if not key:
-            issues.append(Issue("error", "пустой ключ строки", file, ln, 1, "csv"))
+            issues.append(Issue("error", tr("пустой ключ строки"), file, ln, 1, "csv"))
             continue
         if key != row[0]:
-            issues.append(Issue("warning", f"пробелы вокруг ключа '{key}'", file, ln, 1, "csv"))
+            issues.append(Issue("warning", tr("пробелы вокруг ключа '{0}'").format(key), file, ln, 1, "csv"))
         if key.lower() in seen:
-            issues.append(Issue("warning", f"ключ '{key}' повторяется (строка {seen[key.lower()]})",
+            issues.append(Issue("warning", tr("ключ '{0}' повторяется (строка {1})").format(key, seen[key.lower()]),
                                 file, ln, 1, "csv-dup"))
         seen[key.lower()] = ln
         keys.add(key)
         if len(row) > 1 and not row[1].strip():
-            issues.append(Issue("warning", f"'{key}': пустой текст в колонке original", file, ln, 2, "csv"))
+            issues.append(Issue("warning", tr("'{0}': пустой текст в колонке original").format(key), file, ln, 2, "csv"))
     if ctx is not None:
         ctx.has_stringtable = True
         ctx.str_keys |= {k.lower() for k in keys}
@@ -541,28 +548,28 @@ def check_paa(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     try:
         info = paa.parse(path.read_bytes(), load_all=True)
     except Exception as e:
-        return [Issue("error", f"повреждённый PAA: {e}", file, 0, 0, "paa")]
+        return [Issue("error", tr("повреждённый PAA: {0}").format(e), file, 0, 0, "paa")]
     issues: List[Issue] = []
     w, h = info.width, info.height
     if not (paa.is_pow2(w) and paa.is_pow2(h)):
-        issues.append(Issue("error", f"размер {w}x{h}: стороны должны быть степенью двойки", file, 0, 0, "paa"))
+        issues.append(Issue("error", tr("размер {0}x{1}: стороны должны быть степенью двойки").format(w, h), file, 0, 0, "paa"))
     if max(w, h) > 4096:
-        issues.append(Issue("warning", f"очень большая текстура {w}x{h}", file, 0, 0, "paa"))
+        issues.append(Issue("warning", tr("очень большая текстура {0}x{1}").format(w, h), file, 0, 0, "paa"))
     if len(info.mipmaps) == 1 and max(w, h) > 4:
-        issues.append(Issue("warning", "нет mip-уровней — текстура будет мерцать вдали", file, 0, 0, "paa"))
+        issues.append(Issue("warning", tr("нет mip-уровней — текстура будет мерцать вдали"), file, 0, 0, "paa"))
     pw, ph = w, h
     for m in info.mipmaps[1:]:
         if (m.width, m.height) != (max(1, pw // 2), max(1, ph // 2)):
-            issues.append(Issue("error", f"нарушена цепочка mip-уровней: {pw}x{ph} -> {m.width}x{m.height}",
+            issues.append(Issue("error", tr("нарушена цепочка mip-уровней: {0}x{1} -> {2}x{3}").format(pw, ph, m.width, m.height),
                                 file, 0, 0, "paa"))
             break
         pw, ph = m.width, m.height
     expect = paa.fmt_from_suffix(path.stem)
     if expect == "dxt1" and info.type == paa.TYPE_DXT5:
-        issues.append(Issue("info", "суффикс _co обычно означает DXT1 без прозрачности, а файл DXT5",
+        issues.append(Issue("info", tr("суффикс _co обычно означает DXT1 без прозрачности, а файл DXT5"),
                             file, 0, 0, "paa"))
     if expect == "dxt5" and info.type == paa.TYPE_DXT1 and path.stem.lower().endswith("_ca"):
-        issues.append(Issue("warning", "суффикс _ca означает текстуру с прозрачностью (DXT5), а файл DXT1",
+        issues.append(Issue("warning", tr("суффикс _ca означает текстуру с прозрачностью (DXT5), а файл DXT1"),
                             file, 0, 0, "paa"))
     return issues
 
@@ -571,23 +578,22 @@ def check_ogg(path: Path, ctx: Optional[ModContext] = None, ffmpeg: Optional[str
     file = str(path)
     data = path.read_bytes()[:64]
     if not data.startswith(b"OggS"):
-        return [Issue("error", "это не OGG-файл (нет сигнатуры OggS) — возможно, MP3 с переименованным "
-                               "расширением", file, 0, 0, "ogg")]
+        return [Issue("error", tr("это не OGG-файл (нет сигнатуры OggS) — возможно, MP3 с переименованным расширением"), file, 0, 0, "ogg")]
     if not ffmpeg:
         return []
     from .common import run_ffmpeg
     p = run_ffmpeg([ffmpeg, "-hide_banner", "-i", str(path)])
     m = re.search(r"Audio:\s*(\w+),\s*(\d+)\s*Hz,\s*([\w.]+)", p.stderr or "")
     if not m:
-        return [Issue("error", "не удалось прочитать аудиопоток", file, 0, 0, "ogg")]
+        return [Issue("error", tr("не удалось прочитать аудиопоток"), file, 0, 0, "ogg")]
     codec, rate, ch = m.group(1), int(m.group(2)), m.group(3)
     issues: List[Issue] = []
     if codec != "vorbis":
-        issues.append(Issue("error", f"кодек {codec}: DayZ воспроизводит OGG только с Vorbis", file, 0, 0, "ogg"))
+        issues.append(Issue("error", tr("кодек {0}: DayZ воспроизводит OGG только с Vorbis").format(codec), file, 0, 0, "ogg"))
     if rate not in (22050, 44100, 48000):
-        issues.append(Issue("warning", f"частота {rate} Гц — рекомендуется 44100", file, 0, 0, "ogg"))
+        issues.append(Issue("warning", tr("частота {0} Гц — рекомендуется 44100").format(rate), file, 0, 0, "ogg"))
     if ch not in ("mono", "stereo"):
-        issues.append(Issue("warning", f"каналы: {ch} — используйте моно (3D) или стерео (2D)", file, 0, 0, "ogg"))
+        issues.append(Issue("warning", tr("каналы: {0} — используйте моно (3D) или стерео (2D)").format(ch), file, 0, 0, "ogg"))
     return issues
 
 
@@ -619,14 +625,14 @@ def check_file(path: Path, ctx: Optional[ModContext] = None, ffmpeg: Optional[st
             return fn(path, ctx, ffmpeg)
         return fn(path, ctx)
     except Exception as e:  # защита от неожиданных сбоев анализатора
-        return [Issue("error", f"не удалось проверить файл: {e}", str(path), 0, 0, "internal")]
+        return [Issue("error", tr("не удалось проверить файл: {0}").format(e), str(path), 0, 0, "internal")]
 
 
 def _bad_name(rel: str) -> Optional[str]:
     if " " in rel:
-        return "пробел в пути"
+        return tr("пробел в пути")
     if re.search(r"[^\x00-\x7F]", rel):
-        return "не-латинские символы в пути"
+        return tr("не-латинские символы в пути")
     return None
 
 
@@ -645,14 +651,14 @@ def cross_checks(ctx: ModContext) -> List[Issue]:
         if key in reported:
             continue
         reported.add(key)
-        issues.append(Issue("warning", f"файл не найден: {ref}" + (f" ({exts.replace('|', ' или ')})" if exts else ""),
+        issues.append(Issue("warning", tr("файл не найден: {0}").format(ref) + (tr(" ({0})").format(exts.replace('|', tr(' или '))) if exts else ""),
                             where.file, where.line, where.col, "missing-file"))
     for ref, where in ctx.dir_refs:
         rel = ctx.resolve(ref)
         if rel is None:
             continue
         if rel.rstrip("/") not in ctx.dirs:
-            issues.append(Issue("error", f"папка скриптов не найдена: {ref}", where.file, where.line, 0,
+            issues.append(Issue("error", tr("папка скриптов не найдена: {0}").format(ref), where.file, where.line, 0,
                                 "missing-dir"))
     # ключи локализации
     if ctx.has_stringtable and ctx.str_keys:
@@ -664,7 +670,7 @@ def cross_checks(ctx: ModContext) -> List[Issue]:
                 continue
             if not any(k.startswith(p) for p in prefixes):
                 continue  # вероятно, ключ из ванильной игры
-            missing.setdefault(k, Issue("warning", f"ключ #{key} отсутствует в stringtable.csv",
+            missing.setdefault(k, Issue("warning", tr("ключ #{0} отсутствует в stringtable.csv").format(key),
                                         where.file, where.line, where.col, "missing-string"))
         issues += list(missing.values())
     # имена файлов
@@ -673,8 +679,7 @@ def cross_checks(ctx: ModContext) -> List[Issue]:
             real = p.relative_to(ctx.root).as_posix()
             why = _bad_name(real)
             if why:
-                issues.append(Issue("warning", f"{why}: {real} — в PBO и путях DayZ используйте латиницу без "
-                                               f"пробелов", str(p), 0, 0, "filename"))
+                issues.append(Issue("warning", tr("{0}: {1} — в PBO и путях DayZ используйте латиницу без пробелов").format(why, real), str(p), 0, 0, "filename"))
     return issues
 
 
@@ -689,8 +694,11 @@ class CheckReport:
 
 def check_paths(paths: Iterable[str], ffmpeg: Optional[str] = None,
                 on_file: Optional[Callable[[Path, List[Issue], int, int], None]] = None,
-                cross: bool = True) -> CheckReport:
-    """Проверяет файлы и папки. Для папок выполняются также перекрёстные проверки мода."""
+                cross: bool = True, game=None) -> CheckReport:
+    """Проверяет файлы и папки. Для папок выполняются также перекрёстные проверки мода.
+
+    game — индекс игры (vanilla.Index): включает проверки modded/extends/override и внешних классов конфига.
+    """
     report = CheckReport()
     groups: List[Tuple[Optional[ModContext], List[Path]]] = []
     for raw in paths:
@@ -717,4 +725,27 @@ def check_paths(paths: Iterable[str], ffmpeg: Optional[str] = None,
                 on_file(f, iss, done, total)
         if ctx is not None:
             report.issues += cross_checks(ctx)
+            if game is not None:
+                from . import vanilla
+                report.issues += vanilla.check_mod_scripts(ctx.scripts, game)
+                for root, f in ctx.configs:
+                    report.issues += vanilla.check_config_externs(root, f, game)
     return report
+
+
+def snapshot(paths: Iterable[str]) -> Tuple[int, int, float]:
+    """Отпечаток состояния файлов для режима наблюдения: (число файлов, общий размер, последнее изменение)."""
+    count, size, latest = 0, 0, 0.0
+    for raw in paths:
+        p = Path(raw)
+        files = [p] if p.is_file() else (p.rglob("*") if p.is_dir() else [])
+        for f in files:
+            try:
+                if f.is_file() and not any(part in SKIP_DIRS for part in f.parts) and checker_for(f) is not None:
+                    st = f.stat()
+                    count += 1
+                    size += st.st_size
+                    latest = max(latest, st.st_mtime)
+            except OSError:
+                continue
+    return count, size, latest

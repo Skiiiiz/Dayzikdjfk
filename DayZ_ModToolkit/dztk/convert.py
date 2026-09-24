@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from dztk.i18n import tr
+
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -77,7 +79,7 @@ def run(tasks: List[Task], fn: Callable[[Task], Result], threads: int = 4,
 
     def wrapped(t: Task) -> Result:
         if cancel is not None and cancel.is_set():
-            return Result(t, False, "отменено")
+            return Result(t, False, tr("отменено"))
         try:
             return fn(t)
         except Exception as e:
@@ -102,7 +104,7 @@ def run(tasks: List[Task], fn: Callable[[Task], Result], threads: int = 4,
 def image_to_paa_task(fmt: str = "auto", resize: str = "error", overwrite: bool = True):
     def fn(t: Task) -> Result:
         if t.dst.exists() and not overwrite:
-            return Result(t, True, "пропущен (уже существует)")
+            return Result(t, True, tr("пропущен (уже существует)"))
         w, h, used = paa.image_to_paa(t.src, t.dst, fmt, resize)
         return Result(t, True, f"{w}x{h} {used}")
     return fn
@@ -111,7 +113,7 @@ def image_to_paa_task(fmt: str = "auto", resize: str = "error", overwrite: bool 
 def paa_to_image_task(overwrite: bool = True):
     def fn(t: Task) -> Result:
         if t.dst.exists() and not overwrite:
-            return Result(t, True, "пропущен (уже существует)")
+            return Result(t, True, tr("пропущен (уже существует)"))
         info = paa.paa_to_image(t.src, t.dst)
         return Result(t, True, f"{info.width}x{info.height} {info.type_name}")
     return fn
@@ -125,7 +127,7 @@ def config_task(overwrite: bool = False, check: bool = True):
     """Бинаризует .cpp или разбирает .bin — направление по содержимому файла."""
     def fn(t: Task) -> Result:
         if t.dst.exists() and not overwrite:
-            return Result(t, False, f"{t.dst.name} уже существует (включите перезапись)")
+            return Result(t, False, tr("{0} уже существует (включите перезапись)").format(t.dst.name))
         data = t.src.read_bytes()
         if rap.is_rapified(data):
             root = rap.read_rap(data)
@@ -140,11 +142,11 @@ def config_task(overwrite: bool = False, check: bool = True):
             issues = issues + cfg.semantic_check(root, str(t.src))
             errors = [i for i in issues if i.level == "error"]
             if errors:
-                return Result(t, False, f"не бинаризован, ошибок: {len(errors)}", issues)
+                return Result(t, False, tr("не бинаризован, ошибок: {0}").format(len(errors)), issues)
         t.dst.parent.mkdir(parents=True, exist_ok=True)
         t.dst.write_bytes(rap.write_rap(root))
         warn = [i for i in issues if i.level == "warning"]
-        return Result(t, True, "cpp -> bin" + (f", предупреждений: {len(warn)}" if warn else ""), issues)
+        return Result(t, True, "cpp -> bin" + (tr(", предупреждений: {0}").format(len(warn)) if warn else ""), issues)
     return fn
 
 

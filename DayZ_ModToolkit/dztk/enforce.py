@@ -6,13 +6,15 @@
   * незакрытые строки и комментарии;
   * несбалансированные (), [], {} — с указанием, где открыта парная скобка;
   * несбалансированные #ifdef/#ifndef/#else/#endif;
-  * пропущенная ';' в конце оператора или ',' в enum;
+  * нет ';' в конце строки (замечание: компилятор DayZ это обычно прощает);
   * пустое тело после if/while/for (лишняя ';');
   * присваивание '=' вместо сравнения '==' в условии;
   * повторное объявление класса в одном файле.
 """
 
 from __future__ import annotations
+
+from dztk.i18n import tr
 
 import re
 from dataclasses import dataclass
@@ -43,6 +45,8 @@ class Tok:
     text: str
     line: int
     col: int
+    pp: tuple = ()          # ветки препроцессора: ((id_блока, номер_ветки), ...)
+    after_pp: bool = False  # между этим и предыдущим токеном была директива препроцессора
 
 
 class _Lexer:
@@ -55,8 +59,18 @@ class _Lexer:
         s, n = self.s, len(self.s)
         toks: List[Tok] = []
         i, line, lstart = 0, 1, 0
-        pp_stack: List[tuple] = []
+        pp_stack: List[list] = []   # [директива, строка, столбец, id_блока, ветка]
+        block_ids = 0
+        after_pp = False
         at_line_start = True
+
+        def add(tok: Tok) -> None:
+            nonlocal after_pp
+            tok.pp = tuple((b[3], b[4]) for b in pp_stack)
+            tok.after_pp = after_pp
+            after_pp = False
+            toks.append(tok)
+
         while i < n:
             ch = s[i]
             if ch == "\n":
@@ -75,20 +89,24 @@ class _Lexer:
                 directive = s[i:j].strip()
                 m = re.match(r"#\s*(\w+)", directive)
                 d = m.group(1) if m else ""
+                after_pp = True
                 if d in ("ifdef", "ifndef", "if"):
-                    pp_stack.append((d, line, col))
-                elif d == "else":
+                    block_ids += 1
+                    pp_stack.append([d, line, col, block_ids, 0])
+                elif d in ("else", "elif"):
                     if not pp_stack:
-                        self.issues.append(Issue("error", "#else без #ifdef/#ifndef", self.file, line, col,
+                        self.issues.append(Issue("error", tr("#{0} без #ifdef/#ifndef").format(d), self.file, line, col,
                                                  "preprocessor"))
+                    else:
+                        pp_stack[-1][4] += 1
                 elif d == "endif":
                     if not pp_stack:
-                        self.issues.append(Issue("error", "#endif без #ifdef/#ifndef", self.file, line, col,
+                        self.issues.append(Issue("error", tr("#endif без #ifdef/#ifndef"), self.file, line, col,
                                                  "preprocessor"))
                     else:
                         pp_stack.pop()
                 elif d not in ("define", "undef", "include", "else", "elif", "pragma", "line"):
-                    self.issues.append(Issue("warning", f"неизвестная директива препроцессора '{directive}'",
+                    self.issues.append(Issue("warning", tr("неизвестная директива препроцессора '{0}'").format(directive),
                                              self.file, line, col, "preprocessor"))
                 i = j
                 continue
@@ -100,9 +118,10 @@ class _Lexer:
             if s.startswith("/*", i):
                 j = s.find("*/", i + 2)
                 if j < 0:
-                    self.issues.append(Issue("error", "незакрытый комментарий /* (нет */)", self.file, line, col,
+                    self.issues.append(Issue("error", tr("незакрытый комментарий /* (нет */)"), self.file, line, col,
                                              "comment"))
-                    return toks + [Tok("eof", "", line, col)]
+                    add(Tok("eof", "", line, col))
+                    return toks
                 chunk = s[i:j + 2]
                 nl = chunk.count("\n")
                 if nl:
@@ -125,37 +144,37 @@ class _Lexer:
                         break
                     j += 1
                 if not closed:
-                    self.issues.append(Issue("error", f"незакрытая строка (нет закрывающей {ch})", self.file,
+                    self.issues.append(Issue("error", tr("незакрытая строка (нет закрывающей {0})").format(ch), self.file,
                                              line, col, "string"))
                     j = s.find("\n", i)
                     j = n if j < 0 else j
-                    toks.append(Tok("string", s[i:j], line, col))
+                    add(Tok("string", s[i:j], line, col))
                     i = j
                     continue
-                toks.append(Tok("string", s[i:j + 1], line, col))
+                add(Tok("string", s[i:j + 1], line, col))
                 i = j + 1
                 continue
             if ch.isdigit() or (ch == "." and i + 1 < n and s[i + 1].isdigit()):
                 m = re.compile(r"0[xX][0-9A-Fa-f]+|\d*\.?\d+(?:[eE][+-]?\d+)?[fF]?").match(s, i)
-                toks.append(Tok("number", m.group(0), line, col))
+                add(Tok("number", m.group(0), line, col))
                 i = m.end()
                 continue
             if ch.isalpha() or ch == "_":
                 m = re.compile(r"[A-Za-z0-9_]+").match(s, i)
-                toks.append(Tok("ident", m.group(0), line, col))
+                add(Tok("ident", m.group(0), line, col))
                 i = m.end()
                 continue
             for op in OPERATORS:
                 if s.startswith(op, i):
-                    toks.append(Tok("op", op, line, col))
+                    add(Tok("op", op, line, col))
                     i += len(op)
                     break
             else:
-                toks.append(Tok("op", ch, line, col))
+                add(Tok("op", ch, line, col))
                 i += 1
-        for d, l, c in pp_stack:
-            self.issues.append(Issue("error", f"#{d} без закрывающего #endif", self.file, l, c, "preprocessor"))
-        toks.append(Tok("eof", "", line, 1))
+        for d, l, c, _b, _n in pp_stack:
+            self.issues.append(Issue("error", tr("#{0} без закрывающего #endif").format(d), self.file, l, c, "preprocessor"))
+        add(Tok("eof", "", line, 1))
         return toks
 
 
@@ -171,12 +190,11 @@ def check_script(path, text: Optional[str] = None) -> List[Issue]:
         try:
             text = read_text(path)
         except OSError as e:
-            return [Issue("error", f"не удалось прочитать файл: {e}", file)]
+            return [Issue("error", tr("не удалось прочитать файл: {0}").format(e), file)]
     toks = _Lexer(text, file, issues).run()
 
     # --- баланс скобок ---
     stack: List[tuple] = []  # (tok, kind, control)
-    brace_kind: List[str] = []
     balanced = True
     for idx, t in enumerate(toks):
         if t.kind != "op":
@@ -185,14 +203,13 @@ def check_script(path, text: Optional[str] = None) -> List[Issue]:
             stack.append((t, idx))
         elif t.text in CLOSERS:
             if not stack:
-                issues.append(Issue("error", f"лишняя закрывающая скобка '{t.text}'", file, t.line, t.col,
+                issues.append(Issue("error", tr("лишняя закрывающая скобка '{0}'").format(t.text), file, t.line, t.col,
                                     "brackets"))
                 balanced = False
                 continue
             open_t, _ = stack[-1]
             if PAIRS[open_t.text] != t.text:
-                issues.append(Issue("error", f"'{t.text}' не соответствует '{open_t.text}' "
-                                             f"(открыта в строке {open_t.line})", file, t.line, t.col, "brackets"))
+                issues.append(Issue("error", tr("'{0}' не соответствует '{1}' (открыта в строке {2})").format(t.text, open_t.text, open_t.line), file, t.line, t.col, "brackets"))
                 balanced = False
                 # попытка восстановиться: ищем подходящую открывающую ниже по стеку
                 for k in range(len(stack) - 1, -1, -1):
@@ -202,7 +219,7 @@ def check_script(path, text: Optional[str] = None) -> List[Issue]:
                 continue
             stack.pop()
     for open_t, _ in stack:
-        issues.append(Issue("error", f"не закрыта скобка '{open_t.text}' (нет '{PAIRS[open_t.text]}')",
+        issues.append(Issue("error", tr("не закрыта скобка '{0}' (нет '{1}')").format(open_t.text, PAIRS[open_t.text]),
                             file, open_t.line, open_t.col, "brackets"))
         balanced = False
 
@@ -258,7 +275,7 @@ def _statement_checks(toks: List[Tok], file: str) -> List[Issue]:
         prev = toks[i - 1] if i else None
 
         # --- проверка пропущенной ';' / ',' при переходе на новую строку ---
-        if prev is not None and t.line > prev.line and not parens and ctx:
+        if prev is not None and t.line > prev.line and not parens and ctx and not t.after_pp:
             kind = ctx[-1]
             prev_ok = (prev.kind in ("ident", "number", "string") and prev.text not in KEYWORDS_CONT) or \
                       (prev.kind == "op" and prev.text in (")", "]") and (i - 1) not in control_close)
@@ -270,23 +287,27 @@ def _statement_checks(toks: List[Tok], file: str) -> List[Issue]:
                       (t.kind == "op" and t.text == "}")
             if prev_ok and next_ok:
                 if kind in ("code", "class"):
-                    issues.append(Issue("error", "пропущена ';' в конце строки", file, prev.line,
+                    # компилятор DayZ обычно прощает это (в ванильных скриптах такое встречается),
+                    # поэтому это замечание, а не ошибка
+                    issues.append(Issue("info", tr("нет ';' в конце строки (DayZ это обычно прощает, но лучше поставить)"), file, prev.line,
                                         prev.col + len(prev.text), "missing-semicolon"))
-                elif kind == "enum" and t.text != "}":
-                    issues.append(Issue("error", "в enum пропущена ',' между значениями", file, prev.line,
-                                        prev.col + len(prev.text), "missing-comma"))
+                # в enum запятые между значениями компилятор DayZ не требует — не проверяем
 
         if t.kind == "op":
             if t.text == "(":
                 kw = prev.text if prev is not None and prev.kind == "ident" else ""
                 parens.append((i, kw in CONTROL and not parens, kw))
+            elif t.text == "[":
+                parens.append((i, False, "["))
+            elif t.text == "]" and parens and parens[-1][2] == "[":
+                parens.pop()
             elif t.text == ")" and parens:
                 open_idx, is_ctrl, kw = parens.pop()
                 if is_ctrl:
                     control_close.add(i)
                     nxt = toks[i + 1] if i + 1 < len(toks) else None
                     if nxt is not None and nxt.text == ";" and kw in ("if", "while", "for", "foreach"):
-                        issues.append(Issue("warning", f"';' сразу после {kw}(...) — тело условия/цикла пустое",
+                        issues.append(Issue("warning", tr("';' сразу после {0}(...) — тело условия/цикла пустое").format(kw),
                                             file, nxt.line, nxt.col, "empty-body"))
                     if kw in ("if", "while"):
                         _check_assign_in_cond(toks, open_idx, i, kw, file, issues)
@@ -301,7 +322,9 @@ def _statement_checks(toks: List[Tok], file: str) -> List[Issue]:
                 stmt_first_idx = i + 1
                 continue
             elif t.text == "}":
-                if not parens and len(ctx) > 1:
+                if parens:
+                    continue
+                if len(ctx) > 1:
                     ctx.pop()
                 stmt_start = True
                 stmt_first_idx = i + 1
@@ -325,9 +348,15 @@ def _check_assign_in_cond(toks: List[Tok], a: int, b: int, kw: str, file: str, i
         elif t.kind == "op" and t.text in ")]}" and len(t.text) == 1:
             depth -= 1
         elif depth == 0 and t.kind == "op" and t.text == "=":
-            issues.append(Issue("warning", f"присваивание '=' в условии {kw}(...) — возможно, нужно '=='",
+            issues.append(Issue("warning", tr("присваивание '=' в условии {0}(...) — возможно, нужно '=='").format(kw),
                                 file, t.line, t.col, "assign-in-condition"))
             return
+
+
+def _exclusive(a: tuple, b: tuple) -> bool:
+    """Лежат ли два места в разных ветках одного #ifdef/#else."""
+    da = dict(a)
+    return any(blk in da and da[blk] != br for blk, br in b)
 
 
 def _class_checks(toks: List[Tok], file: str) -> List[Issue]:
@@ -348,9 +377,10 @@ def _class_checks(toks: List[Tok], file: str) -> List[Issue]:
                 if nxt is not None and nxt.text == ";":
                     continue
                 key = (name, modded)
-                if key in seen and not modded:
-                    issues.append(Issue("error", f"класс '{name}' объявлен в файле повторно "
-                                                 f"(первый раз в строке {seen[key]})", file, toks[i + 1].line,
-                                        toks[i + 1].col, "duplicate-class"))
-                seen.setdefault(key, toks[i + 1].line)
+                for line0, pp0 in seen.get(key, []):
+                    if not modded and not _exclusive(pp0, t.pp):
+                        issues.append(Issue("error", tr("класс '{0}' объявлен в файле повторно (первый раз в строке {1})").format(name, line0), file, toks[i + 1].line,
+                                            toks[i + 1].col, "duplicate-class"))
+                        break
+                seen.setdefault(key, []).append((toks[i + 1].line, t.pp))
     return issues

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from dztk.i18n import tr
+
 import json
 import os
 import re
@@ -127,6 +129,12 @@ def class_safe(name: str) -> str:
         n = "_" + n
     return n
 
+def resource_path(rel: str) -> Path:
+    """Файл из комплекта программы (в собранном .exe — из временной папки PyInstaller)."""
+    base = Path(getattr(sys, "_MEIPASS", "")) if getattr(sys, "frozen", False) else app_dir()
+    return base / rel
+
+
 def is_within(path: Path, parent: Path) -> bool:
     try:
         path.resolve().relative_to(parent.resolve())
@@ -137,11 +145,12 @@ def is_within(path: Path, parent: Path) -> bool:
 
 def human_size(n: int) -> str:
     size = float(n)
-    for unit in ("Б", "КБ", "МБ", "ГБ"):
-        if size < 1024 or unit == "ГБ":
-            return f"{size:.0f} {unit}" if unit == "Б" else f"{size:.1f} {unit}"
+    units = (tr("Б"), tr("КБ"), tr("МБ"), tr("ГБ"))
+    for unit in units:
+        if size < 1024 or unit == units[-1]:
+            return f"{size:.0f} {unit}" if unit == units[0] else f"{size:.1f} {unit}"
         size /= 1024
-    return f"{n} Б"
+    return tr("{0} Б").format(n)
 
 
 def open_folder(path: Path) -> None:

@@ -17,12 +17,20 @@ DayZ Mod Toolkit
     python dayz_toolkit.py --cli --help       -> консольный режим
 """
 
+from dztk.i18n import tr
 import sys
 from pathlib import Path
 
 
 def main() -> int:
+    from dztk import i18n
+    from dztk.common import load_settings_dict
     args = sys.argv[1:]
+    # язык выбирается до импорта остальных модулей: их строки-константы переводятся при импорте
+    i18n.init_from_environment(args, load_settings_dict().get("lang", ""))
+    if "--lang" in args:
+        i = args.index("--lang")
+        del args[i:i + 2]
     if args and args[0] == "--cli":
         from dztk.cli import cli
         return cli(args[1:])
@@ -33,7 +41,7 @@ def main() -> int:
         try:
             from dztk.gui import gui
         except ImportError:
-            print("tkinter недоступен. Используйте консольный режим: --cli --help")
+            print(tr("tkinter недоступен. Используйте консольный режим: --cli --help"))
             return 1
         return gui(args)
     from dztk.cli import cli

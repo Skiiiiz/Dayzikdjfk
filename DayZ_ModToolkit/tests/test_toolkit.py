@@ -12,7 +12,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from dztk import audio, cfg, checks, convert, enforce, paa, rap  # noqa: E402
+from dztk import audio, cfg, checks, enforce, paa, rap  # noqa: E402
 from dztk.common import find_ffmpeg  # noqa: E402
 
 MOD = ROOT.parent / "SM_PartyMod"
@@ -181,7 +181,8 @@ enum E
     assert (6, "assign-in-condition") in got
     assert (8, "empty-body") in got
     assert (9, "missing-semicolon") in got
-    assert (15, "missing-comma") in got
+    assert not any(c == "missing-comma" for _, c in got)   # в enum запятые необязательны (как в игре)
+    assert all(i.level != "error" for i in iss if i.code == "missing-semicolon")   # DayZ прощает
 
 
 def test_script_brackets():

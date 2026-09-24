@@ -14,11 +14,13 @@
 
 from __future__ import annotations
 
+from dztk.i18n import tr
+
 import struct
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import List, Tuple
 
-from .cfg import ArrayNode, ClassNode, DeleteNode, Node, ValueNode
+from .cfg import ArrayNode, ClassNode, DeleteNode, ValueNode
 
 MAGIC = b"\x00raP"
 
@@ -41,12 +43,12 @@ class _Reader:
 
     def u8(self, p: int) -> Tuple[int, int]:
         if p >= len(self.d):
-            raise RapError("неожиданный конец файла")
+            raise RapError(tr("неожиданный конец файла"))
         return self.d[p], p + 1
 
     def u32(self, p: int) -> Tuple[int, int]:
         if p + 4 > len(self.d):
-            raise RapError("неожиданный конец файла")
+            raise RapError(tr("неожиданный конец файла"))
         return struct.unpack_from("<I", self.d, p)[0], p + 4
 
     def i32(self, p: int) -> Tuple[int, int]:
@@ -58,7 +60,7 @@ class _Reader:
     def asciiz(self, p: int) -> Tuple[str, int]:
         e = self.d.find(b"\x00", p)
         if e < 0:
-            raise RapError("незавершённая строка")
+            raise RapError(tr("незавершённая строка"))
         raw = self.d[p:e]
         try:
             s = raw.decode("utf-8")
@@ -75,11 +77,11 @@ class _Reader:
                 return v, p
             shift += 7
             if shift > 35:
-                raise RapError("неверное сжатое число")
+                raise RapError(tr("неверное сжатое число"))
 
     def array(self, p: int, depth: int = 0) -> Tuple[list, int]:
         if depth > 64:
-            raise RapError("слишком глубокая вложенность массивов")
+            raise RapError(tr("слишком глубокая вложенность массивов"))
         n, p = self.varint(p)
         out: list = []
         for _ in range(n):
@@ -96,13 +98,13 @@ class _Reader:
                 v = struct.unpack_from("<q", self.d, p)[0]
                 p += 8
             else:
-                raise RapError(f"неизвестный тип элемента массива {t} (смещение {p - 1})")
+                raise RapError(tr("неизвестный тип элемента массива {0} (смещение {1})").format(t, p - 1))
             out.append(v)
         return out, p
 
     def body(self, p: int, node: ClassNode, depth: int = 0) -> None:
         if depth > 128:
-            raise RapError("слишком глубокая вложенность классов")
+            raise RapError(tr("слишком глубокая вложенность классов"))
         base, p = self.asciiz(p)
         node.base = base or None
         n, p = self.varint(p)
@@ -128,7 +130,7 @@ class _Reader:
                     v = struct.unpack_from("<q", self.d, p)[0]
                     p += 8
                 else:
-                    raise RapError(f"неизвестный подтип значения {sub} у '{name}'")
+                    raise RapError(tr("неизвестный подтип значения {0} у '{1}'").format(sub, name))
                 node.entries.append(ValueNode(name, value=v))
             elif t == 2:
                 name, p = self.asciiz(p)
@@ -146,16 +148,16 @@ class _Reader:
                 arr, p = self.array(p)
                 node.entries.append(ArrayNode(name, value=arr, append=True))
             else:
-                raise RapError(f"неизвестный тип записи {t} (смещение {p - 1})")
+                raise RapError(tr("неизвестный тип записи {0} (смещение {1})").format(t, p - 1))
         for c, off in children:
             if off >= len(self.d):
-                raise RapError(f"класс {c.name}: смещение {off} за пределами файла")
+                raise RapError(tr("класс {0}: смещение {1} за пределами файла").format(c.name, off))
             self.body(off, c, depth + 1)
 
 
 def read_rap(data: bytes) -> ClassNode:
     if not is_rapified(data):
-        raise RapError("это не бинаризованный конфиг (нет сигнатуры raP)")
+        raise RapError(tr("это не бинаризованный конфиг (нет сигнатуры raP)"))
     r = _Reader(data)
     root = ClassNode("")
     r.body(16, root)
@@ -192,7 +194,7 @@ def _varint(v: int) -> bytes:
 def _z(s: str) -> bytes:
     b = s.encode("utf-8")
     if b"\x00" in b:
-        raise RapError("строка содержит нулевой символ")
+        raise RapError(tr("строка содержит нулевой символ"))
     return b + b"\x00"
 
 

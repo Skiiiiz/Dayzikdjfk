@@ -3,7 +3,8 @@
 
 Поддерживается:
   * чтение DXT1/DXT5 (в т.ч. mip-уровни, сжатые LZO), ARGB8888, ARGB4444, ARGB1555, AI88;
-  * запись DXT1 (с 1-битной прозрачностью) и DXT5 с полной цепочкой mip-уровней.
+  * запись DXT1 (с 1-битной прозрачностью) и DXT5 с полной цепочкой mip-уровней;
+    крупные mip-уровни сжимаются LZO, как это делает ImageToPAA.
 
 Структура файла:
   u16 тип | теги "GGAT"+имя(4)+u32 длина+данные | u16 размер палитры (+палитра) |
@@ -11,6 +12,8 @@
 """
 
 from __future__ import annotations
+
+from dztk.i18n import tr
 
 import struct
 from dataclasses import dataclass, field
@@ -89,21 +92,21 @@ def _data_size(ptype: int, w: int, h: int) -> int:
 def parse(data: bytes, load_all: bool = False) -> PAAInfo:
     """Разбирает PAA. Распаковывает данные первого mip (или всех при load_all)."""
     if len(data) < 4:
-        raise PAAError("файл слишком короткий")
+        raise PAAError(tr("файл слишком короткий"))
     ptype = struct.unpack_from("<H", data, 0)[0]
     if ptype not in TYPE_NAMES:
-        raise PAAError(f"неизвестный тип PAA 0x{ptype:04X}")
+        raise PAAError(tr("неизвестный тип PAA 0x{0:04X}").format(ptype))
     info = PAAInfo(type=ptype)
     p = 2
     while data[p:p + 4] == b"GGAT":
         if p + 12 > len(data):
-            raise PAAError("обрезанный тег")
+            raise PAAError(tr("обрезанный тег"))
         name = data[p + 4:p + 8][::-1].decode("ascii", "replace")  # 'CGVA' -> 'AVGC'
         ln = struct.unpack_from("<I", data, p + 8)[0]
         info.tags[name] = data[p + 12:p + 12 + ln]
         p += 12 + ln
     if p + 2 > len(data):
-        raise PAAError("нет палитры")
+        raise PAAError(tr("нет палитры"))
     pal = struct.unpack_from("<H", data, p)[0]
     p += 2 + pal * 3
 
@@ -113,27 +116,26 @@ def parse(data: bytes, load_all: bool = False) -> PAAInfo:
         if w == 0 or h == 0:
             break
         if p + 7 > len(data):
-            raise PAAError("обрезанный заголовок mip-уровня")
+            raise PAAError(tr("обрезанный заголовок mip-уровня"))
         size = data[p + 4] | (data[p + 5] << 8) | (data[p + 6] << 16)
         is_lzo = bool(w & 0x8000)
         real_w = w & 0x7FFF
         mip = Mipmap(real_w, h, p + 7, size, is_lzo)
         if p + 7 + size > len(data):
-            raise PAAError(f"mip {real_w}x{h}: данные выходят за конец файла")
+            raise PAAError(tr("mip {0}x{1}: данные выходят за конец файла").format(real_w, h))
         if first or load_all:
             raw = data[p + 7:p + 7 + size]
             expected = _data_size(ptype, real_w, h)
             if is_lzo:
                 raw, _ = lzo.decompress(raw, expected)
             elif len(raw) != expected:
-                raise PAAError(f"mip {real_w}x{h}: размер {len(raw)}, ожидалось {expected} "
-                               "(сжатие LZSS не поддерживается)")
+                raise PAAError(tr("mip {0}x{1}: размер {2}, ожидалось {3} (сжатие LZSS не поддерживается)").format(real_w, h, len(raw), expected))
             mip.data = raw
         info.mipmaps.append(mip)
         first = False
         p += 7 + size
     if not info.mipmaps:
-        raise PAAError("в файле нет mip-уровней")
+        raise PAAError(tr("в файле нет mip-уровней"))
     return info
 
 
@@ -210,14 +212,14 @@ def _decode_raw(ptype: int, raw: bytes, w: int, h: int) -> np.ndarray:
     if ptype == TYPE_AI88:
         i, a = v & 255, v >> 8
         return np.stack([i, i, i, a], -1).astype(np.uint8)
-    raise PAAError(f"декодирование {TYPE_NAMES.get(ptype)} не поддерживается")
+    raise PAAError(tr("декодирование {0} не поддерживается").format(TYPE_NAMES.get(ptype)))
 
 
 def decode_mip(info: PAAInfo, mip: Mipmap) -> np.ndarray:
     if info.type == TYPE_DXT1:
         return _decode_dxt(mip.data, mip.width, mip.height, False)
     if info.type in (TYPE_DXT3, TYPE_DXT2):
-        raise PAAError("DXT2/DXT3 не поддерживаются")
+        raise PAAError(tr("DXT2/DXT3 не поддерживаются"))
     if info.type in (TYPE_DXT4, TYPE_DXT5):
         return _decode_dxt(mip.data, mip.width, mip.height, True)
     return _decode_raw(info.type, mip.data, mip.width, mip.height)
@@ -364,13 +366,13 @@ def build_mipmaps(img: np.ndarray, min_size: int = 4) -> List[np.ndarray]:
     return mips
 
 
-def encode_paa(img: np.ndarray, fmt: str = "auto") -> Tuple[bytes, str]:
+def encode_paa(img: np.ndarray, fmt: str = "auto", compress: bool = True) -> Tuple[bytes, str]:
     """RGBA-изображение (HxWx4 uint8, стороны — степени двойки) -> байты PAA."""
     h, w = img.shape[:2]
     if not (is_pow2(w) and is_pow2(h)):
-        raise PAAError(f"размер {w}x{h}: стороны текстуры должны быть степенью двойки")
+        raise PAAError(tr("размер {0}x{1}: стороны текстуры должны быть степенью двойки").format(w, h))
     if w > 0x7FFF or h > 0x7FFF:
-        raise PAAError("слишком большая текстура")
+        raise PAAError(tr("слишком большая текстура"))
     alpha = img[..., 3]
     has_alpha = bool((alpha < 255).any())
     if fmt == "auto":
@@ -380,6 +382,14 @@ def encode_paa(img: np.ndarray, fmt: str = "auto") -> Tuple[bytes, str]:
 
     mips = build_mipmaps(img)
     mip_bytes = [encode_dxt(m, dxt5) for m in mips]
+    # как ImageToPAA: крупные mip-уровни (ширина от 256) сжимаются LZO, флаг 0x8000 в ширине
+    mip_lzo = [False] * len(mips)
+    if compress:
+        for i, (m, b) in enumerate(zip(mips, mip_bytes)):
+            if m.shape[1] >= 256:
+                c = lzo.compress(b)
+                if len(c) < len(b):
+                    mip_bytes[i], mip_lzo[i] = c, True
 
     avg = img.reshape(-1, 4).mean(axis=0)
     avg_bgra = bytes(int(round(x)) for x in (avg[2], avg[1], avg[0], avg[3]))
@@ -399,9 +409,9 @@ def encode_paa(img: np.ndarray, fmt: str = "auto") -> Tuple[bytes, str]:
     out += tags
     out += _tag("OFFS", struct.pack("<16I", *offsets))
     out += b"\x00\x00"  # палитра отсутствует
-    for m, b in zip(mips, mip_bytes):
+    for m, b, z in zip(mips, mip_bytes, mip_lzo):
         mh, mw = m.shape[:2]
-        out += struct.pack("<HH", mw, mh) + len(b).to_bytes(3, "little") + b
+        out += struct.pack("<HH", mw | (0x8000 if z else 0), mh) + len(b).to_bytes(3, "little") + b
     out += b"\x00" * 6
     return bytes(out), fmt.upper()
 
@@ -437,7 +447,7 @@ def image_to_paa(src, dst, fmt: str = "auto", resize: str = "error") -> Tuple[in
             nw, nh = nearest_pow2(w), nearest_pow2(h)
             img = np.asarray(Image.fromarray(img, "RGBA").resize((nw, nh), Image.LANCZOS))
         else:
-            raise PAAError(f"размер {w}x{h} не степень двойки (включите масштабирование)")
+            raise PAAError(tr("размер {0}x{1} не степень двойки (включите масштабирование)").format(w, h))
     if fmt == "auto":
         fmt = fmt_from_suffix(Path(src).stem) or "auto"
     data, used = encode_paa(img, fmt)

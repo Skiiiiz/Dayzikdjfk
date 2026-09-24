@@ -3,11 +3,13 @@
 
 from __future__ import annotations
 
+from dztk.i18n import tr
+
 import os
 import re
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, List, Optional
 
@@ -21,18 +23,18 @@ INPUT_EXTENSIONS = {".mp3", ".wav", ".flac", ".m4a", ".aac", ".wma", ".ogg", ".o
 # --------------------------------------------------------------------------------------
 
 PRESETS = {
-    "3D звук (моно)": dict(channels=1, sample_rate=44100, quality=6, spatial=True, loop=False, range=50),
-    "Музыка / радио (стерео)": dict(channels=2, sample_rate=44100, quality=7, spatial=False, loop=False, range=100),
-    "UI / 2D звук (стерео)": dict(channels=2, sample_rate=44100, quality=6, spatial=False, loop=False, range=10),
-    "Эмбиент, петля (моно)": dict(channels=1, sample_rate=44100, quality=5, spatial=True, loop=True, range=150),
-    "Выстрел / громкий 3D (моно)": dict(channels=1, sample_rate=44100, quality=7, spatial=True, loop=False, range=800),
+    tr("3D звук (моно)"): dict(channels=1, sample_rate=44100, quality=6, spatial=True, loop=False, range=50),
+    tr("Музыка / радио (стерео)"): dict(channels=2, sample_rate=44100, quality=7, spatial=False, loop=False, range=100),
+    tr("UI / 2D звук (стерео)"): dict(channels=2, sample_rate=44100, quality=6, spatial=False, loop=False, range=10),
+    tr("Эмбиент, петля (моно)"): dict(channels=1, sample_rate=44100, quality=5, spatial=True, loop=True, range=150),
+    tr("Выстрел / громкий 3D (моно)"): dict(channels=1, sample_rate=44100, quality=7, spatial=True, loop=False, range=800),
 }
-DEFAULT_PRESET = "3D звук (моно)"
+DEFAULT_PRESET = tr("3D звук (моно)")
 
 NORMALIZE_MODES = {
-    "none": "Без нормализации",
-    "peak": "По пику (dBFS)",
-    "loudness": "По громкости (LUFS, EBU R128)",
+    "none": tr("Без нормализации"),
+    "peak": tr("По пику (dBFS)"),
+    "loudness": tr("По громкости (LUFS, EBU R128)"),
 }
 
 
@@ -184,11 +186,11 @@ def build_filters(s: ConvertSettings) -> List[str]:
 def convert_one(ffmpeg: str, job: Job, s: ConvertSettings,
                 cancel: Optional[threading.Event] = None) -> JobResult:
     if cancel is not None and cancel.is_set():
-        return JobResult(job, False, "отменено")
+        return JobResult(job, False, tr("отменено"))
     if job.dst.resolve() == job.src.resolve():
-        return JobResult(job, False, "исходный файл совпадает с результатом — укажите другую папку вывода")
+        return JobResult(job, False, tr("исходный файл совпадает с результатом — укажите другую папку вывода"))
     if job.dst.exists() and not s.overwrite:
-        return JobResult(job, True, "пропущен (уже существует)", size=job.dst.stat().st_size)
+        return JobResult(job, True, tr("пропущен (уже существует)"), size=job.dst.stat().st_size)
 
     job.dst.parent.mkdir(parents=True, exist_ok=True)
 
@@ -231,7 +233,7 @@ def convert_one(ffmpeg: str, job: Job, s: ConvertSettings,
         except OSError:
             pass
         err = (p.stderr or "").strip().splitlines()
-        return JobResult(job, False, err[-1] if err else f"ffmpeg завершился с кодом {p.returncode}")
+        return JobResult(job, False, err[-1] if err else tr("ffmpeg завершился с кодом {0}").format(p.returncode))
 
     os.replace(tmp, job.dst)
     dur = probe_duration(ffmpeg, job.dst)
@@ -249,7 +251,7 @@ def convert_all(jobs: List[Job], s: ConvertSettings, ffmpeg: str,
             try:
                 r = fut.result()
             except Exception as e:  # pragma: no cover
-                r = JobResult(futs[fut], False, f"ошибка: {e}")
+                r = JobResult(futs[fut], False, tr("ошибка: {0}").format(e))
             results.append(r)
             if on_result:
                 on_result(r, len(results), total)
@@ -288,10 +290,10 @@ def generate_config(results: List[JobResult], s: ConvertSettings) -> str:
 
     lines: List[str] = []
     w = lines.append
-    w("// Сгенерировано: %s %s" % (APP_NAME, APP_VERSION))
-    w("// Путь к звукам в PBO: %s" % (base_path or "<не задан>"))
-    w("// Воспроизведение в скрипте, например:")
-    w("//   SEffectManager.PlaySound(\"%s_<имя>_SoundSet\", GetPosition());" % pref)
+    w(tr("// Сгенерировано: %s %s") % (APP_NAME, APP_VERSION))
+    w(tr("// Путь к звукам в PBO: %s") % (base_path or tr("<не задан>")))
+    w(tr("// Воспроизведение в скрипте, например:"))
+    w(tr("//   SEffectManager.PlaySound(\"%s_<имя>_SoundSet\", GetPosition());") % pref)
     w("")
     w("class CfgPatches")
     w("{")

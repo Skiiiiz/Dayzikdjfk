@@ -9,6 +9,8 @@
 
 from __future__ import annotations
 
+from dztk.i18n import tr
+
 import re
 import struct
 from dataclasses import dataclass, field
@@ -35,7 +37,7 @@ class Issue:
         loc = self.file
         if self.line:
             loc += f":{self.line}" + (f":{self.col}" if self.col else "")
-        lvl = {"error": "ОШИБКА", "warning": "ПРЕДУПРЕЖДЕНИЕ", "info": "ИНФО"}.get(self.level, self.level)
+        lvl = {"error": tr("ОШИБКА"), "warning": tr("ПРЕДУПРЕЖДЕНИЕ"), "info": tr("ИНФО")}.get(self.level, self.level)
         return f"{loc}: {lvl}: {self.message}" if loc else f"{lvl}: {self.message}"
 
 
@@ -116,7 +118,7 @@ class Preprocessor:
     def _process(self, path: Path, text: str, out: List[SrcLine]) -> None:
         self._depth += 1
         if self._depth > 32:
-            raise ConfigError("слишком глубокая вложенность #include", str(path))
+            raise ConfigError(tr("слишком глубокая вложенность #include"), str(path))
         fname = str(path)
         text = _strip_comments(text, fname)
         lines = text.split("\n")
@@ -144,16 +146,16 @@ class Preprocessor:
                     cond = name in self.macros
                     stack.append(cond if d == "ifdef" else not cond)
                 elif d == "if":
-                    self.issues.append(Issue("warning", "#if не вычисляется, ветка считается истинной",
+                    self.issues.append(Issue("warning", tr("#if не вычисляется, ветка считается истинной"),
                                              fname, lineno))
                     stack.append(True)
                 elif d == "else":
                     if not stack:
-                        raise ConfigError("#else без #ifdef", fname, lineno)
+                        raise ConfigError(tr("#else без #ifdef"), fname, lineno)
                     stack[-1] = not stack[-1]
                 elif d == "endif":
                     if not stack:
-                        raise ConfigError("#endif без #ifdef", fname, lineno)
+                        raise ConfigError(tr("#endif без #ifdef"), fname, lineno)
                     stack.pop()
                 elif not active:
                     pass
@@ -165,7 +167,7 @@ class Preprocessor:
                     self._include(rest, path, fname, lineno, out)
                     continue
                 else:
-                    self.issues.append(Issue("warning", f"неизвестная директива #{d}", fname, lineno))
+                    self.issues.append(Issue("warning", tr("неизвестная директива #{0}").format(d), fname, lineno))
                 out.append(SrcLine("", fname, lineno))
                 continue
             if not all(stack):
@@ -173,13 +175,13 @@ class Preprocessor:
                 continue
             out.append(SrcLine(self._expand(raw, fname, lineno), fname, lineno))
         if stack:
-            raise ConfigError("не закрыт #ifdef/#ifndef (нет #endif)", fname, len(lines))
+            raise ConfigError(tr("не закрыт #ifdef/#ifndef (нет #endif)"), fname, len(lines))
         self._depth -= 1
 
     def _define(self, rest: str, fname: str, lineno: int) -> None:
         m = re.match(r"([A-Za-z_]\w*)(\(([^)]*)\))?\s*(.*)$", rest)
         if not m:
-            raise ConfigError("неверный #define", fname, lineno)
+            raise ConfigError(tr("неверный #define"), fname, lineno)
         params = [p.strip() for p in m.group(3).split(",")] if m.group(2) else None
         if params == [""]:
             params = []
@@ -188,14 +190,14 @@ class Preprocessor:
     def _include(self, rest: str, cur: Path, fname: str, lineno: int, out: List[SrcLine]) -> None:
         m = re.match(r'["<](.+?)[">]', rest)
         if not m:
-            raise ConfigError("неверный #include", fname, lineno)
+            raise ConfigError(tr("неверный #include"), fname, lineno)
         inc = m.group(1).replace("\\", "/")
         candidates = [cur.parent / inc] + [d / inc.lstrip("/") for d in self.include_dirs]
         for c in candidates:
             if c.is_file():
                 self._process(c, read_text(c), out)
                 return
-        self.issues.append(Issue("error", f"не найден файл #include \"{m.group(1)}\"", fname, lineno, 0, "include"))
+        self.issues.append(Issue("error", tr("не найден файл #include \"{0}\"").format(m.group(1)), fname, lineno, 0, "include"))
         out.append(SrcLine("", fname, lineno))
 
     def _expand(self, text: str, fname: str, lineno: int, depth: int = 0) -> str:
@@ -319,7 +321,7 @@ def _strip_comments(text: str, fname: str) -> str:
         if text.startswith("/*", i):
             j = text.find("*/", i + 2)
             if j < 0:
-                raise ConfigError("незакрытый комментарий /*", fname, line)
+                raise ConfigError(tr("незакрытый комментарий /*"), fname, line)
             chunk = text[i:j + 2]
             out.append("\n" * chunk.count("\n"))
             line += chunk.count("\n")
@@ -384,7 +386,7 @@ def tokenize(lines: List[SrcLine]) -> List[Tok]:
                     buf.append(s[j])
                     j += 1
                 if not closed:
-                    raise ConfigError("незакрытая строка (нет закрывающей \")", sl.file, sl.line, col)
+                    raise ConfigError(tr("незакрытая строка (нет закрывающей \")"), sl.file, sl.line, col)
                 toks.append(Tok("string", s[i:j + 1], sl.file, sl.line, col, "".join(buf)))
                 i = j + 1
                 continue
@@ -445,8 +447,8 @@ class Parser:
         t = self.peek()
         if t.kind == "sym" and t.text == text:
             return self.next()
-        found = "конец файла" if t.kind == "eof" else f"'{t.text}'"
-        self.error(f"ожидалось '{text}'{' ' + what if what else ''}, найдено {found}", t)
+        found = tr("конец файла") if t.kind == "eof" else f"'{t.text}'"
+        self.error(tr("ожидалось '{0}'{1}, найдено {2}").format(text, ' ' + what if what else '', found), t)
 
     def parse(self) -> ClassNode:
         root = ClassNode("", line=0)
@@ -459,14 +461,14 @@ class Parser:
             t = self.peek()
             if t.kind == "eof":
                 if not top:
-                    self.error("неожиданный конец файла: не хватает '};'", t)
+                    self.error(tr("неожиданный конец файла: не хватает '};'"), t)
                 return entries
             if t.kind == "sym" and t.text == "}":
                 if top:
-                    self.error("лишняя закрывающая скобка '}'", t)
+                    self.error(tr("лишняя закрывающая скобка '}'"), t)
                 return entries
             if t.kind == "sym" and t.text == ";":
-                self.issues.append(Issue("warning", "лишняя ';'", t.file, t.line, t.col, "extra-semicolon"))
+                self.issues.append(Issue("warning", tr("лишняя ';'"), t.file, t.line, t.col, "extra-semicolon"))
                 self.next()
                 continue
             entries.append(self.parse_entry())
@@ -474,25 +476,25 @@ class Parser:
     def parse_entry(self) -> Node:
         t = self.peek()
         if t.kind != "ident":
-            self.error(f"ожидалось имя параметра или 'class', найдено '{t.text}'", t)
+            self.error(tr("ожидалось имя параметра или 'class', найдено '{0}'").format(t.text), t)
         if t.text == "class":
             return self.parse_class()
         if t.text == "delete":
             self.next()
             name = self.next()
             if name.kind != "ident":
-                self.error("после 'delete' ожидалось имя класса", name)
-            self.expect(";", "после delete")
+                self.error(tr("после 'delete' ожидалось имя класса"), name)
+            self.expect(";", tr("после delete"))
             return DeleteNode(name.text, name.line, name.file)
         if t.text == "enum":
             return self.parse_enum()
         return self.parse_property()
 
     def parse_class(self) -> ClassNode:
-        kw = self.next()
+        self.next()  # class
         name = self.next()
         if name.kind != "ident":
-            self.error("после 'class' ожидалось имя класса", name)
+            self.error(tr("после 'class' ожидалось имя класса"), name)
         node = ClassNode(name.text, name.line, name.file)
         t = self.peek()
         if t.kind == "sym" and t.text == ";":
@@ -503,31 +505,31 @@ class Parser:
             self.next()
             b = self.next()
             if b.kind != "ident":
-                self.error("после ':' ожидалось имя базового класса", b)
+                self.error(tr("после ':' ожидалось имя базового класса"), b)
             node.base = b.text
         t = self.peek()
         if not (t.kind == "sym" and t.text == "{"):
-            found = "конец файла" if t.kind == "eof" else f"'{t.text}'"
-            self.error(f"после 'class {node.name}' ожидалось '{{', ':' или ';', найдено {found}", t)
+            found = tr("конец файла") if t.kind == "eof" else f"'{t.text}'"
+            self.error(tr("после 'class {0}' ожидалось '{{', ':' или ';', найдено {1}").format(node.name, found), t)
         self.next()
         node.entries = self.parse_body()
         self.expect("}")
         t = self.peek()
         if not (t.kind == "sym" and t.text == ";"):
-            self.error(f"после '}}' класса {node.name} нужна ';' (пишется '}};')", t)
+            self.error(tr("после '}}' класса {0} нужна ';' (пишется '}};')").format(node.name), t)
         self.next()
         return node
 
     def parse_enum(self) -> Node:
         t = self.next()
-        self.expect("{", "после enum")
+        self.expect("{", tr("после enum"))
         while not (self.peek().kind == "sym" and self.peek().text == "}"):
             if self.peek().kind == "eof":
-                self.error("незакрытый enum")
+                self.error(tr("незакрытый enum"))
             self.next()
         self.next()
-        self.expect(";", "после enum")
-        self.issues.append(Issue("info", "enum пропущен (не влияет на проверку)", t.file, t.line))
+        self.expect(";", tr("после enum"))
+        self.issues.append(Issue("info", tr("enum пропущен (не влияет на проверку)"), t.file, t.line))
         return ValueNode("__enum__", t.line, t.file, 0)
 
     def parse_property(self) -> Node:
@@ -536,41 +538,40 @@ class Parser:
         t = self.peek()
         if t.kind == "sym" and t.text == "[":
             self.next()
-            self.expect("]", f"в объявлении массива {name.text}[]")
+            self.expect("]", tr("в объявлении массива {0}[]").format(name.text))
             is_array = True
         t = self.peek()
         if t.kind == "sym" and t.text == "+=":
             if not is_array:
-                self.error(f"'+=' можно применять только к массиву ({name.text}[] += {{...}})", t)
+                self.error(tr("'+=' можно применять только к массиву ({0}[] += {{...}})").format(name.text), t)
             self.next()
             arr = self.parse_array()
-            self.expect(";", f"после массива {name.text}[]")
+            self.expect(";", tr("после массива {0}[]").format(name.text))
             return ArrayNode(name.text, name.line, name.file, arr, append=True)
         if not (t.kind == "sym" and t.text == "="):
-            found = "конец файла" if t.kind == "eof" else f"'{t.text}'"
-            hint = " (возможно, пропущена ';' в предыдущей строке)" if t.line != name.line else ""
-            self.error(f"после '{name.text}' ожидалось '='{hint}, найдено {found}", t)
+            found = tr("конец файла") if t.kind == "eof" else f"'{t.text}'"
+            hint = tr(" (возможно, пропущена ';' в предыдущей строке)") if t.line != name.line else ""
+            self.error(tr("после '{0}' ожидалось '='{1}, найдено {2}").format(name.text, hint, found), t)
         self.next()
         if is_array:
             t = self.peek()
             if not (t.kind == "sym" and t.text == "{"):
-                self.error(f"массив {name.text}[] должен присваиваться в фигурных скобках: {{...}}", t)
+                self.error(tr("массив {0}[] должен присваиваться в фигурных скобках: {{...}}").format(name.text), t)
             arr = self.parse_array()
-            self.expect(";", f"после массива {name.text}[]")
+            self.expect(";", tr("после массива {0}[]").format(name.text))
             return ArrayNode(name.text, name.line, name.file, arr)
         t = self.peek()
         if t.kind == "sym" and t.text == "{":
-            self.error(f"'{name.text}' — массив, объявите его как {name.text}[] = {{...}};", t)
+            self.error(tr("'{0}' — массив, объявите его как {1}[] = {{...}};").format(name.text, name.text), t)
         value, quoted = self.parse_scalar(end=";")
         t = self.peek()
         if not (t.kind == "sym" and t.text == ";"):
-            found = "конец файла" if t.kind == "eof" else f"'{t.text}'"
-            self.error(f"после значения '{name.text}' нужна ';', найдено {found}", t)
+            found = tr("конец файла") if t.kind == "eof" else f"'{t.text}'"
+            self.error(tr("после значения '{0}' нужна ';', найдено {1}").format(name.text, found), t)
         self.next()
         node = ValueNode(name.text, name.line, name.file, value, quoted)
         if not quoted and isinstance(value, str):
-            self.issues.append(Issue("warning", f"значение '{name.text}' без кавычек: {value} — "
-                                                f"лучше взять в кавычки", name.file, name.line, 0, "unquoted"))
+            self.issues.append(Issue("warning", tr("значение '{0}' без кавычек: {1} — лучше взять в кавычки").format(name.text, value), name.file, name.line, 0, "unquoted"))
         return node
 
     def parse_scalar(self, end: str) -> Tuple[Value, bool]:
@@ -579,7 +580,7 @@ class Parser:
             self.next()
             nt = self.peek()
             if nt.kind not in ("sym", "eof"):
-                self.error(f"лишнее после строки: '{nt.text}' (строки в конфиге экранируют кавычки как \"\")", nt)
+                self.error(tr("лишнее после строки: '{0}' (строки в конфиге экранируют кавычки как \"\")").format(nt.text), nt)
             return t.value, True
         if t.kind == "number":
             nt = self.peek(1)
@@ -595,16 +596,16 @@ class Parser:
             if t.kind == "eof" or (t.kind == "sym" and t.text in (";", ",", "}", "{")):
                 break
             if t.line != line:
-                self.error("значение не закрыто: пропущена ';'" if end == ";" else
-                           "в массиве пропущена ',' или '}'", t)
+                self.error(tr("значение не закрыто: пропущена ';'") if end == ";" else
+                           tr("в массиве пропущена ',' или '}'"), t)
             if prev_end is not None and t.col > prev_end and first.kind == "number":
-                self.error("пропущена ',' между значениями массива" if end == "}" else
-                           f"лишнее после числа {first.text}: '{t.text}' (пропущена ';'?)", t)
+                self.error(tr("пропущена ',' между значениями массива") if end == "}" else
+                           tr("лишнее после числа {0}: '{1}' (пропущена ';'?)").format(first.text, t.text), t)
             parts.append(t.text)
             prev_end = t.col + len(t.text)
             self.next()
         if not parts:
-            self.error("пропущено значение", t)
+            self.error(tr("пропущено значение"), t)
         return " ".join(parts) if len(parts) > 1 and all(p.isalnum() for p in parts) else "".join(parts), False
 
     def parse_array(self) -> list:
@@ -616,7 +617,7 @@ class Parser:
                 self.next()
                 return items
             if t.kind == "eof":
-                self.error("незакрытый массив: нет '}'", t)
+                self.error(tr("незакрытый массив: нет '}'"), t)
             if t.kind == "sym" and t.text == "{":
                 items.append(self.parse_array())
             else:
@@ -627,13 +628,13 @@ class Parser:
                 self.next()
                 t2 = self.peek()
                 if t2.kind == "sym" and t2.text == "}":
-                    self.issues.append(Issue("warning", "лишняя запятая перед '}' в массиве",
+                    self.issues.append(Issue("warning", tr("лишняя запятая перед '}' в массиве"),
                                              t.file, t.line, t.col, "trailing-comma"))
                 continue
             if t.kind == "sym" and t.text == "}":
                 continue
-            found = "конец файла" if t.kind == "eof" else f"'{t.text}'"
-            self.error(f"в массиве ожидалась ',' или '}}', найдено {found}", t)
+            found = tr("конец файла") if t.kind == "eof" else f"'{t.text}'"
+            self.error(tr("в массиве ожидалась ',' или '}}', найдено {0}").format(found), t)
 
 
 # --------------------------------------------------------------------------------------
@@ -716,17 +717,14 @@ def semantic_check(root: ClassNode, file: str = "") -> List[Issue]:
                     st = lookup(ctx, e.base.lower(), exclude=e)
                     if st == "missing":
                         issues.append(Issue(
-                            "error", f"базовый класс '{e.base}' для '{e.name}' не объявлен — "
-                                     f"добавьте выше 'class {e.base};'", e.file or file, e.line, 0,
+                            "error", tr("базовый класс '{0}' для '{1}' не объявлен — добавьте выше 'class {2};'").format(e.base, e.name, e.base), e.file or file, e.line, 0,
                             "undefined-base"))
                     elif st == "unknown":
                         issues.append(Issue(
-                            "info", f"базовый класс '{e.base}' для '{e.name}' должен прийти из внешнего "
-                                    f"аддона (здесь не объявлен)", e.file or file, e.line, 0, "external-base"))
+                            "info", tr("базовый класс '{0}' для '{1}' должен прийти из внешнего аддона (здесь не объявлен)").format(e.base, e.name), e.file or file, e.line, 0, "external-base"))
                 prev = ctx.scope.get(key)
                 if prev is not None and not prev.extern:
-                    issues.append(Issue("error", f"класс '{e.name}' уже определён в этой области "
-                                                 f"(строка {prev.line})", e.file or file, e.line, 0,
+                    issues.append(Issue("error", tr("класс '{0}' уже определён в этой области (строка {1})").format(e.name, prev.line), e.file or file, e.line, 0,
                                         "duplicate-class"))
                 child = _Ctx(e, ctx)
                 ctx_of[id(e)] = child
@@ -737,8 +735,7 @@ def semantic_check(root: ClassNode, file: str = "") -> List[Issue]:
                     continue
                 key = e.name.lower()
                 if key in props:
-                    issues.append(Issue("warning", f"параметр '{e.name}' задан повторно "
-                                                   f"(строка {props[key].line})", e.file or file, e.line, 0,
+                    issues.append(Issue("warning", tr("параметр '{0}' задан повторно (строка {1})").format(e.name, props[key].line), e.file or file, e.line, 0,
                                         "duplicate-property"))
                 props[key] = e
 
@@ -750,7 +747,7 @@ def semantic_check(root: ClassNode, file: str = "") -> List[Issue]:
     patches = [e for e in root.entries if isinstance(e, ClassNode) and e.name.lower() == "cfgpatches"]
     has_classes = any(isinstance(e, ClassNode) for e in root.entries)
     if has_classes and not patches:
-        issues.append(Issue("warning", "нет класса CfgPatches — аддон не будет зарегистрирован", file, 1, 0,
+        issues.append(Issue("warning", tr("нет класса CfgPatches — аддон не будет зарегистрирован"), file, 1, 0,
                             "no-cfgpatches"))
     for p in patches:
         for c in p.entries:
@@ -758,11 +755,11 @@ def semantic_check(root: ClassNode, file: str = "") -> List[Issue]:
                 names = {x.name.lower() for x in c.entries}
                 for req in ("units", "weapons", "requiredaddons"):
                     if req not in names:
-                        issues.append(Issue("warning", f"в CfgPatches/{c.name} нет {req}[]",
+                        issues.append(Issue("warning", tr("в CfgPatches/{0} нет {1}[]").format(c.name, req),
                                             c.file or file, c.line, 0, "cfgpatches"))
                 for x in c.entries:
                     if x.name.lower() in ("units", "weapons", "requiredaddons") and not isinstance(x, ArrayNode):
-                        issues.append(Issue("error", f"CfgPatches/{c.name}: {x.name} должен быть массивом []",
+                        issues.append(Issue("error", tr("CfgPatches/{0}: {1} должен быть массивом []").format(c.name, x.name),
                                             x.file or file, x.line, 0, "cfgpatches"))
     return issues
 
