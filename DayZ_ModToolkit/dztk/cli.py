@@ -75,7 +75,11 @@ def _setup_console() -> None:
     for stream in (sys.stdout, sys.stderr):
         if stream is not None and hasattr(stream, "reconfigure"):
             try:
-                stream.reconfigure(errors="replace")
+                if not stream.isatty():
+                    # вывод в файл или канал: UTF-8, иначе Windows испортит кириллицу (cp1252)
+                    stream.reconfigure(encoding="utf-8", errors="replace")
+                else:
+                    stream.reconfigure(errors="replace")
             except Exception:
                 pass
 

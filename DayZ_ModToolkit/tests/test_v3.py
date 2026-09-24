@@ -34,7 +34,10 @@ def _samples():
     yield b"hello world " * 5000
 
 
-@pytest.mark.parametrize("data", list(_samples()))
+_SAMPLES = list(_samples())
+
+
+@pytest.mark.parametrize("data", _SAMPLES, ids=[f"sample{i}_{len(d)}b" for i, d in enumerate(_SAMPLES)])
 def test_lzo_roundtrip(data):
     c = lzo.compress(data)
     assert lzo.decompress(c, len(data))[0] == data
