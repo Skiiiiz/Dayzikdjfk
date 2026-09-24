@@ -1,2 +1,4 @@
+numpy>=1.24
+pillow>=10
 # Необязательно: ffmpeg из pip, если нет своего ffmpeg.exe
 imageio-ffmpeg>=0.4.9

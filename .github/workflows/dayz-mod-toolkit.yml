@@ -1,0 +1,89 @@
+name: DayZ Mod Toolkit (Windows exe)
+
+on:
+  push:
+    paths:
+      - "DayZ_ModToolkit/**"
+      - ".github/workflows/dayz-mod-toolkit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: DayZ_ModToolkit
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pyinstaller pytest -r requirements.txt
+
+      - name: Unit tests
+        run: python -m pytest -q tests
+
+      - name: Fetch ffmpeg (with libvorbis)
+        run: |
+          $ff = python -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())"
+          Copy-Item $ff ffmpeg.exe
+          .\ffmpeg.exe -hide_banner -encoders | Select-String libvorbis
+
+      - name: Build single exe
+        run: >
+          python -m PyInstaller --noconfirm --onefile --windowed
+          --name DayZModToolkit
+          --exclude-module imageio_ffmpeg --exclude-module pytest
+          --add-binary "ffmpeg.exe;."
+          dayz_toolkit.py
+
+      - name: Smoke test (exe, all modes)
+        run: |
+          function Run-Exe([string[]]$a) {
+            $p = Start-Process dist\DayZModToolkit.exe -ArgumentList $a -Wait -PassThru -NoNewWindow
+            if ($p.ExitCode -ne 0) { throw "exit code $($p.ExitCode): $a" }
+          }
+          New-Item -ItemType Directory -Force t_in | Out-Null
+          .\ffmpeg.exe -hide_banner -loglevel error -f lavfi -i "sine=f=440:d=2" -ac 2 "t_in\Тест Звук.mp3"
+          Remove-Item ffmpeg.exe   # дальше работает только встроенный ffmpeg
+          Run-Exe @('--cli','audio','t_in','-o','t_ogg','--config','--mod','TestMod')
+          if (-not (Test-Path t_ogg\test_zvuk.ogg)) { throw "ogg not created" }
+          Run-Exe @('--cli','png','..\SM_PartyMod\GUI\pings','-o','t_png')
+          Run-Exe @('--cli','paa','t_png','-o','t_paa')
+          if ((Get-ChildItem t_paa\*.paa).Count -ne 15) { throw "paa count" }
+          Run-Exe @('--cli','derapify','..\SM_PartyMod\config.bin','-o','t_cfg')
+          Run-Exe @('--cli','rapify','t_cfg\config.cpp','-o','t_bin')
+          if ((Get-FileHash t_bin\config.bin).Hash -ne (Get-FileHash ..\SM_PartyMod\config.bin).Hash) { throw "rapify mismatch" }
+          Run-Exe @('--cli','check','..\SM_PartyMod','t_ogg')
+
+      - name: Smoke test (GUI starts)
+        run: |
+          $p = Start-Process dist\DayZModToolkit.exe -PassThru
+          Start-Sleep -Seconds 20
+          if ($p.HasExited) { throw "GUI exited with code $($p.ExitCode)" }
+          Stop-Process -Id $p.Id -Force
+          Write-Host "GUI is running"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DayZModToolkit
+          path: DayZ_ModToolkit/dist/DayZModToolkit.exe
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: dayz-toolkit-latest
+          target_commitish: ${{ github.sha }}
+          name: DayZ Mod Toolkit (Windows)
+          body: |
+            DayZ Mod Toolkit для Windows 10/11: один файл DayZModToolkit.exe, ffmpeg встроен, установка не нужна.
+            Звук → OGG, PNG/TGA ⇄ PAA, config.cpp ⇄ config.bin, проверка мода на ошибки.
+          files: DayZ_ModToolkit/dist/DayZModToolkit.exe
+          make_latest: true
