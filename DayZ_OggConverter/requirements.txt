@@ -1,0 +1,2 @@
+# Необязательно: ffmpeg из pip, если нет своего ffmpeg.exe
+imageio-ffmpeg>=0.4.9
