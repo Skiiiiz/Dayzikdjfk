@@ -541,7 +541,34 @@ def open_folder(path: Path) -> None:
 # Консольный режим
 # --------------------------------------------------------------------------------------
 
+def _setup_console() -> None:
+    """Готовит вывод для консольного режима.
+
+    Оконный .exe (PyInstaller --windowed) не имеет консоли: подключаемся к консоли,
+    из которой его запустили. Символы, которых нет в кодировке консоли, заменяются,
+    а не роняют программу.
+    """
+    if os.name == "nt" and sys.stdout is None:
+        try:
+            import ctypes
+            kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+            if kernel32.AttachConsole(-1):  # ATTACH_PARENT_PROCESS
+                enc = f"cp{kernel32.GetConsoleOutputCP()}"
+                sys.stdout = open("CONOUT$", "w", encoding=enc, errors="replace")
+                sys.stderr = sys.stdout
+                print()
+        except Exception:
+            pass
+    for stream in (sys.stdout, sys.stderr):
+        if stream is not None and hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(errors="replace")
+            except Exception:
+                pass
+
+
 def cli(argv: List[str]) -> int:
+    _setup_console()
     ap = argparse.ArgumentParser(
         prog="dayz_ogg_converter",
         description=f"{APP_NAME} {APP_VERSION}: конвертация MP3/WAV/... в OGG Vorbis для DayZ.")
