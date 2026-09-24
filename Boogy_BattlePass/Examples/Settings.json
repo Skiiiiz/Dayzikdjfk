@@ -1,0 +1,31 @@
+{
+    "ConfigVersion": 1,
+    "Enabled": 1,
+    "TimezoneOffsetMinutes": 180,
+    "AdminIds": [
+        "76561198000000000"
+    ],
+    "PremiumItems": [
+        {
+            "ClassName": "BBP_PremiumPass",
+            "SeasonId": "",
+            "Consume": 1
+        }
+    ],
+    "NotifyQuestComplete": 1,
+    "NotifyLevelUp": 1,
+    "AutoClaimRewards": 0,
+    "DropRewardsOnGroundIfFull": 1,
+    "AllowClaimAfterSeasonEnd": 1,
+    "VisitCheckIntervalSec": 5,
+    "AutoSaveIntervalSec": 300,
+    "Donate": {
+        "Enabled": 0,
+        "BaseUrl": "https://your-shop.example.com",
+        "PendingPath": "/api/battlepass/pending",
+        "AckPath": "/api/battlepass/ack",
+        "ApiKey": "CHANGE_ME",
+        "ServerId": "server-1",
+        "PollIntervalSec": 60
+    }
+}

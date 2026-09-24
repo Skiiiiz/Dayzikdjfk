@@ -1,0 +1,200 @@
+FrameWidgetClass BBPLevelRow {
+ position 0 0
+ size 1036 76
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+ PanelWidgetClass RowBg {
+  ignorepointer 1
+  color 0.1755 0.15 0.1245 0.85
+  position 0 0
+  size 1036 72
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ PanelWidgetClass LevelBox {
+  ignorepointer 1
+  color 0.1 0.086 0.071 0.9
+  position 0 0
+  size 72 72
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ PanelWidgetClass LevelAccent {
+  ignorepointer 1
+  color 0.7214 0.4508 0.2002 1
+  position 0 0
+  size 4 72
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ TextWidgetClass LevelNum {
+  ignorepointer 1
+  color 0.936 0.9 0.855 1
+  position 4 6
+  size 68 40
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text "1"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 26
+  "text valign" center
+  "text halign" center
+ }
+ TextWidgetClass LevelXp {
+  ignorepointer 1
+  color 0.702 0.651 0.5725 1
+  position 4 46
+  size 68 20
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 11
+  "text valign" center
+  "text halign" center
+ }
+ TextWidgetClass FreeLabel {
+  ignorepointer 1
+  color 0.702 0.651 0.5725 1
+  position 88 6
+  size 380 18
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text "БЕСПЛАТНО"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 11
+  "text valign" center
+  "text halign" left
+ }
+ MultilineTextWidgetClass FreeRewards {
+  ignorepointer 1
+  color 0.936 0.9 0.855 1
+  position 88 24
+  size 380 42
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 14
+  "text valign" top
+  "text halign" left
+ }
+ PanelWidgetClass FreeClaimBg {
+  ignorepointer 1
+  color 0.2964 0.2533 0.2103 1
+  position 474 22
+  size 116 30
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ ButtonWidgetClass FreeClaim {
+  color 1 1 0.95 1
+  position 474 22
+  size 116 30
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style EmptyHighlight
+  text "ЗАБРАТЬ"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 12
+ }
+ PanelWidgetClass Divider {
+  ignorepointer 1
+  color 0.7214 0.4508 0.2002 0.55
+  position 604 8
+  size 2 56
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ TextWidgetClass PremiumLabel {
+  ignorepointer 1
+  color 0.9098 0.7098 0.2706 1
+  position 618 6
+  size 280 18
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text "ПРЕМИУМ"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 11
+  "text valign" center
+  "text halign" left
+ }
+ MultilineTextWidgetClass PremiumRewards {
+  ignorepointer 1
+  color 0.936 0.9 0.855 1
+  position 618 24
+  size 280 42
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 14
+  "text valign" top
+  "text halign" left
+ }
+ PanelWidgetClass PremiumClaimBg {
+  ignorepointer 1
+  color 0.2964 0.2533 0.2103 1
+  position 906 22
+  size 120 30
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ ButtonWidgetClass PremiumClaim {
+  color 1 1 0.95 1
+  position 906 22
+  size 120 30
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style EmptyHighlight
+  text "ЗАБРАТЬ"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 12
+ }
+ }
+}

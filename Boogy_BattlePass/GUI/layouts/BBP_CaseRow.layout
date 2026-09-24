@@ -1,0 +1,162 @@
+FrameWidgetClass BBPCaseRow {
+ position 0 0
+ size 1036 124
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+ PanelWidgetClass RowBg {
+  ignorepointer 1
+  color 0.1755 0.15 0.1245 0.85
+  position 0 0
+  size 1036 120
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ PanelWidgetClass RowAccent {
+  ignorepointer 1
+  color 0.9098 0.7098 0.2706 1
+  position 0 0
+  size 4 120
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ TextWidgetClass CaseName {
+  ignorepointer 1
+  color 0.936 0.9 0.855 1
+  position 16 8
+  size 700 24
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 18
+  "text valign" center
+  "text halign" left
+ }
+ TextWidgetClass CaseDesc {
+  ignorepointer 1
+  color 0.702 0.651 0.5725 1
+  position 16 32
+  size 700 20
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 12
+  "text valign" center
+  "text halign" left
+ }
+ MultilineTextWidgetClass CaseContents {
+  ignorepointer 1
+  color 0.936 0.9 0.855 1
+  position 16 54
+  size 700 62
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 12
+  "text valign" top
+  "text halign" left
+ }
+ TextWidgetClass CasePrice {
+  ignorepointer 1
+  color 0.9098 0.7098 0.2706 1
+  position 730 8
+  size 294 24
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 15
+  "text valign" center
+  "text halign" right
+ }
+ TextWidgetClass CaseOwned {
+  ignorepointer 1
+  color 0.702 0.651 0.5725 1
+  position 730 34
+  size 294 20
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  text ""
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 13
+  "text valign" center
+  "text halign" right
+ }
+ PanelWidgetClass BuyButtonBg {
+  ignorepointer 1
+  color 0.2964 0.2533 0.2103 1
+  position 740 74
+  size 136 32
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ ButtonWidgetClass BuyButton {
+  color 1 1 0.95 1
+  position 740 74
+  size 136 32
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style EmptyHighlight
+  text "КУПИТЬ"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 13
+ }
+ PanelWidgetClass OpenButtonBg {
+  ignorepointer 1
+  color 0.2964 0.2533 0.2103 1
+  position 888 74
+  size 136 32
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+ }
+ ButtonWidgetClass OpenButton {
+  color 1 1 0.95 1
+  position 888 74
+  size 136 32
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style EmptyHighlight
+  text "ОТКРЫТЬ"
+  font "gui/fonts/sdf_MetronBook24"
+  "exact text" 1
+  "exact text size" 13
+ }
+ }
+}

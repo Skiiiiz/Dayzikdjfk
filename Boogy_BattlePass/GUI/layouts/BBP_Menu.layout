@@ -1,0 +1,407 @@
+FrameWidgetClass BBPMenuRoot {
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ priority 60
+ {
+ PanelWidgetClass Dim {
+  ignorepointer 1
+  color 0 0 0 0.55
+  position 0 0
+  size 1 1
+  hexactpos 0
+  vexactpos 0
+  hexactsize 0
+  vexactsize 0
+  style rover_sim_colorable
+ }
+ PanelWidgetClass Window {
+  color 0.0566 0.0484 0.0401 0.9608
+  position 0 0
+  size 1100 680
+  halign center_ref
+  valign center_ref
+  hexactpos 1
+  vexactpos 1
+  hexactsize 1
+  vexactsize 1
+  style rover_sim_colorable
+  {
+   PanelWidgetClass TopAccent {
+    ignorepointer 1
+    color 0.7214 0.4508 0.2002 1
+    position 0 0
+    size 1100 3
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   PanelWidgetClass HeaderBg {
+    ignorepointer 1
+    color 0.0428 0.0366 0.0304 0.9608
+    position 0 3
+    size 1100 94
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   TextWidgetClass TitleText {
+    ignorepointer 1
+    color 0.9098 0.7098 0.2706 1
+    position 24 12
+    size 420 30
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text "БОЕВОЙ ПРОПУСК"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 24
+    "text valign" center
+    "text halign" left
+   }
+   TextWidgetClass SeasonName {
+    ignorepointer 1
+    color 0.936 0.9 0.855 1
+    position 24 44
+    size 540 22
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 16
+    "text valign" center
+    "text halign" left
+   }
+   TextWidgetClass SeasonTimer {
+    ignorepointer 1
+    color 0.702 0.651 0.5725 1
+    position 24 68
+    size 540 20
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 13
+    "text valign" center
+    "text halign" left
+   }
+   TextWidgetClass LevelText {
+    ignorepointer 1
+    color 0.936 0.9 0.855 1
+    position 600 12
+    size 360 28
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 18
+    "text valign" center
+    "text halign" left
+   }
+   PanelWidgetClass XpBarBg {
+    ignorepointer 1
+    color 0.1 0.086 0.071 0.9
+    position 600 46
+    size 360 14
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   PanelWidgetClass XpBarFill {
+    ignorepointer 1
+    color 0.7214 0.4508 0.2002 1
+    position 600 46
+    size 0 14
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   TextWidgetClass XpText {
+    ignorepointer 1
+    color 0.702 0.651 0.5725 1
+    position 600 64
+    size 360 20
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 13
+    "text valign" center
+    "text halign" left
+   }
+   TextWidgetClass PremiumBadge {
+    ignorepointer 1
+    color 0.9098 0.7098 0.2706 1
+    position 972 12
+    size 110 28
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 15
+    "text valign" center
+    "text halign" right
+   }
+   TextWidgetClass CoinsText {
+    ignorepointer 1
+    color 0.936 0.9 0.855 1
+    position 972 44
+    size 110 22
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 14
+    "text valign" center
+    "text halign" right
+   }
+   PanelWidgetClass CloseButtonBg {
+    ignorepointer 1
+    color 0.2964 0.2533 0.2103 1
+    position 1062 62
+    size 28 28
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ButtonWidgetClass CloseButton {
+    color 1 1 0.95 1
+    position 1062 62
+    size 28 28
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style EmptyHighlight
+    text "X"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 14
+   }
+   PanelWidgetClass TabRewardsBg {
+    ignorepointer 1
+    color 0.2964 0.2533 0.2103 1
+    position 24 104
+    size 160 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ButtonWidgetClass TabRewards {
+    color 1 1 0.95 1
+    position 24 104
+    size 160 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style EmptyHighlight
+    text "НАГРАДЫ"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 14
+   }
+   PanelWidgetClass TabQuestsBg {
+    ignorepointer 1
+    color 0.2964 0.2533 0.2103 1
+    position 190 104
+    size 160 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ButtonWidgetClass TabQuests {
+    color 1 1 0.95 1
+    position 190 104
+    size 160 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style EmptyHighlight
+    text "ЗАДАНИЯ"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 14
+   }
+   PanelWidgetClass TabShopBg {
+    ignorepointer 1
+    color 0.2964 0.2533 0.2103 1
+    position 356 104
+    size 160 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ButtonWidgetClass TabShop {
+    color 1 1 0.95 1
+    position 356 104
+    size 160 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style EmptyHighlight
+    text "МАГАЗИН"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 14
+   }
+   PanelWidgetClass AdminReloadBg {
+    visible 0
+    ignorepointer 1
+    color 0.2964 0.2533 0.2103 1
+    position 716 104
+    size 170 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ButtonWidgetClass AdminReload {
+    visible 0
+    color 1 1 0.95 1
+    position 716 104
+    size 170 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style EmptyHighlight
+    text "ПЕРЕЗАГРУЗИТЬ"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 12
+   }
+   PanelWidgetClass ClaimAllBg {
+    ignorepointer 1
+    color 0.2964 0.2533 0.2103 1
+    position 892 104
+    size 184 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ButtonWidgetClass ClaimAll {
+    color 1 1 0.95 1
+    position 892 104
+    size 184 32
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style EmptyHighlight
+    text "ЗАБРАТЬ ВСЁ"
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 14
+   }
+   PanelWidgetClass TabLine {
+    ignorepointer 1
+    color 0.7214 0.4508 0.2002 0.55
+    position 24 140
+    size 1052 2
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    style rover_sim_colorable
+   }
+   ScrollWidgetClass ContentScroll {
+    position 24 148
+    size 1052 486
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    "Scrollbar V" 1
+    {
+     FrameWidgetClass Content {
+      position 0 0
+      size 1036 486
+      hexactpos 1
+      vexactpos 1
+      hexactsize 1
+      vexactsize 1
+     }
+    }
+   }
+   TextWidgetClass EmptyText {
+    visible 0
+    ignorepointer 1
+    color 0.702 0.651 0.5725 1
+    position 24 360
+    size 1052 40
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 16
+    "text valign" center
+    "text halign" center
+   }
+   TextWidgetClass FooterText {
+    ignorepointer 1
+    color 0.702 0.651 0.5725 1
+    position 24 644
+    size 1052 26
+    hexactpos 1
+    vexactpos 1
+    hexactsize 1
+    vexactsize 1
+    text ""
+    font "gui/fonts/sdf_MetronBook24"
+    "exact text" 1
+    "exact text size" 13
+    "text valign" center
+    "text halign" left
+   }
+  }
+ }
+ }
+}

@@ -1,0 +1,165 @@
+{
+    "Id": "season_1",
+    "Name": "Сезон 1: Выживший",
+    "Description": "Выполняйте задания, получайте опыт и забирайте награды каждого уровня.",
+    "Enabled": 1,
+    "StartDate": "2026-10-01 00:00",
+    "EndDate": "2026-11-30 23:59",
+    "XpPerLevel": 1000,
+    "Levels": [
+        {
+            "Level": 1,
+            "FreeRewards": [ { "Type": "Item", "ClassName": "BandageDressing", "Amount": 2 } ],
+            "PremiumRewards": [ { "Type": "Item", "ClassName": "Morphine" } ]
+        },
+        {
+            "Level": 2,
+            "FreeRewards": [ { "Type": "Coins", "Amount": 50 } ],
+            "PremiumRewards": [ { "Type": "Item", "ClassName": "Mag_STANAG_30Rnd", "Quantity": 30 } ]
+        },
+        {
+            "Level": 3,
+            "XpRequired": 1500,
+            "FreeRewards": [ { "Type": "Item", "ClassName": "WaterBottle", "Quantity": 1000 } ],
+            "PremiumRewards": [
+                { "Type": "Item", "ClassName": "M4A1", "Health": 1.0, "Attachments": ["M4_OEBttstck", "M4_PlasticHndgrd", "Mag_STANAG_30Rnd"] }
+            ]
+        },
+        {
+            "Level": 4,
+            "FreeRewards": [ { "Type": "Case", "Data": "case_medic", "Amount": 1 } ],
+            "PremiumRewards": [ { "Type": "Case", "Data": "case_weapon", "Amount": 2 } ]
+        },
+        {
+            "Level": 5,
+            "XpRequired": 2000,
+            "FreeRewards": [ { "Type": "Xp", "Amount": 500, "DisplayName": "Бонус опыта" } ],
+            "PremiumRewards": [
+                { "Type": "Custom", "Data": "vip_title:Ветеран", "DisplayName": "Титул \"Ветеран\"" },
+                { "Type": "Coins", "Amount": 300 }
+            ]
+        }
+    ],
+    "Quests": [
+        {
+            "Id": "kill_zombies_50",
+            "Name": "Зачистка",
+            "Description": "Убейте 50 заражённых.",
+            "Type": "Kill",
+            "KillKind": "Zombie",
+            "Count": 50,
+            "Xp": 800
+        },
+        {
+            "Id": "daily_zombies_15",
+            "Name": "Ежедневная охота",
+            "Description": "Убейте 15 заражённых за день.",
+            "Type": "Kill",
+            "KillKind": "Zombie",
+            "Count": 15,
+            "Xp": 300,
+            "Period": "Daily"
+        },
+        {
+            "Id": "kill_zombies_knife",
+            "Name": "Тихий охотник",
+            "Description": "Убейте 20 заражённых ножом.",
+            "Type": "Kill",
+            "KillKind": "Zombie",
+            "Weapons": ["HuntingKnife", "KitchenKnife", "CombatKnife"],
+            "Count": 20,
+            "Xp": 600
+        },
+        {
+            "Id": "kill_wolves_forest",
+            "Name": "Волчья стая",
+            "Description": "Убейте 5 волков.",
+            "Type": "Kill",
+            "KillKind": "Animal",
+            "Targets": ["Animal_CanisLupus"],
+            "Count": 5,
+            "Xp": 700,
+            "Coins": 50
+        },
+        {
+            "Id": "kill_players_long",
+            "Name": "Снайпер",
+            "Description": "Убейте 3 игроков с дистанции от 300 м.",
+            "Type": "Kill",
+            "KillKind": "Player",
+            "MinDistance": 300,
+            "Count": 3,
+            "Xp": 1500,
+            "PremiumOnly": 1
+        },
+        {
+            "Id": "heal_bandage",
+            "Name": "Полевой медик",
+            "Description": "Перевяжите себя или других 10 раз.",
+            "Type": "Action",
+            "Targets": ["ActionBandageSelf", "ActionBandageTarget"],
+            "Count": 10,
+            "Xp": 400
+        },
+        {
+            "Id": "light_fire",
+            "Name": "Костровой",
+            "Description": "Разожгите 5 костров.",
+            "Type": "Action",
+            "Targets": ["ActionLightItemOnFire"],
+            "Count": 5,
+            "Xp": 300
+        },
+        {
+            "Id": "build_parts",
+            "Name": "Строитель",
+            "Description": "Постройте 15 частей базы.",
+            "Type": "Action",
+            "Targets": ["ActionBuildPart"],
+            "Count": 15,
+            "Xp": 900,
+            "Rewards": [ { "Type": "Item", "ClassName": "NailBox" } ]
+        },
+        {
+            "Id": "craft_splints",
+            "Name": "Мастер",
+            "Description": "Скрафтите 3 шины.",
+            "Type": "Craft",
+            "Targets": ["Splint"],
+            "Count": 3,
+            "Xp": 400
+        },
+        {
+            "Id": "visit_airfield",
+            "Name": "Разведка аэродрома",
+            "Description": "Доберитесь до Северо-Западного аэродрома.",
+            "Type": "Visit",
+            "VisitMode": "Any",
+            "Points": [ { "Name": "NWAF", "Position": [4600, 0, 10300], "Radius": 400 } ],
+            "Count": 1,
+            "Xp": 500
+        },
+        {
+            "Id": "route_coast",
+            "Name": "Береговой маршрут",
+            "Description": "Пройдите маршрут Черногорск -> Электрозаводск -> Балота по порядку.",
+            "Type": "Visit",
+            "VisitMode": "Route",
+            "Points": [
+                { "Name": "Черногорск", "Position": [6650, 0, 2550], "Radius": 300 },
+                { "Name": "Электрозаводск", "Position": [10400, 0, 2300], "Radius": 300 },
+                { "Name": "Балота", "Position": [4450, 0, 2400], "Radius": 250 }
+            ],
+            "Xp": 1200
+        },
+        {
+            "Id": "custom_airdrop",
+            "Name": "Охотник за грузом",
+            "Description": "Залутайте аирдроп.",
+            "Type": "Custom",
+            "Targets": ["AirdropLooted"],
+            "Count": 1,
+            "Xp": 1000
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "Enabled": 1,
+    "Cases": [
+        {
+            "Id": "case_medic",
+            "Name": "Медицинский кейс",
+            "Description": "Медикаменты и перевязка.",
+            "Price": 150,
+            "Currency": "Coins",
+            "CurrencyItem": "",
+            "PremiumOnly": 0,
+            "OpenOnPurchase": 0,
+            "Rewards": [
+                { "Type": "Item", "ClassName": "BandageDressing", "Amount": 3, "Weight": 40 },
+                { "Type": "Item", "ClassName": "Morphine", "Amount": 1, "Weight": 25 },
+                { "Type": "Item", "ClassName": "Epinephrine", "Amount": 1, "Weight": 20 },
+                { "Type": "Item", "ClassName": "SalineBagIV", "Amount": 1, "Weight": 10 },
+                { "Type": "Item", "ClassName": "FirstAidKit", "Amount": 1, "Weight": 5 }
+            ]
+        },
+        {
+            "Id": "case_weapon",
+            "Name": "Оружейный кейс",
+            "Description": "Шанс получить оружие или патроны.",
+            "Price": 400,
+            "Currency": "Coins",
+            "Rewards": [
+                {
+                    "Type": "Item",
+                    "ClassName": "AKM",
+                    "Amount": 1,
+                    "Health": 1.0,
+                    "Attachments": ["AK_WoodBttstck", "AK_WoodHndgrd", "Mag_AKM_30Rnd"],
+                    "Weight": 5
+                },
+                { "Type": "Item", "ClassName": "SKS", "Amount": 1, "Weight": 15 },
+                { "Type": "Item", "ClassName": "Ammo_762x39", "Amount": 1, "Quantity": 20, "Weight": 50 },
+                { "Type": "Coins", "Amount": 200, "DisplayName": "Возврат монет", "Weight": 30 }
+            ]
+        },
+        {
+            "Id": "case_premium",
+            "Name": "Премиум кейс",
+            "Description": "Только для владельцев премиум-пропуска. Оплата предметом-валютой.",
+            "Price": 5,
+            "Currency": "Item",
+            "CurrencyItem": "Nail",
+            "PremiumOnly": 1,
+            "OpenOnPurchase": 1,
+            "Rewards": [
+                { "Type": "Item", "ClassName": "PlateCarrierVest", "Weight": 30 },
+                { "Type": "Item", "ClassName": "NVGoggles", "Weight": 10 },
+                { "Type": "Item", "ClassName": "GhillieSuit_Woodland", "Weight": 20 },
+                { "Type": "Xp", "Amount": 2000, "Weight": 40 }
+            ]
+        }
+    ]
+}
