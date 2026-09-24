@@ -1068,8 +1068,408 @@ EN = {
         '{0}: class {1} was not found in the game — a typo, or another mod is needed in requiredAddons',
     'tkinter недоступен. Используйте консольный режим: --cli --help':
         'tkinter is not available. Use the console mode: --cli --help',
-    "DayZ Mod Toolkit — набор инструментов для моддера DayZ. Работает без установки.\n\nЗВУК → OGG\n  MP3/WAV/FLAC/M4A/... → OGG Vorbis. Для 3D-звуков (в мире) — моно, 44100 Гц.\n  Может сгенерировать config.cpp с CfgSoundShaders/CfgSoundSets.\n\nТЕКСТУРЫ PAA\n  PNG/TGA/JPG/BMP → PAA (DXT1/DXT5, mip-уровни, сжатие LZO) и PAA → PNG/TGA для правки.\n  Стороны текстуры должны быть степенью двойки (256, 512, 1024, 2048...).\n  Формат «auto»: есть прозрачность или суффикс _ca → DXT5, иначе (и для _co) → DXT1.\n\nCONFIG.CPP ⇄ CONFIG.BIN\n  Бинаризация конфига (как Addon Builder/CfgConvert) с проверкой ошибок\n  и обратная распаковка config.bin в читаемый config.cpp.\n\nПРОВЕРКА ОШИБОК\n  Укажите папку мода (где config.cpp) — будут проверены:\n  • config.cpp: синтаксис (пропущенные ; и }; ), необъявленные базовые классы, дубликаты, CfgPatches;\n  • скрипты .c: скобки, незакрытые строки и комментарии, #ifdef/#endif, '=' вместо '==', if(...);\n  • .layout/.imageset: скобки и строки;  XML (types.xml, events.xml, cfgspawnabletypes.xml, globals.xml);\n  • JSON, stringtable.csv, PAA (размеры, mip-уровни), OGG (кодек Vorbis);\n  • ссылки на несуществующие файлы, отсутствующие ключи #STR_, папки скриптов из CfgMods,\n    пробелы и кириллица в именах файлов.\n  Если указать папку игры DayZ (или распакованные скрипты), дополнительно проверяются\n  modded class, extends и override по настоящим классам игры.\n  Двойной щелчок по строке открывает файл (в VS Code — сразу на нужной строке).\n  «Автопроверка» перепроверяет мод при каждом сохранении файлов.\n\nPBO\n  Сборка папки мода в PBO: проверка → бинаризация config.cpp → упаковка → подпись.\n  Распаковка PBO, проверка подписей, создание ключей .biprivatekey/.bikey.\n\nTYPES.XML\n  Заготовки <type> для всех предметов мода со scope = 2, дополнение существующего types.xml\n  недостающими типами и сортировка.\n\nПроверка скриптов — это быстрый анализатор, а не компилятор DayZ: он ловит типичные\nсинтаксические ошибки, но не проверяет типы выражений.\n":
-        "DayZ Mod Toolkit is a toolbox for DayZ modders. No installation needed.\n\nSOUND → OGG\n  MP3/WAV/FLAC/M4A/... → OGG Vorbis. For 3D sounds (in the world) use mono, 44100 Hz.\n  Can generate config.cpp with CfgSoundShaders/CfgSoundSets.\n\nPAA TEXTURES\n  PNG/TGA/JPG/BMP → PAA (DXT1/DXT5, mipmaps, LZO compression) and PAA → PNG/TGA for editing.\n  Texture sides must be powers of two (256, 512, 1024, 2048...).\n  «auto» format: alpha or the _ca suffix → DXT5, otherwise (and for _co) → DXT1.\n\nCONFIG.CPP ⇄ CONFIG.BIN\n  Config binarization (like Addon Builder/CfgConvert) with error checking,\n  and unpacking config.bin back into a readable config.cpp.\n\nERROR CHECK\n  Choose the mod folder (where config.cpp is) — the following is checked:\n  • config.cpp: syntax (missing ; and }; ), undeclared base classes, duplicates, CfgPatches;\n  • .c scripts: brackets, unclosed strings and comments, #ifdef/#endif, '=' instead of '==', if(...);\n  • .layout/.imageset: brackets and strings;  XML (types.xml, events.xml, cfgspawnabletypes.xml, globals.xml);\n  • JSON, stringtable.csv, PAA (sizes, mipmaps), OGG (Vorbis codec);\n  • references to missing files, missing #STR_ keys, script folders from CfgMods,\n    spaces and non-Latin characters in file names.\n  If you set the DayZ game folder (or extracted scripts), modded class, extends and override\n  are also checked against the game's real classes.\n  Double-click a row to open the file (in VS Code — right at the line).\n  «Auto-check» re-checks the mod every time files are saved.\n\nPBO\n  Build a mod folder into a PBO: check → binarize config.cpp → pack → sign.\n  Unpack PBO files, verify signatures, create .biprivatekey/.bikey keys.\n\nTYPES.XML\n  <type> templates for all mod items with scope = 2, merging missing types into an existing\n  types.xml and sorting.\n\nThe script check is a fast analyzer, not the DayZ compiler: it catches typical syntax\nerrors but does not check expression types.\n",
-    'Консольный режим.\n\n    DayZModToolkit --cli audio    <файлы/папки> [опции]   звук -> OGG\n    DayZModToolkit --cli paa      <картинки>    [опции]   PNG/TGA/JPG -> PAA\n    DayZModToolkit --cli png      <paa>         [опции]   PAA -> PNG\n    DayZModToolkit --cli rapify   <config.cpp>  [опции]   config.cpp -> config.bin\n    DayZModToolkit --cli derapify <config.bin>  [опции]   config.bin -> config.cpp\n    DayZModToolkit --cli check    <файлы/папки> [опции]   проверка на ошибки (--game, --watch)\n    DayZModToolkit --cli pack     <папка мода>  [опции]   сборка PBO (проверка, бинаризация, подпись)\n    DayZModToolkit --cli unpack   <pbo>         [опции]   распаковка PBO\n    DayZModToolkit --cli keygen   <имя_ключа>   [опции]   создать .biprivatekey и .bikey\n    DayZModToolkit --cli sign     <pbo>  --key <файл.biprivatekey>\n    DayZModToolkit --cli verify   <pbo>  [--key <файл.bikey>]\n    DayZModToolkit --cli types    <config/папка мода> [опции]   записи types.xml из конфига\n\nБез подкоманды (--cli <файлы>) выполняется конвертация звука, как в прежних версиях.\n':
-        'Console mode.\n\n    DayZModToolkit --cli audio    <files/folders> [options]   sound -> OGG\n    DayZModToolkit --cli paa      <images>        [options]   PNG/TGA/JPG -> PAA\n    DayZModToolkit --cli png      <paa>           [options]   PAA -> PNG\n    DayZModToolkit --cli rapify   <config.cpp>    [options]   config.cpp -> config.bin\n    DayZModToolkit --cli derapify <config.bin>    [options]   config.bin -> config.cpp\n    DayZModToolkit --cli check    <files/folders> [options]   error check (--game, --watch)\n    DayZModToolkit --cli pack     <mod folder>    [options]   build a PBO (check, binarize, sign)\n    DayZModToolkit --cli unpack   <pbo>           [options]   unpack a PBO\n    DayZModToolkit --cli keygen   <key_name>      [options]   create .biprivatekey and .bikey\n    DayZModToolkit --cli sign     <pbo>  --key <file.biprivatekey>\n    DayZModToolkit --cli verify   <pbo>  [--key <file.bikey>]\n    DayZModToolkit --cli types    <config/mod folder> [options]   types.xml entries from the config\n\nWithout a subcommand (--cli <files>) sound is converted, as in previous versions.\nLanguage: --lang en | --lang ru\n',
+    'внешний #include "{0}" пропущен (файл не в моде)':
+        'external #include "{0}" skipped (the file is not in the mod)',
+    "после '}}' класса {0} нет ';' (правильно '}};')":
+        "no ';' after '}}' of class {0} (should be '}};')",
+    'XML: «--» внутри комментария — DayZ это читает, но другие программы могут не открыть файл':
+        'XML: «--» inside a comment — DayZ reads it, but other programs may fail to open the file',
+    'повреждённый .rvmat: {0}':
+        'corrupted .rvmat: {0}',
+    'повреждённая модель .p3d: {0}':
+        'corrupted .p3d model: {0}',
+    'повреждённый .edds: {0}':
+        'corrupted .edds: {0}',
+    'в stringtable.csv не используются {0} ключей из {1} (например: {2}) — если ключи не собираются в коде динамически, их можно удалить':
+        '{0} of {1} stringtable.csv keys are not used (e.g. {2}) — unless they are built dynamically in code, they can be removed',
+    'CfgPatches/{0}: аддон указан в собственных requiredAddons':
+        'CfgPatches/{0}: the addon is listed in its own requiredAddons',
+    'циклическая зависимость requiredAddons: {0}':
+        'circular requiredAddons dependency: {0}',
+    'CfgPatches/{0}: аддон {1} из requiredAddons не найден в игре — опечатка или нужен другой мод':
+        'CfgPatches/{0}: addon {1} from requiredAddons was not found in the game — a typo, or another mod is required',
+    'сохранять в .edds (текстуры Enfusion) вместо .paa':
+        'save as .edds (Enfusion textures) instead of .paa',
+    'файлы .paa/.edds и/или папки':
+        '.paa/.edds files and/or folders',
+    'Нет файлов .paa/.edds.':
+        'No .paa/.edds files.',
+    'Атлас иконок: картинки -> одна текстура + .imageset для интерфейса.':
+        'Icon atlas: images -> one texture + an .imageset for the UI.',
+    'папка вывода':
+        'output folder',
+    'имя набора (файлов и ImageSet)':
+        'set name (files and ImageSet)',
+    'путь к папке в PBO, напр. MyMod/gui/imagesets':
+        'folder path inside the PBO, e.g. MyMod/gui/imagesets',
+    'отступ между картинками, пикс.':
+        'padding between images, px',
+    'Автоисправление типовых проблем мода (сначала показывает план).':
+        'Auto-fix common mod problems (shows the plan first).',
+    'папка мода':
+        'mod folder',
+    'применить исправления (без ключа — только план)':
+        'apply the fixes (without this flag only the plan is shown)',
+    'не делать резервную копию изменённых файлов':
+        'do not back up changed files',
+    'Нечего исправлять автоматически.':
+        'Nothing to fix automatically.',
+    'Это план. Чтобы применить, добавьте --apply.':
+        'This is the plan. Add --apply to apply it.',
+    'Ошибки из логов DayZ (script*.log, crash*.log, *.RPT).':
+        'Errors from DayZ logs (script*.log, crash*.log, *.RPT).',
+    'файлы логов или папки профилей (по умолчанию %%LOCALAPPDATA%%\\DayZ)':
+        'log files or profile folders (default %%LOCALAPPDATA%%\\DayZ)',
+    'папки модов через ; — показать путь к файлу на диске':
+        'mod folders separated by ; — show the file path on disk',
+    'все логи, а не только последние':
+        'all logs, not only the latest',
+    'только ошибки':
+        'errors only',
+    'следить за новыми записями (Ctrl+C — выход)':
+        'follow new entries (Ctrl+C to exit)',
+    'Запуск DayZ и/или DayZ Server с модами.':
+        'Launch DayZ and/or DayZ Server with mods.',
+    'папка DayZ (по умолчанию ищется в Steam)':
+        'DayZ folder (searched in Steam by default)',
+    'папка DayZServer (по умолчанию ищется в Steam)':
+        'DayZServer folder (searched in Steam by default)',
+    'папка мода @Mod (можно несколько раз)':
+        '@Mod folder (can be repeated)',
+    'серверный мод (-serverMod)':
+        'server-side mod (-serverMod)',
+    'миссия, напр. mpmissions\\dayzOffline.chernarusplus':
+        'mission, e.g. mpmissions\\dayzOffline.chernarusplus',
+    'папка профилей сервера (логи)':
+        'server profiles folder (logs)',
+    'только показать команды':
+        'only print the commands',
+    'Запуск отменён — исправьте проблемы выше или используйте --dry-run.':
+        'Launch cancelled — fix the problems above or use --dry-run.',
+    'Массовая правка types.xml: фильтр + операции над найденными типами. Меняются только затронутые значения, остальной текст файла сохраняется.':
+        'Bulk types.xml editing: a filter + operations on the matched types. Only the affected values change; the rest of the file text is kept.',
+    'фильтр по имени (часть имени или маска *, ?)':
+        'name filter (part of the name or a *, ? mask)',
+    "фильтр по категории ('-' — без категории)":
+        "category filter ('-' — no category)",
+    'установить значение':
+        'set a value',
+    'умножить число':
+        'multiply a number',
+    'прибавить к числу':
+        'add to a number',
+    'добавить usage/value/tag (@имя — user-набор)':
+        'add usage/value/tag (@name — a user set)',
+    'убрать usage/value/tag':
+        'remove usage/value/tag',
+    'куда сохранить (по умолчанию — тот же файл)':
+        'where to save (default: the same file)',
+    'только показать найденные типы':
+        'only list the matched types',
+    'Изменений нет.':
+        'No changes.',
+    'Атлас: {0} ({1} картинок), описание: {2}':
+        'Atlas: {0} ({1} images), definition: {2}',
+    'Изменено: {0}':
+        'Changed: {0}',
+    'После исправления: ошибок {0}, предупреждений {1}':
+        'After fixing: {0} errors, {1} warnings',
+    'Логи не найдены.':
+        'No logs found.',
+    'Слежу за логами: {0} (Ctrl+C — выход)':
+        'Following logs: {0} (Ctrl+C to exit)',
+    'Найдено типов: {0} из {1}':
+        'Types matched: {0} of {1}',
+    'Резервная копия: {0}':
+        'Backup: {0}',
+    'внимание: {0}: {1}':
+        'warning: {0}: {1}',
+    'внимание: {0}':
+        'warning: {0}',
+    'ожидалось ПОЛЕ=ЗНАЧЕНИЕ: {0}':
+        'expected FIELD=VALUE: {0}',
+    'изменено {0}':
+        'changed {0}',
+    'это не .edds/.dds (нет сигнатуры DDS)':
+        'not an .edds/.dds file (no DDS signature)',
+    'в .edds нет таблицы блоков COPY/LZ4 (возможно, это обычный .dds)':
+        'the .edds has no COPY/LZ4 block table (maybe it is a plain .dds)',
+    'LZ4: неверное смещение':
+        'LZ4: invalid offset',
+    'LZ4: данных больше, чем заявлено':
+        'LZ4: more data than declared',
+    'картинки не помещаются в атлас {0}x{0}':
+        'the images do not fit into a {0}x{0} atlas',
+    'после данных осталось {0} лишних байт':
+        '{0} extra bytes after the data',
+    'одинаковые имена картинок после очистки имён: {0}':
+        'duplicate image names after sanitizing: {0}',
+    'блок {0} выходит за конец файла':
+        'block {0} goes past the end of the file',
+    'LZ4: ожидалось {0} байт, получено {1}':
+        'LZ4: expected {0} bytes, got {1}',
+    'формат {0} не удалось декодировать: {1}':
+        'could not decode format {0}: {1}',
+    '{0}: добавить «class {1};» перед классом {2}':
+        '{0}: add «class {1};» before class {2}',
+    "{0}:{1}: поставить ';' после '}}' класса":
+        "{0}:{1}: add ';' after the class '}}'",
+    'stringtable.csv: добавить заготовки для {0} ключей ({1})':
+        'stringtable.csv: add placeholders for {0} keys ({1})',
+    '{0}: дополнить строки с недостающими колонками текстом из original':
+        '{0}: fill rows with missing columns using the original text',
+    'переименовать {0} -> {1} и исправить ссылки':
+        'rename {0} -> {1} and fix references',
+    '  Текстуры PAA/EDDS  ':
+        '  PAA/EDDS textures  ',
+    'Картинки, PAA и EDDS':
+        'Images, PAA and EDDS',
+    'Формат':
+        'Format',
+    'Атлас иконок':
+        'Icon atlas',
+    'Имя набора':
+        'Set name',
+    'напр. MyMod/gui/imagesets':
+        'e.g. MyMod/gui/imagesets',
+    'Текстура':
+        'Texture',
+    'Автоисправление':
+        'Auto-fix',
+    'Добавьте в список картинки (иконки) для атласа.':
+        'Add images (icons) for the atlas to the list.',
+    'Добавьте картинки или PAA/EDDS-файлы (проверьте направление).':
+        'Add images or PAA/EDDS files (check the direction).',
+    'Сначала проверьте папку мода.':
+        'Check the mod folder first.',
+    'Обновления':
+        'Updates',
+    'Картинки (PNG/TGA/JPG/BMP) → PAA/EDDS':
+        'Images (PNG/TGA/JPG/BMP) → PAA/EDDS',
+    'PAA/EDDS → картинки':
+        'PAA/EDDS → images',
+    'Атлас иконок (.imageset)...':
+        'Icon atlas (.imageset)...',
+    '▶ Собрать атлас':
+        '▶ Build atlas',
+    'Исправить...':
+        'Fix...',
+    'Будут внесены изменения (резервная копия файлов — рядом с модом):':
+        'The following changes will be made (file backup goes next to the mod):',
+    'Сделать резервную копию':
+        'Make a backup',
+    '▶ Применить':
+        '▶ Apply',
+    'Проверять раз в день при запуске':
+        'Check once a day at startup',
+    'Проверить сейчас':
+        'Check now',
+    'Исправлено: {0}':
+        'Fixed: {0}',
+    'Открыть страницу загрузки?':
+        'Open the download page?',
+    'Картинок в списке: {0}':
+        'Images in the list: {0}',
+    'Версия {0}':
+        'Version {0}',
+    'Не удалось проверить обновления: {0}':
+        'Could not check for updates: {0}',
+    '  Запуск  ':
+        '  Launch  ',
+    '  Редактор types  ':
+        '  Types editor  ',
+    'установить':
+        'set',
+    'умножить на':
+        'multiply by',
+    'прибавить':
+        'add',
+    'добавить в список':
+        'add to list',
+    'убрать из списка':
+        'remove from list',
+    'Папка DayZ':
+        'DayZ folder',
+    'Папка DayZServer':
+        'DayZServer folder',
+    'Миссия (-mission)':
+        'Mission (-mission)',
+    'Конфиг сервера':
+        'Server config',
+    'Профили сервера':
+        'Server profiles',
+    'Профили клиента':
+        'Client profiles',
+    'Серверные моды':
+        'Server mods',
+    'Порт':
+        'Port',
+    'DayZ в библиотеках Steam не найден.':
+        'DayZ was not found in the Steam libraries.',
+    'Командная строка':
+        'Command line',
+    'Остановлено.':
+        'Stopped.',
+    'Папка профилей сервера':
+        'Server profiles folder',
+    'Папка профилей клиента':
+        'Client profiles folder',
+    'Моды (-mod), по порядку загрузки':
+        'Mods (-mod), in load order',
+    'Время':
+        'Time',
+    'Файл:строка':
+        'File:line',
+    'Двойной щелчок — открыть файл мода на строке с ошибкой (исходники модов берутся из вкладки «Проверка ошибок» и списка модов).':
+        'Double-click to open the mod file at the error line (mod sources are taken from the «Error check» tab and the mod list).',
+    'Папка мода (@MyMod с addons внутри)':
+        'Mod folder (@MyMod with addons inside)',
+    'Категория:':
+        'Category:',
+    'Массовая правка (к найденным или выделенным)':
+        'Bulk edit (matched or selected rows)',
+    'Откройте types.xml. Двойной щелчок по ячейке — правка; flags — 6 цифр (cargo hoarder map player crafted deloot); списки — через запятую, @имя — user.':
+        'Open a types.xml. Double-click a cell to edit; flags are 6 digits (cargo hoarder map player crafted deloot); lists are comma-separated, @name is a user set.',
+    'Есть несохранённые изменения. Отбросить их?':
+        'There are unsaved changes. Discard them?',
+    'Сервер запускается, игра стартует через 10 секунд...':
+        'The server is starting, the game will start in 10 seconds...',
+    'Логи: {0}, записей: {1}':
+        'Logs: {0}, entries: {1}',
+    'types.xml: изменено типов: {0}':
+        'types.xml: types changed: {0}',
+    'В окне':
+        'Windowed',
+    'Найти в Steam':
+        'Find in Steam',
+    '+ Папка @мода':
+        '+ @Mod folder',
+    '▶ Сервер + игра':
+        '▶ Server + game',
+    'Сервер':
+        'Server',
+    'Игра':
+        'Game',
+    '■ Остановить':
+        '■ Stop',
+    'Последние логи':
+        'Latest logs',
+    'Открыть папку логов':
+        'Open logs folder',
+    'Только ошибки':
+        'Errors only',
+    'Следить за логами':
+        'Follow logs',
+    'Логи не найдены в:\n{0}':
+        'No logs found in:\n{0}',
+    'Открыть...':
+        'Open...',
+    'Перечитать':
+        'Reload',
+    'Сохранить':
+        'Save',
+    'Имя:':
+        'Name:',
+    'Сбросить':
+        'Reset',
+    'только выделенные':
+        'selected only',
+    'Применить':
+        'Apply',
+    'Показано {0} из {1}; изменено: {2}':
+        'Showing {0} of {1}; changed: {2}',
+    'Возможны проблемы:\n\n{0}\n\nВсё равно запустить?':
+        'Possible problems:\n\n{0}\n\nLaunch anyway?',
+    'Не удалось запустить {0}: {1}':
+        'Could not start {0}: {1}',
+    'В логах новых ошибок: {0}':
+        'New errors in the logs: {0}',
+    'Не удалось открыть: {0}':
+        'Could not open: {0}',
+    'Не удалось сохранить: {0}':
+        'Could not save: {0}',
+    'flags: нужно 6 цифр 0/1':
+        'flags: 6 digits of 0/1 are required',
+    'Изменить {0} типов?':
+        'Change {0} types?',
+    'не найден {0} (укажите папку {1})':
+        '{0} not found (set the {1} folder)',
+    'нет файла конфигурации сервера: {0}':
+        'server config file not found: {0}',
+    ' (повторов: {0})':
+        ' (repeated: {0})',
+    'папка мода не найдена: {0}':
+        'mod folder not found: {0}',
+    'в папке мода нет addons: {0}':
+        'the mod folder has no addons: {0}',
+    'cfgeconomycore.xml: папка <ce folder="{0}"> не найдена':
+        'cfgeconomycore.xml: folder <ce folder="{0}"> not found',
+    'тип {0} описан и в {1} (строка {2}) — будет действовать одно из описаний':
+        'type {0} is also defined in {1} (line {2}) — only one of the definitions will apply',
+    '{0}: тип отсутствует в types.xml (нормально для предметов, которые появляются только как навесное)':
+        '{0}: the type is missing from types.xml (fine for items that only spawn as attachments)',
+    'cfggameplay.json: файл {0} не найден в папке миссии':
+        'cfggameplay.json: file {0} not found in the mission folder',
+    'cfgeconomycore.xml: файл {0}/{1} не найден':
+        'cfgeconomycore.xml: file {0}/{1} not found',
+    '\'{0}\': <{1} name="{2}"> не объявлен в cfglimitsdefinition.xml':
+        '\'{0}\': <{1} name="{2}"> is not declared in cfglimitsdefinition.xml',
+    '\'{0}\': <{1} user="{2}"> не объявлен в cfglimitsdefinitionuser.xml':
+        '\'{0}\': <{1} user="{2}"> is not declared in cfglimitsdefinitionuser.xml',
+    'событие {0}: тип {1} отсутствует в types.xml':
+        'event {0}: type {1} is missing from types.xml',
+    'cfgeventspawns.xml: позиции для события {0}, которого нет в events.xml':
+        'cfgeventspawns.xml: positions for event {0}, which is not in events.xml',
+    '{0}: пресет {1} не найден в cfgrandompresets.xml':
+        '{0}: preset {1} not found in cfgrandompresets.xml',
+    'cfgeventspawns.xml: группа {0} не найдена в cfgeventgroups.xml':
+        'cfgeventspawns.xml: group {0} not found in cfgeventgroups.xml',
+    'cfgrandompresets.xml: предмет {0} (пресет {1}) отсутствует в types.xml':
+        'cfgrandompresets.xml: item {0} (preset {1}) is missing from types.xml',
+    '{0}: предмет {1} отсутствует в types.xml':
+        '{0}: item {1} is missing from types.xml',
+    'обрезанная строка':
+        'truncated string',
+    'неизвестный тип модели {0!r} (ожидалось MLOD или ODOL)':
+        'unknown model type {0!r} (expected MLOD or ODOL)',
+    'LOD {0}: неизвестная сигнатура {1!r}':
+        'LOD {0}: unknown signature {1!r}',
+    'LOD {0}: нет секции TAGG — файл повреждён':
+        'LOD {0}: no TAGG section — the file is corrupted',
+    'LOD {0}: грань с {1} вершинами — файл повреждён':
+        'LOD {0}: a face with {1} vertices — the file is corrupted',
+    'это не types.xml: нет элемента <types>':
+        'not a types.xml: no <types> element',
+    'min больше nominal':
+        'min is greater than nominal',
+    'quantmin больше quantmax':
+        'quantmin is greater than quantmax',
+    'quantmin и quantmax должны быть оба -1 или оба заданы':
+        'quantmin and quantmax must both be -1 or both be set',
+    'у типа может быть только одна категория':
+        'a type can have only one category',
+    'неизвестное поле {0}':
+        'unknown field {0}',
+    '{0}: нужно целое число, а не «{1}»':
+        '{0}: an integer is required, not «{1}»',
+    '{0}: флаг может быть только 0 или 1':
+        '{0}: a flag can only be 0 or 1',
+    'тип {0}: ошибка XML ({1})':
+        'type {0}: XML error ({1})',
+    'умножать и прибавлять можно только числовые поля':
+        'only numeric fields can be multiplied or added to',
+    'добавлять и убирать можно только category/usage/value/tag':
+        'only category/usage/value/tag can be added or removed',
+    'неизвестная операция {0}':
+        'unknown operation {0}',
+    'Не удалось определить версию последнего выпуска.':
+        'Could not determine the version of the latest release.',
+    'У вас последняя версия ({0}).':
+        'You have the latest version ({0}).',
+    'Доступна новая версия {0} (у вас {1}): {2}':
+        'A new version {0} is available (you have {1}): {2}',
+    "DayZ Mod Toolkit — набор инструментов для моддера DayZ. Работает без установки.\n\nЗВУК → OGG\n  MP3/WAV/FLAC/M4A/... → OGG Vorbis. Для 3D-звуков (в мире) — моно, 44100 Гц.\n  Может сгенерировать config.cpp с CfgSoundShaders/CfgSoundSets.\n\nТЕКСТУРЫ PAA / EDDS\n  PNG/TGA/JPG/BMP → PAA (DXT1/DXT5, mip-уровни, сжатие LZO) или EDDS (сжатие LZ4)\n  и PAA/EDDS → PNG/TGA для правки.\n  Стороны текстуры должны быть степенью двойки (256, 512, 1024, 2048...).\n  Формат «auto»: есть прозрачность или суффикс _ca → DXT5, иначе (и для _co) → DXT1.\n  «Атлас иконок»: много картинок → одна текстура + .imageset для интерфейса.\n\nCONFIG.CPP ⇄ CONFIG.BIN\n  Бинаризация конфига (как Addon Builder/CfgConvert) с проверкой ошибок\n  и обратная распаковка config.bin в читаемый config.cpp.\n\nПРОВЕРКА ОШИБОК\n  Укажите папку мода (где config.cpp) — будут проверены:\n  • config.cpp: синтаксис (пропущенные ; и }; ), необъявленные базовые классы, дубликаты, CfgPatches;\n  • скрипты .c: скобки, незакрытые строки и комментарии, #ifdef/#endif, '=' вместо '==', if(...);\n  • .layout/.imageset: скобки и строки;  XML (types.xml, events.xml, cfgspawnabletypes.xml, globals.xml);\n  • JSON, stringtable.csv, PAA/EDDS (размеры, mip-уровни), OGG (кодек Vorbis);\n  • .rvmat и модели .p3d: ссылки на текстуры и материалы;\n  • ссылки на несуществующие файлы, отсутствующие ключи #STR_, папки скриптов из CfgMods,\n    requiredAddons (циклы, опечатки), пробелы и кириллица в именах файлов;\n  • папка миссии сервера: связи между types/events/cfgeventspawns/cfgspawnabletypes,\n    cfglimitsdefinition и cfgeconomycore.\n  Если указать папку игры DayZ (или распакованные скрипты), дополнительно проверяются\n  modded class, extends и override по настоящим классам игры.\n  Двойной щелчок по строке открывает файл (в VS Code — сразу на нужной строке).\n  «Автопроверка» перепроверяет мод при каждом сохранении файлов.\n  «Исправить...» показывает план автоисправлений (class X; перед наследником, пропущенные ;,\n  заготовки строк stringtable, переименование файлов с исправлением ссылок) и применяет\n  выбранные, сохраняя резервную копию.\n\nPBO\n  Сборка папки мода в PBO: проверка → бинаризация config.cpp → упаковка → подпись.\n  Распаковка PBO, проверка подписей, создание ключей .biprivatekey/.bikey.\n\nTYPES.XML\n  Заготовки <type> для всех предметов мода со scope = 2, дополнение существующего types.xml\n  недостающими типами и сортировка.\n\nРЕДАКТОР TYPES\n  types.xml таблицей: фильтр по имени/категории/usage/value/tag, правка ячеек двойным щелчком,\n  массовые операции над найденными (умножить nominal, добавить usage...). Сохраняются только\n  изменённые значения — комментарии и оформление файла остаются.\n\nЗАПУСК\n  Запуск DayZ Server и игры с вашими модами (-mod, -filePatching, -profiles), подключение\n  к локальному серверу. Ошибки из script*.log, crash*.log и *.RPT показываются сразу;\n  двойной щелчок открывает файл мода на строке с ошибкой.\n\nПроверка скриптов — это быстрый анализатор, а не компилятор DayZ: он ловит типичные\nсинтаксические ошибки, но не проверяет типы выражений.\n":
+        "DayZ Mod Toolkit is a toolbox for DayZ modders. No installation needed.\n\nSOUND → OGG\n  MP3/WAV/FLAC/M4A/... → OGG Vorbis. For 3D sounds (in the world) use mono, 44100 Hz.\n  Can generate config.cpp with CfgSoundShaders/CfgSoundSets.\n\nPAA / EDDS TEXTURES\n  PNG/TGA/JPG/BMP → PAA (DXT1/DXT5, mipmaps, LZO compression) or EDDS (LZ4 compression)\n  and PAA/EDDS → PNG/TGA for editing.\n  Texture sides must be powers of two (256, 512, 1024, 2048...).\n  «auto» format: alpha or the _ca suffix → DXT5, otherwise (and for _co) → DXT1.\n  «Icon atlas»: many images → one texture + an .imageset for the UI.\n\nCONFIG.CPP ⇄ CONFIG.BIN\n  Config binarization (like Addon Builder/CfgConvert) with error checking,\n  and unpacking config.bin back into a readable config.cpp.\n\nERROR CHECK\n  Choose the mod folder (where config.cpp is) — the following is checked:\n  • config.cpp: syntax (missing ; and }; ), undeclared base classes, duplicates, CfgPatches;\n  • .c scripts: brackets, unclosed strings and comments, #ifdef/#endif, '=' instead of '==', if(...);\n  • .layout/.imageset: brackets and strings;  XML (types.xml, events.xml, cfgspawnabletypes.xml, globals.xml);\n  • JSON, stringtable.csv, PAA/EDDS (sizes, mipmaps), OGG (Vorbis codec);\n  • .rvmat and .p3d models: texture and material references;\n  • references to missing files, missing #STR_ keys, script folders from CfgMods,\n    requiredAddons (cycles, typos), spaces and non-Latin characters in file names;\n  • server mission folder: links between types/events/cfgeventspawns/cfgspawnabletypes,\n    cfglimitsdefinition and cfgeconomycore.\n  If you set the DayZ game folder (or extracted scripts), modded class, extends and override\n  are also checked against the game's real classes.\n  Double-click a row to open the file (in VS Code — right at the line).\n  «Auto-check» re-checks the mod every time files are saved.\n  «Fix...» shows the auto-fix plan (class X; before the subclass, missing ;, stringtable\n  placeholders, renaming files and fixing references) and applies the selected fixes,\n  keeping a backup.\n\nPBO\n  Build a mod folder into a PBO: check → binarize config.cpp → pack → sign.\n  Unpack PBO files, verify signatures, create .biprivatekey/.bikey keys.\n\nTYPES.XML\n  <type> templates for all mod items with scope = 2, merging missing types into an existing\n  types.xml and sorting.\n\nTYPES EDITOR\n  types.xml as a table: filter by name/category/usage/value/tag, edit cells by double-click,\n  bulk operations on the matched rows (multiply nominal, add usage...). Only changed values\n  are written — comments and formatting of the file stay intact.\n\nLAUNCH\n  Start DayZ Server and the game with your mods (-mod, -filePatching, -profiles) and connect\n  to the local server. Errors from script*.log, crash*.log and *.RPT show up right away;\n  double-click opens the mod file at the error line.\n\nThe script check is a fast analyzer, not the DayZ compiler: it catches typical syntax\nerrors but does not check expression types.\n",
+    'Консольный режим.\n\n    DayZModToolkit --cli audio    <файлы/папки> [опции]   звук -> OGG\n    DayZModToolkit --cli paa      <картинки>    [опции]   PNG/TGA/JPG -> PAA\n    DayZModToolkit --cli png      <paa>         [опции]   PAA -> PNG\n    DayZModToolkit --cli rapify   <config.cpp>  [опции]   config.cpp -> config.bin\n    DayZModToolkit --cli derapify <config.bin>  [опции]   config.bin -> config.cpp\n    DayZModToolkit --cli check    <файлы/папки> [опции]   проверка на ошибки (--game, --watch)\n    DayZModToolkit --cli pack     <папка мода>  [опции]   сборка PBO (проверка, бинаризация, подпись)\n    DayZModToolkit --cli unpack   <pbo>         [опции]   распаковка PBO\n    DayZModToolkit --cli keygen   <имя_ключа>   [опции]   создать .biprivatekey и .bikey\n    DayZModToolkit --cli sign     <pbo>  --key <файл.biprivatekey>\n    DayZModToolkit --cli verify   <pbo>  [--key <файл.bikey>]\n    DayZModToolkit --cli types    <config/папка мода> [опции]   записи types.xml из конфига\n    DayZModToolkit --cli atlas    <картинки>    [опции]   атлас иконок (.edds/.paa + .imageset)\n    DayZModToolkit --cli fix      <папка мода>  [--apply] автоисправление типовых проблем\n    DayZModToolkit --cli launch   [client|server|both] --mod <@Mod> ...   запуск игры/сервера\n    DayZModToolkit --cli logs     [папки/логи]  [-f]      ошибки из логов DayZ\n    DayZModToolkit --cli typesedit <types.xml>  [опции]   массовая правка types.xml\n\nБез подкоманды (--cli <файлы>) выполняется конвертация звука, как в прежних версиях.\n':
+        'Console mode.\n\n    DayZModToolkit --cli audio    <files/folders> [options]   sound -> OGG\n    DayZModToolkit --cli paa      <images>        [options]   PNG/TGA/JPG -> PAA\n    DayZModToolkit --cli png      <paa>           [options]   PAA -> PNG\n    DayZModToolkit --cli rapify   <config.cpp>    [options]   config.cpp -> config.bin\n    DayZModToolkit --cli derapify <config.bin>    [options]   config.bin -> config.cpp\n    DayZModToolkit --cli check    <files/folders> [options]   error check (--game, --watch)\n    DayZModToolkit --cli pack     <mod folder>    [options]   build a PBO (check, binarize, sign)\n    DayZModToolkit --cli unpack   <pbo>           [options]   unpack a PBO\n    DayZModToolkit --cli keygen   <key_name>      [options]   create .biprivatekey and .bikey\n    DayZModToolkit --cli sign     <pbo>  --key <file.biprivatekey>\n    DayZModToolkit --cli verify   <pbo>  [--key <file.bikey>]\n    DayZModToolkit --cli types    <config/mod folder> [options]   types.xml entries from the config\n    DayZModToolkit --cli atlas    <images>        [options]   icon atlas (.edds/.paa + .imageset)\n    DayZModToolkit --cli fix      <mod folder>    [--apply]   auto-fix common problems\n    DayZModToolkit --cli launch   [client|server|both] --mod <@Mod> ...   launch the game/server\n    DayZModToolkit --cli logs     [folders/logs]  [-f]        errors from DayZ logs\n    DayZModToolkit --cli typesedit <types.xml>    [options]   bulk types.xml editing\n\nWithout a subcommand (--cli <files>) sound is converted, as in previous versions.\nLanguage: --lang en | --lang ru\n',
 }

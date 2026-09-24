@@ -16,6 +16,7 @@
 Проверки по всему моду: ссылки на несуществующие файлы (.paa/.ogg/.layout/...),
 ключи #STR_ без перевода, папки скриптов из CfgMods, «плохие» имена файлов.
 С индексом игры (vanilla.py): modded class/extends/override и внешние классы конфига.
+Папка миссии сервера (mission.py): связи между types/events/cfglimitsdefinition/cfgeconomycore и др.
 """
 
 from __future__ import annotations
@@ -38,10 +39,10 @@ REF_EXTENSIONS = (".paa", ".edds", ".ogg", ".wss", ".layout", ".imageset", ".rvm
                   ".styles", ".ptc", ".emat", ".anm", ".asi", ".json", ".c", ".tga", ".png")
 VANILLA_ROOTS = ("dz/", "gui/", "scripts/", "graphics/", "system/", "core/", "sound/", "dayz/")
 CHECK_EXTENSIONS = {".c", ".cpp", ".bin", ".layout", ".imageset", ".xml", ".json", ".csv", ".paa", ".ogg",
-                    ".styles", ".hpp", ".h"}
+                    ".styles", ".hpp", ".h", ".rvmat", ".p3d", ".edds"}
 SKIP_DIRS = {".git", "__pycache__", "node_modules", ".vs", ".idea"}
 
-_STR_KEY = re.compile(r"#(STR_[A-Za-z0-9_]+)")
+_STR_KEY = re.compile(r"[#$](STR_[A-Za-z0-9_]+)")
 
 
 @dataclass
@@ -182,6 +183,40 @@ def check_config_bin(path: Path, ctx: Optional[ModContext] = None) -> List[Issue
     return issues
 
 
+def check_rvmat(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
+    """Материал .rvmat — это конфиг (текстовый или бинаризованный): синтаксис и ссылки на текстуры."""
+    data = path.read_bytes()
+    try:
+        if rap.is_rapified(data):
+            root, issues = rap.read_rap(data), []
+        else:
+            root, issues = cfg.parse_config(path)
+    except cfg.ConfigError as e:
+        return [e.issue]
+    except Exception as e:
+        return [Issue("error", tr("повреждённый .rvmat: {0}").format(e), str(path))]
+    issues = [i for i in issues if i.code != "no-cfgpatches"]
+    if ctx is not None:
+        for _p, value, node in cfg.iter_strings(root):
+            if value.startswith("#"):
+                continue   # процедурная текстура #(argb,8,8,3)color(...)
+            _add_ref(ctx, value, Issue("warning", "", node.file or str(path), node.line))
+    return issues
+
+
+def check_p3d(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
+    """Модель: целостность MLOD и ссылки на текстуры/материалы (у ODOL — по найденным в файле путям)."""
+    from . import p3d
+    try:
+        info = p3d.read_p3d(path)
+    except Exception as e:
+        return [Issue("error", tr("повреждённая модель .p3d: {0}").format(e), str(path), 0, 0, "p3d")]
+    if ctx is not None:
+        for dep in sorted(info.dependencies):
+            _add_ref(ctx, dep, Issue("warning", "", str(path), 0))
+    return []
+
+
 # --------------------------------------------------------------------------------------
 # Скрипты
 # --------------------------------------------------------------------------------------
@@ -251,8 +286,11 @@ def check_layout(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
 def _xml_lines(text: str) -> Dict[str, int]:
     """Номер строки для <type name="X"> / <event name="X"> (ElementTree строки не хранит)."""
     res: Dict[str, int] = {}
+    line, pos = 1, 0
     for m in re.finditer(r"<(\w+)\s+name\s*=\s*\"([^\"]*)\"", text):
-        res.setdefault(f"{m.group(1)}:{m.group(2)}", text.count("\n", 0, m.start()) + 1)
+        line += text.count("\n", pos, m.start())   # счёт строк одним проходом по файлу
+        pos = m.start()
+        res.setdefault(f"{m.group(1)}:{m.group(2)}", line)
     return res
 
 
@@ -301,14 +339,15 @@ def _check_types_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> List
                                     file, ln, 0, "types"))
             else:
                 vals[tag] = v
-        if "nominal" in vals and "min" in vals and vals["min"] > vals["nominal"]:
-            issues.append(Issue("error", tr("'{0}': min ({1}) больше nominal ({2})").format(name, vals['min'], vals['nominal']),
+        # nominal = 0 — предмет не спавнится лутом, min тогда не важен (так в официальных types.xml)
+        if vals.get("nominal", 0) > 0 and "min" in vals and vals["min"] > vals["nominal"]:
+            issues.append(Issue("warning", tr("'{0}': min ({1}) больше nominal ({2})").format(name, vals['min'], vals['nominal']),
                                 file, ln, 0, "types"))
         for q in ("quantmin", "quantmax"):
             if q in vals and not (vals[q] == -1 or 0 <= vals[q] <= 100):
                 issues.append(Issue("error", tr("'{0}': {1} должен быть -1 или от 0 до 100").format(name, q), file, ln, 0, "types"))
         if vals.get("quantmin", -1) != -1 and vals.get("quantmax", -1) != -1 and vals["quantmin"] > vals["quantmax"]:
-            issues.append(Issue("error", tr("'{0}': quantmin больше quantmax").format(name), file, ln, 0, "types"))
+            issues.append(Issue("warning", tr("'{0}': quantmin больше quantmax").format(name), file, ln, 0, "types"))
         if (vals.get("quantmin", -1) == -1) != (vals.get("quantmax", -1) == -1):
             issues.append(Issue("warning", tr("'{0}': quantmin и quantmax должны быть оба -1 или оба заданы").format(name),
                                 file, ln, 0, "types"))
@@ -323,7 +362,7 @@ def _check_types_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> List
                 if a not in TYPES_FLAGS:
                     issues.append(Issue("warning", tr("'{0}': неизвестный флаг {1}").format(name, a), file, ln, 0, "types"))
                 elif v not in ("0", "1"):
-                    issues.append(Issue("error", tr("'{0}': флаг {1} должен быть 0 или 1").format(name, a), file, ln, 0, "types"))
+                    issues.append(Issue("warning", tr("'{0}': флаг {1} должен быть 0 или 1").format(name, a), file, ln, 0, "types"))
         for tag in ("category", "usage", "value", "tag"):
             for el in t.findall(tag):
                 if not el.get("name"):
@@ -352,8 +391,8 @@ def _check_events_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> Lis
                     issues.append(Issue("error", tr("'{0}': <{1}> должно быть целым числом").format(name, tag), file, ln, 0, "events"))
                 else:
                     vals[tag] = v
-        if "min" in vals and "max" in vals and vals["min"] > vals["max"]:
-            issues.append(Issue("error", tr("'{0}': min больше max").format(name), file, ln, 0, "events"))
+        if vals.get("max", 0) > 0 and "min" in vals and vals["min"] > vals["max"]:
+            issues.append(Issue("warning", tr("'{0}': min больше max").format(name), file, ln, 0, "events"))
         if "active" in vals and vals["active"] not in (0, 1):
             issues.append(Issue("error", tr("'{0}': active должен быть 0 или 1").format(name), file, ln, 0, "events"))
         ch = ev.find("children")
@@ -362,8 +401,8 @@ def _check_events_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> Lis
                 if not c.get("type"):
                     issues.append(Issue("error", tr("'{0}': <child> без type").format(name), file, ln, 0, "events"))
                 lo, hi = _num(c.get("min")), _num(c.get("max"))
-                if lo is not None and hi is not None and lo > hi:
-                    issues.append(Issue("error", tr("'{0}': у child {1} min больше max").format(name, c.get('type')),
+                if lo is not None and hi is not None and hi > 0 and lo > hi:   # max = 0 — без ограничения
+                    issues.append(Issue("warning", tr("'{0}': у child {1} min больше max").format(name, c.get('type')),
                                         file, ln, 0, "events"))
     return issues
 
@@ -377,7 +416,8 @@ def _check_spawnable_xml(root: ET.Element, file: str, lines: Dict[str, int]) -> 
             ch = el.get("chance")
             if ch is not None:
                 v = _num(ch, float)
-                if v is None or not 0 <= v <= 1:
+                # у <item> chance — относительный вес внутри блока (бывает > 1), у блоков — вероятность 0..1
+                if v is None or v < 0 or (el.tag != "item" and v > 1):
                     issues.append(Issue("error", tr("'{0}': chance='{1}' должен быть от 0 до 1 (<{2}>)").format(name, ch, el.tag),
                                         file, ln, 0, "spawnable"))
             if el.tag == "item" and not el.get("name"):
@@ -417,8 +457,23 @@ def check_xml(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     except UnicodeDecodeError:
         issues.append(Issue("warning", tr("файл не в UTF-8"), file, 0, 0, "encoding"))
         text = raw.decode("cp1251", "replace")
+    def parse(t):
+        return ET.fromstring(t.encode("utf-8") if t.lstrip().startswith("<?xml") else t)
+
     try:
-        root = ET.fromstring(text.encode("utf-8") if text.lstrip().startswith("<?xml") else text)
+        try:
+            root = parse(text)
+        except ET.ParseError:
+            # DayZ читает комментарии с «--» внутри (<!-- ---- -->), хотя это нарушает XML
+            fixed = re.sub(r"<!--(.*?)-->", lambda m: "<!--" + m.group(1).replace("--", "- ").rstrip("-") + " -->", text, flags=re.S)
+            if fixed == text:
+                raise
+            root = parse(fixed)
+            m = re.search(r"<!--((?:(?!-->).)*?--(?:(?!-->).)*?)-->", text, flags=re.S)
+            issues.append(Issue("warning", tr("XML: «--» внутри комментария — DayZ это читает, но другие программы "
+                                              "могут не открыть файл"), file,
+                                text.count("\n", 0, m.start()) + 1 if m else 0, 0, "xml-comment"))
+            text = fixed
     except ET.ParseError as e:
         line, col = getattr(e, "position", (0, 0))
         msg = str(e).split(":")[0]
@@ -439,6 +494,9 @@ def check_xml(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     if ctx is not None:
         for el in root.iter():
             for a, v in el.attrib.items():
+                low = v.lower()
+                if not ("#str_" in low or (low.endswith(REF_EXTENSIONS) and ("/" in v or "\\" in v))):
+                    continue   # номер строки ищем только для настоящих ссылок (карты миссий огромные)
                 pos = text.find(f'"{v}"')
                 ln = text.count("\n", 0, pos) + 1 if pos >= 0 else 0
                 _add_ref(ctx, v, Issue("warning", "", file, ln))
@@ -574,6 +632,19 @@ def check_paa(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
     return issues
 
 
+def check_edds(path: Path, ctx: Optional[ModContext] = None) -> List[Issue]:
+    from . import edds, paa
+    try:
+        info, _ = edds.parse(path.read_bytes())
+    except Exception as e:
+        return [Issue("error", tr("повреждённый .edds: {0}").format(e), str(path), 0, 0, "edds")]
+    issues: List[Issue] = []
+    if not (paa.is_pow2(info.width) and paa.is_pow2(info.height)) and info.mipmaps > 1:
+        issues.append(Issue("warning", tr("размер {0}x{1}: стороны должны быть степенью двойки").format(
+            info.width, info.height), str(path), 0, 0, "edds"))
+    return issues
+
+
 def check_ogg(path: Path, ctx: Optional[ModContext] = None, ffmpeg: Optional[str] = None) -> List[Issue]:
     file = str(path)
     data = path.read_bytes()[:64]
@@ -612,7 +683,8 @@ def checker_for(path: Path) -> Optional[Callable]:
         return check_stringtable
     return {
         ".c": check_script, ".layout": check_layout, ".imageset": check_layout, ".styles": check_layout,
-        ".xml": check_xml, ".json": check_json, ".paa": check_paa, ".ogg": check_ogg,
+        ".xml": check_xml, ".json": check_json, ".paa": check_paa, ".ogg": check_ogg, ".rvmat": check_rvmat,
+        ".p3d": check_p3d, ".edds": check_edds,
     }.get(ext)
 
 
@@ -673,6 +745,16 @@ def cross_checks(ctx: ModContext) -> List[Issue]:
             missing.setdefault(k, Issue("warning", tr("ключ #{0} отсутствует в stringtable.csv").format(key),
                                         where.file, where.line, where.col, "missing-string"))
         issues += list(missing.values())
+    # неиспользуемые ключи stringtable — одним замечанием (ключи бывают составными, как "#STR_MOD_" + номер)
+    if ctx.has_stringtable and ctx.str_keys:
+        used = {k.lower() for k, _ in ctx.str_refs}
+        unused = sorted(k for k in ctx.str_keys if k not in used)
+        if unused and len(unused) < len(ctx.str_keys):
+            issues.append(Issue("info", tr("в stringtable.csv не используются {0} ключей из {1} (например: {2}) — "
+                                           "если ключи не собираются в коде динамически, их можно удалить").format(
+                len(unused), len(ctx.str_keys), ", ".join(unused[:5])), str(ctx.root / "stringtable.csv"), 0, 0,
+                "unused-strings"))
+    issues += required_addons_checks(ctx)
     # имена файлов
     for rel, p in ctx.index.items():
         if p.suffix.lower() in CHECK_EXTENSIONS or p.suffix.lower() in (".p3d", ".rvmat", ".edds", ".wss"):
@@ -680,6 +762,65 @@ def cross_checks(ctx: ModContext) -> List[Issue]:
             why = _bad_name(real)
             if why:
                 issues.append(Issue("warning", tr("{0}: {1} — в PBO и путях DayZ используйте латиницу без пробелов").format(why, real), str(p), 0, 0, "filename"))
+    return issues
+
+
+def patches_of(root) -> Dict[str, List[str]]:
+    """CfgPatches: имя аддона -> requiredAddons."""
+    res: Dict[str, List[str]] = {}
+    for top in root.entries:
+        if isinstance(top, cfg.ClassNode) and top.name.lower() == "cfgpatches" and not top.extern:
+            for c in top.entries:
+                if isinstance(c, cfg.ClassNode) and not c.extern:
+                    req: List[str] = []
+                    for e in c.entries:
+                        if isinstance(e, cfg.ArrayNode) and e.name.lower() == "requiredaddons":
+                            req += [str(x) for x in e.value if isinstance(x, str)]
+                    res[c.name] = req
+    return res
+
+
+def required_addons_checks(ctx: ModContext, game=None) -> List[Issue]:
+    issues: List[Issue] = []
+    patches: Dict[str, Tuple[List[str], str]] = {}
+    orig: Dict[str, str] = {}
+    for root, f in ctx.configs:
+        for name, req in patches_of(root).items():
+            patches[name.lower()] = (req, f)
+            orig[name.lower()] = name
+    for name, (req, f) in patches.items():
+        if name in {r.lower() for r in req}:
+            issues.append(Issue("error", tr("CfgPatches/{0}: аддон указан в собственных requiredAddons").format(orig[name]),
+                                f, 0, 0, "required-self"))
+    # циклы среди аддонов мода
+    state: Dict[str, int] = {}
+
+    def visit(n: str, stack: List[str]) -> None:
+        state[n] = 1
+        for r in patches.get(n, ([], ""))[0]:
+            r = r.lower()
+            if r not in patches or r == n:
+                continue
+            if state.get(r) == 1:
+                cyc = stack[stack.index(r):] + [r] if r in stack else [n, r]
+                issues.append(Issue("error", tr("циклическая зависимость requiredAddons: {0}").format(
+                    " -> ".join(orig.get(x, x) for x in cyc)), patches[n][1], 0, 0, "required-cycle"))
+            elif state.get(r) is None:
+                visit(r, stack + [r])
+        state[n] = 2
+
+    for n in patches:
+        if state.get(n) is None:
+            visit(n, [n])
+    if game is not None:
+        known = game.config_classes.get("cfgpatches")
+        if known:
+            for name, (req, f) in patches.items():
+                for r in req:
+                    if r.lower() not in known and r.lower() not in patches:
+                        issues.append(Issue("warning", tr("CfgPatches/{0}: аддон {1} из requiredAddons не найден в "
+                                                          "игре — опечатка или нужен другой мод").format(orig[name], r),
+                                            f, 0, 0, "required-unknown"))
     return issues
 
 
@@ -725,8 +866,12 @@ def check_paths(paths: Iterable[str], ffmpeg: Optional[str] = None,
                 on_file(f, iss, done, total)
         if ctx is not None:
             report.issues += cross_checks(ctx)
+            from . import mission
+            if mission.is_mission_dir(ctx.root):
+                report.issues += mission.check_mission(ctx.root)
             if game is not None:
                 from . import vanilla
+                report.issues += [i for i in required_addons_checks(ctx, game) if i.code == "required-unknown"]
                 report.issues += vanilla.check_mod_scripts(ctx.scripts, game)
                 for root, f in ctx.configs:
                     report.issues += vanilla.check_config_externs(root, f, game)

@@ -111,11 +111,26 @@ def image_to_paa_task(fmt: str = "auto", resize: str = "error", overwrite: bool 
 
 
 def paa_to_image_task(overwrite: bool = True):
+    """PAA или EDDS -> картинка."""
     def fn(t: Task) -> Result:
         if t.dst.exists() and not overwrite:
             return Result(t, True, tr("пропущен (уже существует)"))
+        if t.src.suffix.lower() == ".edds":
+            from . import edds
+            info = edds.edds_to_image(t.src, t.dst)
+            return Result(t, True, f"{info.width}x{info.height} {info.format_name}")
         info = paa.paa_to_image(t.src, t.dst)
         return Result(t, True, f"{info.width}x{info.height} {info.type_name}")
+    return fn
+
+
+def image_to_edds_task(fmt: str = "auto", resize: str = "error", overwrite: bool = True):
+    def fn(t: Task) -> Result:
+        from . import edds
+        if t.dst.exists() and not overwrite:
+            return Result(t, True, tr("пропущен (уже существует)"))
+        w, h, used = edds.image_to_edds(t.src, t.dst, fmt, resize)
+        return Result(t, True, f"{w}x{h} {used}")
     return fn
 
 

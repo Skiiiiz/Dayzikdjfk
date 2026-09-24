@@ -197,7 +197,13 @@ class Preprocessor:
             if c.is_file():
                 self._process(c, read_text(c), out)
                 return
-        self.issues.append(Issue("error", tr("не найден файл #include \"{0}\"").format(m.group(1)), fname, lineno, 0, "include"))
+        if m.group(1).startswith(("\\", "/")):
+            # абсолютный путь P:\... (данные игры или другого мода) — проверить нечем
+            self.issues.append(Issue("info", tr("внешний #include \"{0}\" пропущен (файл не в моде)").format(m.group(1)),
+                                     fname, lineno, 0, "include-external"))
+        else:
+            self.issues.append(Issue("error", tr("не найден файл #include \"{0}\"").format(m.group(1)), fname, lineno, 0,
+                                     "include"))
         out.append(SrcLine("", fname, lineno))
 
     def _expand(self, text: str, fname: str, lineno: int, depth: int = 0) -> str:
@@ -515,9 +521,14 @@ class Parser:
         node.entries = self.parse_body()
         self.expect("}")
         t = self.peek()
-        if not (t.kind == "sym" and t.text == ";"):
+        if t.kind == "sym" and t.text == ";":
+            self.next()
+        elif t.kind == "sym" and t.text == "}" or t.kind == "eof" or (t.kind == "ident" and t.text == "class"):
+            # инструменты BI это прощают (так написано и в официальных примерах DayZ)
+            self.issues.append(Issue("info", tr("после '}}' класса {0} нет ';' (правильно '}};')").format(node.name),
+                                     t.file, t.line, t.col, "class-semicolon"))
+        else:
             self.error(tr("после '}}' класса {0} нужна ';' (пишется '}};')").format(node.name), t)
-        self.next()
         return node
 
     def parse_enum(self) -> Node:
@@ -571,7 +582,7 @@ class Parser:
         self.next()
         node = ValueNode(name.text, name.line, name.file, value, quoted)
         if not quoted and isinstance(value, str):
-            self.issues.append(Issue("warning", tr("значение '{0}' без кавычек: {1} — лучше взять в кавычки").format(name.text, value), name.file, name.line, 0, "unquoted"))
+            self.issues.append(Issue("info", tr("значение '{0}' без кавычек: {1} — лучше взять в кавычки").format(name.text, value), name.file, name.line, 0, "unquoted"))
         return node
 
     def parse_scalar(self, end: str) -> Tuple[Value, bool]:
@@ -628,7 +639,7 @@ class Parser:
                 self.next()
                 t2 = self.peek()
                 if t2.kind == "sym" and t2.text == "}":
-                    self.issues.append(Issue("warning", tr("лишняя запятая перед '}' в массиве"),
+                    self.issues.append(Issue("info", tr("лишняя запятая перед '}' в массиве"),
                                              t.file, t.line, t.col, "trailing-comma"))
                 continue
             if t.kind == "sym" and t.text == "}":
@@ -755,7 +766,8 @@ def semantic_check(root: ClassNode, file: str = "") -> List[Issue]:
                 names = {x.name.lower() for x in c.entries}
                 for req in ("units", "weapons", "requiredaddons"):
                     if req not in names:
-                        issues.append(Issue("warning", tr("в CfgPatches/{0} нет {1}[]").format(c.name, req),
+                        issues.append(Issue("warning" if req == "requiredaddons" else "info",
+                                            tr("в CfgPatches/{0} нет {1}[]").format(c.name, req),
                                             c.file or file, c.line, 0, "cfgpatches"))
                 for x in c.entries:
                     if x.name.lower() in ("units", "weapons", "requiredaddons") and not isinstance(x, ArrayNode):

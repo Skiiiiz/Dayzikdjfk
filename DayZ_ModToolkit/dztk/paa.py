@@ -354,12 +354,13 @@ def _tag(name: str, payload: bytes) -> bytes:
     return b"GGAT" + name[::-1].encode("ascii") + struct.pack("<I", len(payload)) + payload
 
 
-def build_mipmaps(img: np.ndarray, min_size: int = 4) -> List[np.ndarray]:
+def build_mipmaps(img: np.ndarray, min_size: int = 4, full_chain: bool = False) -> List[np.ndarray]:
+    """Уровни детализации; full_chain — до 1x1 по обеим сторонам (как в DDS), иначе до min_size по меньшей."""
     from PIL import Image
     mips = [img]
     cur = Image.fromarray(img, "RGBA")
     w, h = cur.size
-    while w > min_size and h > min_size:
+    while (w > 1 or h > 1) if full_chain else (w > min_size and h > min_size):
         w, h = max(1, w // 2), max(1, h // 2)
         cur = cur.resize((w, h), Image.BOX)
         mips.append(np.asarray(cur))

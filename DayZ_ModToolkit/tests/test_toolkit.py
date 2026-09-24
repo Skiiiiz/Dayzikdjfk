@@ -97,7 +97,7 @@ def parse_text(tmp_path, text):
 
 @pytest.mark.parametrize("text, fragment", [
     ("class A\n{\n\tx = 1\n\ty = 2;\n};\n", "';'"),
-    ("class A\n{\n\tx = 1;\n}\nclass B {};\n", "};"),
+    ("class A\n{\n\tx = 1;\n}\nx = 2;\n", "};"),
     ("class A\n{\n\tx = 1;\n", "конец файла"),
     ("class A { arr = {1,2}; };\n", "arr[]"),
     ("class A { s = \"abc; };\n", "незакрытая строка"),
@@ -110,6 +110,13 @@ def test_cfg_syntax_errors(tmp_path, text, fragment):
         parse_text(tmp_path, text)
     assert fragment in str(e.value)
     assert e.value.issue.line > 0
+
+
+def test_cfg_tolerated_like_bi_tools(tmp_path):
+    """Как в официальных примерах DayZ: '}' без ';' перед закрытием родителя/следующим классом допустим."""
+    root, issues = parse_text(tmp_path, "class A\n{\n\tclass B\n\t{\n\t}\n};\nclass C {}\nclass D {};\n")
+    assert [e.name for e in root.entries] == ["A", "C", "D"]
+    assert {i.code for i in issues} == {"class-semicolon"} and all(i.level == "info" for i in issues)
 
 
 def test_cfg_semantics(tmp_path):

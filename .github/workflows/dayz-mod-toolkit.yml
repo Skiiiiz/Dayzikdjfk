@@ -27,12 +27,15 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --upgrade pyinstaller pytest -r requirements.txt
 
-      - name: Reference data for tests (DayZ scripts, HEMTT signing fixtures)
+      - name: Reference data for tests (DayZ scripts, official missions, HEMTT signing fixtures)
         working-directory: ${{ runner.temp }}
         run: |
           git clone -q --depth 1 https://github.com/BohemiaInteractive/DayZ-Script-Diff dzscripts
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/BohemiaInteractive/DayZ-Central-Economy dzce
+          git -C dzce sparse-checkout set dayzOffline.chernarusplus
           git clone -q --depth 1 --filter=blob:none --sparse https://github.com/BrettMayson/HEMTT hemtt
           git -C hemtt sparse-checkout set libs/signing/tests
+          "DAYZ_CE=$env:RUNNER_TEMP\dzce" >> $env:GITHUB_ENV
           "DAYZ_SCRIPTS=$env:RUNNER_TEMP\dzscripts\scripts" >> $env:GITHUB_ENV
           "HEMTT_SIGNING_TESTS=$env:RUNNER_TEMP\hemtt\libs\signing\tests\ace_ai_3.15.2.69" >> $env:GITHUB_ENV
 
@@ -47,6 +50,7 @@ jobs:
 
       - name: Build single exe
         run: |
+          "APP_VERSION=$(python -c 'from dztk import APP_VERSION; print(APP_VERSION)')" >> $env:GITHUB_ENV
           python tools/version_info.py
           python -m PyInstaller --noconfirm --onefile --windowed `
             --name DayZModToolkit --icon assets/icon.ico --version-file version_info.txt `
@@ -84,6 +88,20 @@ jobs:
           if (-not (Select-String -Path t_types.xml -SimpleMatch 'name="MyItem"')) { throw "types.xml" }
           Run-Exe @('--lang','en','--cli','check','..\SM_PartyMod','--report','t_report_en.txt')
           if (-not (Select-String -Path t_report_en.txt -SimpleMatch 'Files checked')) { throw "english report" }
+          Run-Exe @('--cli','paa','t_png','-o','t_edds','--edds')
+          if ((Get-ChildItem t_edds\*.edds).Count -ne 15) { throw "edds count" }
+          Run-Exe @('--cli','png','t_edds','-o','t_png2')
+          Run-Exe @('--cli','atlas','t_png','-o','t_atlas','--name','pings','--prefix','SM_PartyMod/GUI')
+          if (-not (Select-String -Path t_atlas\pings.imageset -SimpleMatch 'SM_PartyMod/GUI/pings.edds')) { throw "atlas" }
+          Copy-Item -Recurse ..\SM_PartyMod t_fixmod
+          Run-Exe @('--cli','fix','t_fixmod','--apply')
+          Copy-Item "$env:DAYZ_CE\dayzOffline.chernarusplus\db\types.xml" t_ce_types.xml
+          Run-Exe @('--cli','typesedit','t_ce_types.xml','--category','weapons','--mul','nominal=2')
+          Run-Exe @('--cli','check',"$env:DAYZ_CE\dayzOffline.chernarusplus")
+          New-Item -ItemType Directory -Force t_logs | Out-Null
+          Set-Content t_logs\script_ci.log 'SCRIPT       (W): @"scripts/3_Game/foo.c,3": Possible variable name conflict'
+          Run-Exe @('--cli','logs','t_logs')
+          Run-Exe @('--cli','launch','--game','t_logs','--server-dir','t_logs','--mod','t_pbo\@SM_PartyMod','--dry-run')
 
       - name: Smoke test (GUI starts)
         run: |
@@ -103,10 +121,13 @@ jobs:
         with:
           tag_name: dayz-toolkit-latest
           target_commitish: ${{ github.sha }}
-          name: DayZ Mod Toolkit (Windows)
+          name: DayZ Mod Toolkit ${{ env.APP_VERSION }} (Windows)
           body: |
             DayZ Mod Toolkit для Windows 10/11: один файл DayZModToolkit.exe, ffmpeg встроен, установка не нужна.
-            Звук → OGG, PNG/TGA ⇄ PAA, config.cpp ⇄ config.bin, сборка и подпись PBO, types.xml,
-            проверка мода на ошибки (в т.ч. по классам игры). Интерфейс на русском и английском.
+            Звук → OGG, PNG/TGA ⇄ PAA/EDDS, атлас иконок, config.cpp ⇄ config.bin, сборка и подпись PBO,
+            types.xml (генерация и табличный редактор), проверка мода и папки миссии на ошибки
+            с автоисправлением, запуск игры/сервера с разбором логов. Интерфейс на русском и английском.
+
+            Version ${{ env.APP_VERSION }}
           files: DayZ_ModToolkit/dist/DayZModToolkit.exe
           make_latest: true

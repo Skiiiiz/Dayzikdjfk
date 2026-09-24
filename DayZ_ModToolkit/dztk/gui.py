@@ -12,6 +12,8 @@ import shutil
 import subprocess
 import sys
 import threading
+import time
+import webbrowser
 from dataclasses import asdict
 from pathlib import Path
 from typing import Callable, Dict, List, Optional
@@ -157,7 +159,7 @@ class Tab(ttk.Frame):
     def __init__(self, nb: ttk.Notebook, app: "App"):
         super().__init__(nb, padding=6)
         self.app = app
-        nb.add(self, text=self.title)
+        nb.add(self, text=self.title.strip())
 
     def save(self) -> dict:
         return {}
@@ -413,7 +415,7 @@ class AudioTab(Tab):
 # --------------------------------------------------------------------------------------
 
 class TextureTab(Tab):
-    title = tr("  Текстуры PAA  ")
+    title = tr("  Текстуры PAA/EDDS  ")
 
     def __init__(self, nb, app):
         super().__init__(nb, app)
@@ -421,8 +423,9 @@ class TextureTab(Tab):
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=2)
         self.rowconfigure(0, weight=1)
-        img_types = " ".join("*" + e for e in sorted(paa.IMAGE_EXTENSIONS | {".paa"}))
-        self.files = FileList(self, app, tr("Картинки и PAA"), [(tr("Картинки и PAA"), img_types), (tr("Все файлы"), "*.*")],
+        img_types = " ".join("*" + e for e in sorted(paa.IMAGE_EXTENSIONS | {".paa", ".edds"}))
+        self.files = FileList(self, app, tr("Картинки, PAA и EDDS"), [(tr("Картинки, PAA и EDDS"), img_types),
+                                                                       (tr("Все файлы"), "*.*")],
                               self.refresh, self.preview)
         self.files.grid(row=0, column=0, sticky="nsew", padx=(0, 6))
 
@@ -437,19 +440,25 @@ class TextureTab(Tab):
         self.v_out = tk.StringVar(value=st.get("out", ""))
         self.v_img = tk.StringVar(value=st.get("img", "png"))
         self.v_overwrite = tk.BooleanVar(value=st.get("overwrite", True))
+        self.v_target = tk.StringVar(value=st.get("target", "paa"))
 
         mf = ttk.LabelFrame(right, text=tr("Направление"), padding=8)
         mf.grid(row=0, column=0, sticky="ew")
-        ttk.Radiobutton(mf, text=tr("Картинки (PNG/TGA/JPG/BMP) → PAA"), variable=self.v_mode, value="to_paa",
+        ttk.Radiobutton(mf, text=tr("Картинки (PNG/TGA/JPG/BMP) → PAA/EDDS"), variable=self.v_mode, value="to_paa",
                         command=self.refresh).pack(anchor="w")
-        ttk.Radiobutton(mf, text=tr("PAA → картинки"), variable=self.v_mode, value="from_paa",
+        ttk.Radiobutton(mf, text=tr("PAA/EDDS → картинки"), variable=self.v_mode, value="from_paa",
                         command=self.refresh).pack(anchor="w")
+        ttk.Button(mf, text=tr("Атлас иконок (.imageset)..."), command=self.atlas_dialog).pack(anchor="e", pady=(4, 0))
 
         of = ttk.LabelFrame(right, text=tr("Параметры"), padding=8)
         of.grid(row=1, column=0, sticky="ew", pady=6)
         of.columnconfigure(1, weight=1)
-        labeled(of, 0, tr("Формат PAA"), ttk.Combobox(of, textvariable=self.v_fmt, values=["auto", "dxt1", "dxt5"],
-                                                 state="readonly", width=8), tr("auto: по прозрачности/_ca/_co"))
+        tf_ = ttk.Frame(of)
+        ttk.Combobox(tf_, textvariable=self.v_target, values=["paa", "edds"], state="readonly", width=6).pack(side="left")
+        cbf = ttk.Combobox(tf_, textvariable=self.v_fmt, values=["auto", "dxt1", "dxt5"], state="readonly", width=6)
+        cbf.pack(side="left", padx=4)
+        self.v_target.trace_add("write", lambda *_: self.refresh())
+        labeled(of, 0, tr("Формат"), tf_, tr("auto: по прозрачности/_ca/_co"))
         ttk.Checkbutton(of, text=tr("Подгонять размер к степени двойки"), variable=self.v_resize).grid(
             row=1, column=0, columnspan=3, sticky="w", pady=2)
         labeled(of, 2, tr("PAA → формат"), ttk.Combobox(of, textvariable=self.v_img, values=["png", "tga"],
@@ -475,13 +484,14 @@ class TextureTab(Tab):
 
     def save(self):
         return {"mode": self.v_mode.get(), "fmt": self.v_fmt.get(), "resize": self.v_resize.get(),
-                "out": self.v_out.get(), "img": self.v_img.get(), "overwrite": self.v_overwrite.get()}
+                "out": self.v_out.get(), "img": self.v_img.get(), "overwrite": self.v_overwrite.get(),
+                "target": self.v_target.get()}
 
     def tasks(self):
         to_paa = self.v_mode.get() == "to_paa"
-        exts = paa.IMAGE_EXTENSIONS if to_paa else {".paa"}
+        exts = paa.IMAGE_EXTENSIONS if to_paa else {".paa", ".edds"}
         inputs = convert.collect(self.files.items, exts)
-        suffix = ".paa" if to_paa else "." + self.v_img.get()
+        suffix = ("." + self.v_target.get()) if to_paa else "." + self.v_img.get()
         return inputs, convert.plan(inputs, self.v_out.get().strip(), suffix)
 
     def refresh(self):
@@ -490,10 +500,10 @@ class TextureTab(Tab):
         self.app.status(tr("Текстуры: файлов в очереди {0}").format(len(tasks)))
 
     def accepts(self, path: Path) -> bool:
-        return path.suffix.lower() in paa.IMAGE_EXTENSIONS or path.suffix.lower() == ".paa"
+        return path.suffix.lower() in paa.IMAGE_EXTENSIONS or path.suffix.lower() in (".paa", ".edds")
 
     def add_paths(self, paths):
-        if paths and all(Path(p).suffix.lower() == ".paa" for p in paths):
+        if paths and all(Path(p).suffix.lower() in (".paa", ".edds") for p in paths):
             self.v_mode.set("from_paa")
         self.files.add_paths(paths)
 
@@ -506,6 +516,12 @@ class TextureTab(Tab):
                 rgba, info = paa.read_paa(path)
                 im = Image.fromarray(rgba, "RGBA")
                 desc = tr("{0}x{1}, {2}, mip-уровней: {3}").format(info.width, info.height, info.type_name, len(info.mipmaps))
+            elif path.suffix.lower() == ".edds":
+                from . import edds
+                rgba, einfo = edds.read_edds(path)
+                im = Image.fromarray(rgba, "RGBA")
+                desc = tr("{0}x{1}, {2}, mip-уровней: {3}").format(einfo.width, einfo.height, einfo.format_name,
+                                                                  einfo.mipmaps)
             else:
                 im = Image.open(path).convert("RGBA")
                 w, h = im.size
@@ -531,14 +547,55 @@ class TextureTab(Tab):
             self.preview_lbl.configure(image="", text=tr("Не удалось открыть:\n{0}").format(e))
             self.preview_info.configure(text="")
 
+    def atlas_dialog(self):
+        from . import edds
+        images = [f for f, _ in convert.collect(self.files.items, paa.IMAGE_EXTENSIONS)]
+        if not images:
+            messagebox.showinfo(APP_NAME, tr("Добавьте в список картинки (иконки) для атласа."))
+            return
+        st = self.app.settings.get("atlas", {})
+        win = tk.Toplevel(self.app.root)
+        win.title(tr("Атлас иконок"))
+        win.transient(self.app.root)
+        f = ttk.Frame(win, padding=10)
+        f.pack(fill="both", expand=True)
+        f.columnconfigure(1, weight=1)
+        v_name = tk.StringVar(value=st.get("name", "icons"))
+        v_prefix = tk.StringVar(value=st.get("prefix", ""))
+        v_fmt = tk.StringVar(value=st.get("fmt", "edds"))
+        v_out = tk.StringVar(value=st.get("out", self.v_out.get()))
+        ttk.Label(f, text=tr("Картинок в списке: {0}").format(len(images))).grid(row=0, column=0, columnspan=3,
+                                                                              sticky="w", pady=(0, 6))
+        labeled(f, 1, tr("Имя набора"), ttk.Entry(f, textvariable=v_name, width=30))
+        labeled(f, 2, tr("Путь в PBO"), ttk.Entry(f, textvariable=v_prefix), tr("напр. MyMod/gui/imagesets"))
+        labeled(f, 3, tr("Текстура"), ttk.Combobox(f, textvariable=v_fmt, values=["edds", "paa"], state="readonly",
+                                                  width=6))
+        labeled(f, 4, tr("Папка вывода"), dir_picker(f, v_out, tr("Папка вывода")))
+
+        def go():
+            out = v_out.get().strip() or str(images[0].parent)
+            try:
+                tex, iset, placed = edds.build_atlas(images, out, v_name.get().strip() or "icons",
+                                                     v_prefix.get().strip(), v_fmt.get())
+            except Exception as e:
+                messagebox.showerror(APP_NAME, str(e), parent=win)
+                return
+            self.app.settings["atlas"] = {"name": v_name.get(), "prefix": v_prefix.get(), "fmt": v_fmt.get(),
+                                          "out": v_out.get()}
+            self.app.log(tr("Атлас: {0} ({1} картинок), описание: {2}").format(tex, len(placed), iset))
+            self.app.last_out = Path(out)
+            self.app.open_btn.configure(state="normal")
+            win.destroy()
+        ttk.Button(f, text=tr("▶ Собрать атлас"), command=go).grid(row=5, column=1, sticky="e", pady=(10, 0))
+
     def start(self):
         _, tasks = self.tasks()
         if not tasks:
-            messagebox.showinfo(APP_NAME, tr("Добавьте картинки или PAA-файлы (проверьте направление)."))
+            messagebox.showinfo(APP_NAME, tr("Добавьте картинки или PAA/EDDS-файлы (проверьте направление)."))
             return
         if self.v_mode.get() == "to_paa":
-            fn = convert.image_to_paa_task(self.v_fmt.get(), "nearest" if self.v_resize.get() else "error",
-                                           self.v_overwrite.get())
+            make = convert.image_to_edds_task if self.v_target.get() == "edds" else convert.image_to_paa_task
+            fn = make(self.v_fmt.get(), "nearest" if self.v_resize.get() else "error", self.v_overwrite.get())
         else:
             fn = convert.paa_to_image_task(self.v_overwrite.get())
         self.app.log(tr("Текстуры: {0} файл(ов)").format(len(tasks)))
@@ -722,6 +779,7 @@ class CheckTab(Tab):
         self.run_btn = ttk.Button(bottom, text=tr("▶ Проверить"), command=self.start)
         self.run_btn.pack(side="right")
         ttk.Button(bottom, text=tr("Сохранить отчёт"), command=self.export).pack(side="right", padx=6)
+        ttk.Button(bottom, text=tr("Исправить..."), command=self.fix_dialog).pack(side="right")
         app.run_buttons.append(self.run_btn)
         self._refresh_list()
 
@@ -813,6 +871,50 @@ class CheckTab(Tab):
                 open_folder(Path(i.file))
         except Exception:
             pass
+
+    def fix_dialog(self):
+        from . import fixes
+        dirs = [p for p in self.paths if Path(p).is_dir()]
+        if not self.issues or not dirs:
+            messagebox.showinfo(APP_NAME, tr("Сначала проверьте папку мода."))
+            return
+        root = dirs[0]
+        plan = fixes.plan(root, [i for i in self.issues if str(Path(i.file).resolve()).startswith(
+            str(Path(root).resolve()))])
+        if not plan:
+            messagebox.showinfo(APP_NAME, tr("Нечего исправлять автоматически."))
+            return
+        win = tk.Toplevel(self.app.root)
+        win.title(tr("Автоисправление"))
+        win.transient(self.app.root)
+        f = ttk.Frame(win, padding=10)
+        f.pack(fill="both", expand=True)
+        ttk.Label(f, text=tr("Будут внесены изменения (резервная копия файлов — рядом с модом):")).pack(anchor="w")
+        vars_ = []
+        box = ttk.Frame(f)
+        box.pack(fill="both", expand=True, pady=6)
+        for fx in plan:
+            v = tk.BooleanVar(value=True)
+            vars_.append(v)
+            ttk.Checkbutton(box, text=fx.description, variable=v).pack(anchor="w")
+        v_backup = tk.BooleanVar(value=True)
+        ttk.Checkbutton(f, text=tr("Сделать резервную копию"), variable=v_backup).pack(anchor="w")
+
+        def go():
+            for fx, v in zip(plan, vars_):
+                fx.enabled = v.get()
+            try:
+                ctx = fixes.apply(root, plan, backup=v_backup.get())
+            except Exception as e:
+                messagebox.showerror(APP_NAME, str(e), parent=win)
+                return
+            for c in ctx.changed:
+                self.app.log(tr("Исправлено: {0}").format(c))
+            if ctx.backup:
+                self.app.log(tr("Резервная копия: {0}").format(ctx.backup))
+            win.destroy()
+            self.start()
+        ttk.Button(f, text=tr("▶ Применить"), command=go).pack(anchor="e")
 
     def export(self):
         if not self.issues:
@@ -1154,10 +1256,12 @@ HELP = tr("""DayZ Mod Toolkit — набор инструментов для м�
   MP3/WAV/FLAC/M4A/... → OGG Vorbis. Для 3D-звуков (в мире) — моно, 44100 Гц.
   Может сгенерировать config.cpp с CfgSoundShaders/CfgSoundSets.
 
-ТЕКСТУРЫ PAA
-  PNG/TGA/JPG/BMP → PAA (DXT1/DXT5, mip-уровни, сжатие LZO) и PAA → PNG/TGA для правки.
+ТЕКСТУРЫ PAA / EDDS
+  PNG/TGA/JPG/BMP → PAA (DXT1/DXT5, mip-уровни, сжатие LZO) или EDDS (сжатие LZ4)
+  и PAA/EDDS → PNG/TGA для правки.
   Стороны текстуры должны быть степенью двойки (256, 512, 1024, 2048...).
   Формат «auto»: есть прозрачность или суффикс _ca → DXT5, иначе (и для _co) → DXT1.
+  «Атлас иконок»: много картинок → одна текстура + .imageset для интерфейса.
 
 CONFIG.CPP ⇄ CONFIG.BIN
   Бинаризация конфига (как Addon Builder/CfgConvert) с проверкой ошибок
@@ -1168,13 +1272,19 @@ CONFIG.CPP ⇄ CONFIG.BIN
   • config.cpp: синтаксис (пропущенные ; и }; ), необъявленные базовые классы, дубликаты, CfgPatches;
   • скрипты .c: скобки, незакрытые строки и комментарии, #ifdef/#endif, '=' вместо '==', if(...);
   • .layout/.imageset: скобки и строки;  XML (types.xml, events.xml, cfgspawnabletypes.xml, globals.xml);
-  • JSON, stringtable.csv, PAA (размеры, mip-уровни), OGG (кодек Vorbis);
+  • JSON, stringtable.csv, PAA/EDDS (размеры, mip-уровни), OGG (кодек Vorbis);
+  • .rvmat и модели .p3d: ссылки на текстуры и материалы;
   • ссылки на несуществующие файлы, отсутствующие ключи #STR_, папки скриптов из CfgMods,
-    пробелы и кириллица в именах файлов.
+    requiredAddons (циклы, опечатки), пробелы и кириллица в именах файлов;
+  • папка миссии сервера: связи между types/events/cfgeventspawns/cfgspawnabletypes,
+    cfglimitsdefinition и cfgeconomycore.
   Если указать папку игры DayZ (или распакованные скрипты), дополнительно проверяются
   modded class, extends и override по настоящим классам игры.
   Двойной щелчок по строке открывает файл (в VS Code — сразу на нужной строке).
   «Автопроверка» перепроверяет мод при каждом сохранении файлов.
+  «Исправить...» показывает план автоисправлений (class X; перед наследником, пропущенные ;,
+  заготовки строк stringtable, переименование файлов с исправлением ссылок) и применяет
+  выбранные, сохраняя резервную копию.
 
 PBO
   Сборка папки мода в PBO: проверка → бинаризация config.cpp → упаковка → подпись.
@@ -1183,6 +1293,16 @@ PBO
 TYPES.XML
   Заготовки <type> для всех предметов мода со scope = 2, дополнение существующего types.xml
   недостающими типами и сортировка.
+
+РЕДАКТОР TYPES
+  types.xml таблицей: фильтр по имени/категории/usage/value/tag, правка ячеек двойным щелчком,
+  массовые операции над найденными (умножить nominal, добавить usage...). Сохраняются только
+  изменённые значения — комментарии и оформление файла остаются.
+
+ЗАПУСК
+  Запуск DayZ Server и игры с вашими модами (-mod, -filePatching, -profiles), подключение
+  к локальному серверу. Ошибки из script*.log, crash*.log и *.RPT показываются сразу;
+  двойной щелчок открывает файл мода на строке с ошибкой.
 
 Проверка скриптов — это быстрый анализатор, а не компилятор DayZ: он ловит типичные
 синтаксические ошибки, но не проверяет типы выражений.
@@ -1219,6 +1339,12 @@ class HelpTab(Tab):
         cb.pack(side="left")
         cb.bind("<<ComboboxSelected>>", self.change_language)
         ttk.Label(lf, foreground=MUTED, text=tr("программа перезапустится")).pack(side="left", padx=8)
+        uf = ttk.LabelFrame(self, text=tr("Обновления"), padding=6)
+        uf.grid(row=3, column=0, sticky="ew", pady=(6, 0))
+        ttk.Checkbutton(uf, text=tr("Проверять раз в день при запуске"), variable=app.v_updates).pack(side="left")
+        ttk.Button(uf, text=tr("Проверить сейчас"), command=lambda: app.check_updates(manual=True)).pack(side="left",
+                                                                                                        padx=8)
+        ttk.Label(uf, text=tr("Версия {0}").format(APP_VERSION), foreground=MUTED).pack(side="left")
         found = find_ffmpeg(app.v_ffmpeg.get())
         ttk.Label(ff, foreground=MUTED, text=tr("Сейчас используется: {0}  (пусто = встроенный/автопоиск)").format(found or tr('не найден'))).pack(anchor="w")
 
@@ -1245,6 +1371,7 @@ class App:
         self.run_buttons: List[ttk.Button] = []
         self.last_out: Optional[Path] = None
         self.v_ffmpeg = tk.StringVar(value=self.settings.get("ffmpeg", ""))
+        self.v_updates = tk.BooleanVar(value=self.settings.get("check_updates", True))
         from .i18n import language
         self.lang = language()
 
@@ -1257,7 +1384,7 @@ class App:
         except tk.TclError:
             pass
         style.configure("Green.Horizontal.TProgressbar", background="#5a8f3c", troughcolor="#c9c6bd")
-        style.configure("TNotebook.Tab", padding=(10, 4))
+        style.configure("TNotebook.Tab", padding=(8, 4))
         try:
             icon = resource_path("assets/icon.png")
             if icon.is_file():
@@ -1280,8 +1407,13 @@ class App:
             "check": CheckTab(self.nb, self),
             "pbo": PboTab(self.nb, self),
             "types": TypesTab(self.nb, self),
-            "help": HelpTab(self.nb, self),
         }
+        from .gui_tools import LaunchTab, TypesEditTab
+        self.tabs.update({
+            "typesedit": TypesEditTab(self.nb, self),
+            "launch": LaunchTab(self.nb, self),
+            "help": HelpTab(self.nb, self),
+        })
 
         logf = ttk.LabelFrame(main, text=tr("Журнал"), padding=4)
         logf.grid(row=1, column=0, sticky="ew", pady=(6, 0))
@@ -1317,13 +1449,16 @@ class App:
         self.log(f"ffmpeg: {ff}" if ff else tr("ffmpeg не найден — конвертация звука недоступна (см. «Справка»)."),
                  None if ff else "warning")
         root.protocol("WM_DELETE_WINDOW", self.on_close)
+        from . import update
+        if update.due(self.settings) and self.v_updates.get():
+            root.after(1500, self.check_updates)
 
     def route(self, paths: List[str]) -> None:
         """Распределяет файлы, переданные при запуске (перетаскивание на .exe), по вкладкам."""
         buckets: Dict[str, List[str]] = {}
         for p in paths:
             path = Path(p)
-            for key in ("audio", "textures", "configs", "pbo", "check"):
+            for key in ("audio", "textures", "configs", "pbo", "typesedit", "check"):
                 tab = self.tabs[key]
                 if (path.is_dir() and key == "check") or (path.is_file() and tab.accepts(path)):
                     buckets.setdefault(key, []).append(p)
@@ -1406,9 +1541,36 @@ class App:
 
         threading.Thread(target=runner, daemon=True).start()
 
+    def check_updates(self, manual: bool = False) -> None:
+        from . import update
+
+        def work():
+            try:
+                info, err = update.fetch(), None
+            except Exception as e:
+                info, err = None, e
+
+            def done():
+                self.settings["update_checked"] = time.time()
+                if err is not None:
+                    if manual:
+                        messagebox.showerror(APP_NAME, tr("Не удалось проверить обновления: {0}").format(err))
+                    return
+                msg = update.message(info)
+                if info is not None and info.newer:
+                    self.log(msg, "warning")
+                    if messagebox.askyesno(APP_NAME, msg + "\n\n" + tr("Открыть страницу загрузки?")):
+                        webbrowser.open(info.url)
+                elif manual:
+                    messagebox.showinfo(APP_NAME, msg)
+            self.ui(done)
+        threading.Thread(target=work, daemon=True).start()
+
     def save_settings(self) -> None:
-        data = {k: t.save() for k, t in self.tabs.items() if k != "help"}
+        data = {k: v for k, v in self.settings.items() if k not in self.tabs}   # atlas, update_checked, ...
+        data.update({k: t.save() for k, t in self.tabs.items() if k != "help"})
         data["ffmpeg"] = self.v_ffmpeg.get()
+        data["check_updates"] = self.v_updates.get()
         data["lang"] = self.lang
         try:
             data["tab"] = list(self.tabs)[self.nb.index(self.nb.select())]
