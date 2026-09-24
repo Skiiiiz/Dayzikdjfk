@@ -385,7 +385,7 @@ def test_types_editor(tmp_path):
     p.write_text(TYPES, encoding="utf-8")
     tf = te.load(p)
     assert [r.name for r in tf.rows] == ["AKM", "Apple", "Empty"]
-    assert te.to_text(tf) == TYPES                                # без правок — байт в байт
+    assert te.to_text(tf) == p.read_bytes().decode("utf-8")      # без правок — байт в байт
     weapons = [r for r in tf.rows if te.matches(r, category="weapons")]
     assert [r.name for r in weapons] == ["AKM"]
     assert [r.name for r in tf.rows if te.matches(r, usage="village")] == ["Apple"]
@@ -412,6 +412,15 @@ def test_types_editor(tmp_path):
     assert text.count("\n") >= TYPES.count("\n")
     apple.values["min"] = "50"
     assert "min больше nominal" in te.validate(apple)
+    # файл с переводами строк Windows: CRLF сохраняется и в изменённых типах
+    crlf = tmp_path / "crlf.xml"
+    crlf.write_bytes(TYPES.replace("\n", "\r\n").encode("utf-8"))
+    tf3 = te.load(crlf)
+    assert te.to_text(tf3) == crlf.read_bytes().decode("utf-8")
+    te.bulk(tf3.rows, "usage", "addlist", "Farm")
+    te.save(tf3)
+    raw = crlf.read_bytes()
+    assert b'<usage name="Farm"/>\r\n' in raw and b"\n" not in raw.replace(b"\r\n", b"")
 
 
 def test_types_editor_cli(tmp_path):
